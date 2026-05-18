@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant · Müllerhof</title>
+<meta name="description" content="Müllerhof Frick – Restaurant, Hotel und Eventlocation. Wo Begegnung zuhause ist.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav transparent" id="nav">
+  <a href="index.html"><img src="images/logo.png" alt="Müllerhof" class="nav__logo"></a>
+  <button class="nav__toggle" id="navToggle" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav__menu" id="navMenu">
+    <li><a href="index.html" class="nav__link">Home</a></li>
+    <li><a href="restaurant.html" class="nav__link active">Restaurant</a></li>
+    <li><a href="hotel.html" class="nav__link">Hotel</a></li>
+    <li><a href="events.html" class="nav__link">Events</a></li>
+    <li><a href="galerie.html" class="nav__link">Galerie</a></li>
+    <li><a href="ueber-uns.html" class="nav__link">Über uns</a></li>
+    <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
+    <li><a href="restaurant.html#reservieren" class="nav__link nav__cta">Reservieren</a></li>
+  </ul>
+</nav>
+
+<section class="hero hero--short">
+  <div class="hero__bg hero__bg--brown"></div>
+  <div class="hero__placeholder">
+    <div class="hero__placeholder-label">[ Bild: Stübli mit warmer Lichtstimmung ]</div>
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <p class="hero__sub">Restaurant</p>
+    <h1 class="hero__claim">Gutbürgerlich.<br>Ehrlich. Heute.</h1>
+    <div class="hero__cta-group">
+      <a href="#reservieren" class="btn btn--primary">Tisch reservieren</a>
+      <a href="#speisekarte" class="btn btn--ghost">Speisekarte</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section__inner section__center">
+    <span class="kicker">Wochenmenü</span>
+    <h2 style="font-size: clamp(2rem, 4vw, 3.25rem); font-style: italic; font-weight: 400; margin-bottom: 1rem;">Diese Woche bei uns</h2>
+    <p style="color: var(--c-brown); font-size: 0.85rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; margin-bottom: 3rem;">KW 21 · 18. – 24. Mai 2026</p>
+
+    <ul class="menu-list">
+      <li><span class="menu-list__day">Montag</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
+      <li><span class="menu-list__day">Dienstag</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
+      <li><span class="menu-list__day">Mittwoch</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
+      <li><span class="menu-list__day">Donnerstag</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
+      <li><span class="menu-list__day">Freitag</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
+    </ul>
+
+    <div class="placeholder-note">
+      <strong>Hinweis Konzept:</strong> Die Wochenmenüs werden später aus dem Dokument „Menüs mit Preisen" eingepflegt. Einfache wöchentliche Aktualisierung über HTML-Editor oder CMS möglich.
+    </div>
+  </div>
+</section>
+
+<section id="speisekarte" class="section--sand">
+  <div class="section__inner">
+    <div class="section__header">
+      <span class="kicker">Speisekarte</span>
+      <h2 style="font-style: italic; font-weight: 400;">Was uns auf den Teller bringt.</h2>
+    </div>
+
+    <div class="menu-section">
+      <h3>Vorspeisen</h3>
+      <p class="menu-section__sub">Zum Start</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Vorspeise 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Vorspeise 2 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Vorspeise 3 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Hauptgänge</h3>
+      <p class="menu-section__sub">Aus Küche & Pfanne</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Hauptgang 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Hauptgang 2 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Hauptgang 3 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Vegetarisch ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Desserts</h3>
+      <p class="menu-section__sub">Süsses Finale</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Dessert 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Dessert 2 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Frühstück & Znüni</h3>
+      <p class="menu-section__sub">Für einen guten Start</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Frühstücksvariante 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Inhalt folgt aus Frühstücks-Dokument ]</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">[ Znüni-Variante 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Inhalt folgt aus Frühstücks-Dokument ]</div></div>
+    </div>
+
+    <div class="placeholder-note" style="max-width: 100%;">
+      <strong>Hinweis Konzept:</strong> Speisekarte wird aus den Dokumenten „Menüs mit Preisen" und „Frühstück & Znüni" befüllt. Weinkarte und Getränke folgen separat.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section__inner">
+    <div class="section__header">
+      <span class="kicker">Unsere Räume</span>
+      <h2 style="font-style: italic; font-weight: 400;">Drei Welten unter einem Dach.</h2>
+    </div>
+
+    <div class="pillars__grid" style="background: transparent; max-width: var(--max-w); margin: 0 auto;">
+      <article class="pillar" style="background: var(--c-sand);">
+        <div class="pillar__img"><span class="pillar__placeholder">[ Bild: Stübli ]</span></div>
+        <div class="pillar__body">
+          <span class="pillar__kicker">Stübli</span>
+          <h3>Wohnliche Wärme.</h3>
+          <p>Holz, weiche Stoffe, Kerzenlicht. Hier fühlt man sich wie zuhause – nur dass jemand anderes kocht.</p>
+        </div>
+      </article>
+      <article class="pillar" style="background: var(--c-sand);">
+        <div class="pillar__img"><span class="pillar__placeholder">[ Bild: Alts Höfli ]</span></div>
+        <div class="pillar__body">
+          <span class="pillar__kicker">Alts Höfli</span>
+          <h3>Geschichte und Genuss.</h3>
+          <p>Der historische Charakter des Müllerhofs trifft auf moderne Gastlichkeit – ein Raum mit Erinnerung.</p>
+        </div>
+      </article>
+      <article class="pillar" style="background: var(--c-sand);">
+        <div class="pillar__img"><span class="pillar__placeholder">[ Bild: s'Wohnzimmer ]</span></div>
+        <div class="pillar__body">
+          <span class="pillar__kicker">s'Wohnzimmer</span>
+          <h3>Begegnung pur.</h3>
+          <p>Der Treffpunkt zum Plaudern, Anstossen und Verweilen – mitten im Geschehen.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="reservieren" class="section--dark section__center">
+  <span class="kicker kicker--light">Reservation</span>
+  <h2 style="color: var(--c-beige-light); font-size: clamp(2rem, 4vw, 3.25rem); font-style: italic; font-weight: 400; margin-bottom: 1.5rem;">Tisch reservieren</h2>
+  <p style="max-width: 600px; margin: 0 auto 3rem; color: rgba(242,237,227,0.85); font-size: 1.05rem;">
+    Reservieren Sie Ihren Tisch bequem online über aleno – jederzeit, schnell und unkompliziert.
+  </p>
+
+  <div style="background: rgba(242,237,227,0.05); border: 1px dashed rgba(242,237,227,0.3); padding: 4rem 2rem; max-width: 700px; margin: 0 auto 2rem;">
+    <p style="color: var(--c-sand); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; margin-bottom: 1rem;">[ Aleno Widget – Integration ]</p>
+    <p style="color: rgba(242,237,227,0.7); font-style: italic;">Hier wird das Aleno-Reservierungswidget per iframe eingebettet, sobald der Account eingerichtet ist.</p>
+  </div>
+
+  <a href="tel:+41628655380" class="btn btn--ghost">Oder anrufen: 062 865 53 80</a>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__logo">
+      <img src="images/logo.png" alt="Müllerhof">
+      <p class="footer__claim">Wo Begegnung zuhause ist. Restaurant, Hotel und Eventlocation im Herzen von Frick.</p>
+    </div>
+
+    <div>
+      <h4>Kontakt</h4>
+      <ul>
+        <li>Schulstrasse 11</li>
+        <li>5070 Frick</li>
+        <li><a href="tel:+41628655380">062 865 53 80</a></li>
+        <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Entdecken</h4>
+      <ul>
+        <li><a href="restaurant.html">Restaurant</a></li>
+        <li><a href="hotel.html">Hotel</a></li>
+        <li><a href="events.html">Events &amp; Seminare</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Reservation</h4>
+      <ul>
+        <li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
+        <li><a href="hotel.html#buchen">Zimmer buchen</a></li>
+        <li><a href="events.html#anfrage">Bankettanfrage</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <span>© 2026 Müllerhof · Frick</span>
+    <span><a href="#" style="color: inherit;">Impressum</a> · <a href="#" style="color: inherit;">Datenschutz</a></span>
+  </div>
+</footer>
+
+<div class="concept-badge">Konzept · Vorschau</div>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

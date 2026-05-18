@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events & Seminare · Müllerhof</title>
+<meta name="description" content="Müllerhof Frick – Restaurant, Hotel und Eventlocation. Wo Begegnung zuhause ist.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav transparent" id="nav">
+  <a href="index.html"><img src="images/logo.png" alt="Müllerhof" class="nav__logo"></a>
+  <button class="nav__toggle" id="navToggle" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav__menu" id="navMenu">
+    <li><a href="index.html" class="nav__link">Home</a></li>
+    <li><a href="restaurant.html" class="nav__link">Restaurant</a></li>
+    <li><a href="hotel.html" class="nav__link">Hotel</a></li>
+    <li><a href="events.html" class="nav__link active">Events</a></li>
+    <li><a href="galerie.html" class="nav__link">Galerie</a></li>
+    <li><a href="ueber-uns.html" class="nav__link">Über uns</a></li>
+    <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
+    <li><a href="restaurant.html#reservieren" class="nav__link nav__cta">Reservieren</a></li>
+  </ul>
+</nav>
+
+<section class="hero hero--short">
+  <div class="hero__bg"></div>
+  <div class="hero__placeholder">
+    <div class="hero__placeholder-label">[ Bild: Bankett-Saal mit Kerzenlicht ]</div>
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <p class="hero__sub">Events · Bankett · Seminare</p>
+    <h1 class="hero__claim">Feste feiern.<br>Klare Gedanken fassen.</h1>
+    <div class="hero__cta-group">
+      <a href="#anfrage" class="btn btn--primary">Anfrage stellen</a>
+      <a href="#raeume" class="btn btn--ghost">Räume ansehen</a>
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="section__inner">
+    <span class="kicker">Für unvergessliche Momente</span>
+    <h2>Ob Firmenanlass, Seminar<br>oder private Feier.</h2>
+    <p>
+      Im Müllerhof wird jeder Anlass zu einem besonderen Erlebnis.
+      Flexible Räumlichkeiten, individuelle Betreuung und eine ehrliche,
+      gutbürgerliche Küche sorgen für einen rundum gelungenen Event.
+    </p>
+  </div>
+</section>
+
+<section id="raeume" class="section--dark">
+  <div class="section__header">
+    <span class="kicker kicker--light">Räumlichkeiten</span>
+    <h2 style="font-style: italic; font-weight: 400;">Sechs Räume.<br>Unzählige Möglichkeiten.</h2>
+    <p>Vom intimen Erker bis zur grossen Aula – wir finden den passenden Rahmen für Ihren Anlass.</p>
+  </div>
+  <div class="rooms-grid">
+    <div class="room-card"><div class="room-card__name">Erker</div><div class="room-card__cap">bis 40 Personen</div></div>
+    <div class="room-card"><div class="room-card__name">Stübli</div><div class="room-card__cap">bis 56 Personen</div></div>
+    <div class="room-card"><div class="room-card__name">Gewölbekeller</div><div class="room-card__cap">bis 30 Personen</div></div>
+    <div class="room-card"><div class="room-card__name">Restaurant</div><div class="room-card__cap">130 Personen</div></div>
+    <div class="room-card"><div class="room-card__name">Terrasse</div><div class="room-card__cap">bis 80 Personen</div></div>
+    <div class="room-card"><div class="room-card__name">Aula</div><div class="room-card__cap">bis 40 Personen</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="section__header">
+    <span class="kicker">Bankett</span>
+    <h2 style="font-style: italic; font-weight: 400;">Kulinarik & Genuss</h2>
+    <p>Unsere Bankett-Angebote für Ihren besonderen Anlass.</p>
+  </div>
+
+  <div class="pauschale-grid">
+    <div class="pauschale">
+      <span class="pauschale__kicker">Apéro</span>
+      <h3 class="pauschale__name">4 Canapés</h3>
+      <div class="pauschale__price">CHF 30.–</div>
+      <p class="pauschale__price-sub">pro Person</p>
+      <ul class="pauschale__list">
+        <li>Auswahl an 4 Canapés</li>
+        <li>Saisonal & frisch zubereitet</li>
+        <li>Individuelle Wünsche möglich</li>
+      </ul>
+    </div>
+
+    <div class="pauschale">
+      <span class="pauschale__kicker">3-Gang Menü</span>
+      <h3 class="pauschale__name">Klassisch</h3>
+      <div class="pauschale__price">ab CHF 65.–</div>
+      <p class="pauschale__price-sub">pro Person</p>
+      <ul class="pauschale__list">
+        <li>Vorspeise</li>
+        <li>Hauptgang</li>
+        <li>Dessert</li>
+        <li>Vegetarisch auf Anfrage</li>
+      </ul>
+    </div>
+
+    <div class="pauschale">
+      <span class="pauschale__kicker">4-Gang Menü</span>
+      <h3 class="pauschale__name">Erweitert</h3>
+      <div class="pauschale__price">ab CHF 80.–</div>
+      <p class="pauschale__price-sub">pro Person</p>
+      <ul class="pauschale__list">
+        <li>Vorspeise</li>
+        <li>Zwischengang</li>
+        <li>Hauptgang</li>
+        <li>Dessert</li>
+      </ul>
+    </div>
+
+    <div class="pauschale">
+      <span class="pauschale__kicker">5-Gang Menü</span>
+      <h3 class="pauschale__name">Festlich</h3>
+      <div class="pauschale__price">auf Anfrage</div>
+      <p class="pauschale__price-sub">pro Person</p>
+      <ul class="pauschale__list">
+        <li>Komplettes Festmenü</li>
+        <li>Individuell zusammengestellt</li>
+        <li>Mit Weinempfehlung</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="text-align: center; margin-top: 3rem; color: var(--c-text-soft); font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto;">
+    Weissweine ab CHF 30.– / Flasche · Rotweine ab CHF 35.– / Flasche · Individuelle Weinempfehlungen auf Anfrage.
+  </p>
+</section>
+
+<section class="section--sand">
+  <div class="section__header">
+    <span class="kicker">Seminare</span>
+    <h2 style="font-style: italic; font-weight: 400;">Seminarpauschalen</h2>
+    <p>Ein ruhiger Ort für klare Gedanken.</p>
+  </div>
+
+  <div class="pauschale-grid">
+    <div class="pauschale" style="background: var(--c-white);">
+      <span class="pauschale__kicker">Halber Tag</span>
+      <h3 class="pauschale__name">Kompakt</h3>
+      <div class="pauschale__price">CHF 45.–</div>
+      <p class="pauschale__price-sub">pro Person</p>
+      <ul class="pauschale__list">
+        <li>Begrüssungskaffee</li>
+        <li>1× Kaffeepause</li>
+        <li>3-Gang-Mittagsmenü +30.–</li>
+        <li>Mineralwasser & Früchtekorb</li>
+        <li>Technik & WLAN inklusive</li>
+      </ul>
+    </div>
+
+    <div class="pauschale" style="background: var(--c-white); border-top-color: var(--c-darkgreen);">
+      <span class="pauschale__kicker">Ganzer Tag</span>
+      <h3 class="pauschale__name">Standard</h3>
+      <div class="pauschale__price">CHF 95.–</div>
+      <p class="pauschale__price-sub">pro Person</p>
+      <ul class="pauschale__list">
+        <li>Begrüssungskaffee</li>
+        <li>Kaffeepause vor- und nachmittags</li>
+        <li>3-Gang-Mittagsmenü</li>
+        <li>Mineralwasser & Früchtekorb</li>
+        <li>Technik & WLAN inklusive</li>
+      </ul>
+    </div>
+
+    <div class="pauschale" style="background: var(--c-white); border-top-color: var(--c-sage);">
+      <span class="pauschale__kicker">Ganzer Tag + Übernachtung</span>
+      <h3 class="pauschale__name">Komplett</h3>
+      <div class="pauschale__price">CHF 250.–</div>
+      <p class="pauschale__price-sub">pro Person</p>
+      <ul class="pauschale__list">
+        <li>Alle Leistungen Ganzer Tag</li>
+        <li>2-Gang Mittag + 3-Gang Abend</li>
+        <li>Übernachtung im DZ als EZ</li>
+        <li>Inkl. Frühstück</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="max-width: var(--content-w); margin: 4rem auto 0; text-align: center;">
+    <h3 style="font-size: 1.5rem; font-style: italic; font-weight: 400; margin-bottom: 2rem;">Bestuhlungsvarianten</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem;">
+      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">Parlamentarisch</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 60 Pers.</span></div>
+      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">Theater</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 80 Pers.</span></div>
+      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">Blocktisch</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 26 Pers.</span></div>
+      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">U-Form</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 36 Pers.</span></div>
+      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">O-Form</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 32 Pers.</span></div>
+      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">Bankett</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 50 Pers.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="anfrage">
+  <div class="section__header">
+    <span class="kicker">Anfrage</span>
+    <h2 style="font-style: italic; font-weight: 400;">Erzählen Sie uns von Ihrem Anlass.</h2>
+    <p>Wir melden uns innerhalb von 24 Stunden mit einer persönlichen Offerte.</p>
+  </div>
+
+  <form class="form" onsubmit="event.preventDefault(); alert('Konzept-Vorschau: Formular wird später angebunden.');">
+    <div class="form__row">
+      <div><label>Vorname *</label><input type="text" required></div>
+      <div><label>Nachname *</label><input type="text" required></div>
+    </div>
+    <div class="form__row">
+      <div><label>E-Mail *</label><input type="email" required></div>
+      <div><label>Telefon</label><input type="tel"></div>
+    </div>
+    <div class="form__row">
+      <div>
+        <label>Art des Anlasses</label>
+        <select>
+          <option>Firmenanlass</option>
+          <option>Hochzeit</option>
+          <option>Geburtstag / Privatfeier</option>
+          <option>Seminar / Workshop</option>
+          <option>Beerdigung / Trauerfeier</option>
+          <option>Anderes</option>
+        </select>
+      </div>
+      <div><label>Personenzahl</label><input type="number" min="1"></div>
+    </div>
+    <div class="form__row">
+      <div><label>Wunschdatum</label><input type="date"></div>
+      <div>
+        <label>Bevorzugter Raum</label>
+        <select>
+          <option>Noch offen</option>
+          <option>Erker (bis 40)</option>
+          <option>Stübli (bis 56)</option>
+          <option>Gewölbekeller (bis 30)</option>
+          <option>Restaurant (130)</option>
+          <option>Terrasse (bis 80)</option>
+          <option>Aula (bis 40)</option>
+        </select>
+      </div>
+    </div>
+    <div><label>Ihre Nachricht</label><textarea placeholder="Erzählen Sie uns mehr über Ihren Anlass…"></textarea></div>
+    <div style="text-align: center; margin-top: 1rem;">
+      <button type="submit" class="btn btn--dark">Anfrage senden</button>
+    </div>
+  </form>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__logo">
+      <img src="images/logo.png" alt="Müllerhof">
+      <p class="footer__claim">Wo Begegnung zuhause ist. Restaurant, Hotel und Eventlocation im Herzen von Frick.</p>
+    </div>
+
+    <div>
+      <h4>Kontakt</h4>
+      <ul>
+        <li>Schulstrasse 11</li>
+        <li>5070 Frick</li>
+        <li><a href="tel:+41628655380">062 865 53 80</a></li>
+        <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Entdecken</h4>
+      <ul>
+        <li><a href="restaurant.html">Restaurant</a></li>
+        <li><a href="hotel.html">Hotel</a></li>
+        <li><a href="events.html">Events &amp; Seminare</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Reservation</h4>
+      <ul>
+        <li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
+        <li><a href="hotel.html#buchen">Zimmer buchen</a></li>
+        <li><a href="events.html#anfrage">Bankettanfrage</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <span>© 2026 Müllerhof · Frick</span>
+    <span><a href="#" style="color: inherit;">Impressum</a> · <a href="#" style="color: inherit;">Datenschutz</a></span>
+  </div>
+</footer>
+
+<div class="concept-badge">Konzept · Vorschau</div>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
