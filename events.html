@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Events & Seminare · Müllerhof</title>
-<meta name="description" content="Müllerhof Frick – Restaurant, Hotel und Eventlocation. Wo Begegnung zuhause ist.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -46,6 +45,40 @@
   </div>
 </section>
 
+<!-- Dokumentationen als Karten -->
+<section class="section--sand">
+  <div class="section__header">
+    <span class="kicker">Dokumentationen</span>
+    <h2 style="font-style: italic; font-weight: 400;">Alle Details auf einen Blick.</h2>
+    <p>Detaillierte Informationen zu unseren Bankett- und Seminarangeboten.</p>
+  </div>
+
+  <div class="speise-grid" style="max-width: 900px;">
+    <article class="speise-card">
+      <svg class="speise-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 7v13a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V7"/>
+        <path d="M3 7l9-4 9 4"/>
+        <path d="M9 21V11h6v10"/>
+      </svg>
+      <h3>Bankett</h3>
+      <p>Komplette Bankett-Dokumentation mit Räumen, Kapazitäten, Menü-Optionen und Konditionen.</p>
+      <a href="bankett.html" class="btn btn--outline">Dokumentation öffnen</a>
+    </article>
+
+    <article class="speise-card">
+      <svg class="speise-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="6" width="20" height="14" rx="2"/>
+        <path d="M2 10h20"/>
+        <path d="M8 2v4"/>
+        <path d="M16 2v4"/>
+      </svg>
+      <h3>Seminare</h3>
+      <p>Komplette Seminar-Dokumentation mit Pauschalen, Ausstattung, Bestuhlungsvarianten und AGBs.</p>
+      <a href="seminare.html" class="btn btn--outline">Dokumentation öffnen</a>
+    </article>
+  </div>
+</section>
+
 <section id="raeume" class="section--dark">
   <div class="section__header">
     <span class="kicker kicker--light">Räumlichkeiten</span>
@@ -66,7 +99,6 @@
     <span class="kicker">Bankett</span>
     <h2 style="font-style: italic; font-weight: 400;">Kulinarik &amp; Genuss</h2>
   </div>
-
   <div class="pauschale-grid">
     <div class="pauschale">
       <span class="pauschale__kicker">Apéro</span>
@@ -76,7 +108,6 @@
       <ul class="pauschale__list">
         <li>Auswahl an 4 Canapés</li>
         <li>Saisonal &amp; frisch zubereitet</li>
-        <li>Individuelle Wünsche möglich</li>
       </ul>
     </div>
     <div class="pauschale">
@@ -85,9 +116,7 @@
       <div class="pauschale__price">ab CHF 65.–</div>
       <p class="pauschale__price-sub">pro Person</p>
       <ul class="pauschale__list">
-        <li>Vorspeise</li>
-        <li>Hauptgang</li>
-        <li>Dessert</li>
+        <li>Vorspeise · Hauptgang · Dessert</li>
         <li>Vegetarisch auf Anfrage</li>
       </ul>
     </div>
@@ -97,10 +126,8 @@
       <div class="pauschale__price">ab CHF 80.–</div>
       <p class="pauschale__price-sub">pro Person</p>
       <ul class="pauschale__list">
-        <li>Vorspeise</li>
-        <li>Zwischengang</li>
-        <li>Hauptgang</li>
-        <li>Dessert</li>
+        <li>Vorspeise · Zwischengang</li>
+        <li>Hauptgang · Dessert</li>
       </ul>
     </div>
     <div class="pauschale">
@@ -111,11 +138,9 @@
       <ul class="pauschale__list">
         <li>Komplettes Festmenü</li>
         <li>Individuell zusammengestellt</li>
-        <li>Mit Weinempfehlung</li>
       </ul>
     </div>
   </div>
-
   <p style="text-align: center; margin-top: 3rem; color: var(--c-text-soft); font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto;">
     Weissweine ab CHF 30.– / Flasche · Rotweine ab CHF 35.– / Flasche
   </p>
@@ -125,9 +150,7 @@
   <div class="section__header">
     <span class="kicker">Seminare</span>
     <h2 style="font-style: italic; font-weight: 400;">Seminarpauschalen</h2>
-    <p>Ein ruhiger Ort für klare Gedanken.</p>
   </div>
-
   <div class="pauschale-grid">
     <div class="pauschale" style="background: var(--c-white);">
       <span class="pauschale__kicker">Halber Tag</span>
@@ -138,7 +161,6 @@
         <li>Begrüssungskaffee</li>
         <li>1× Kaffeepause</li>
         <li>3-Gang-Mittagsmenü +30.–</li>
-        <li>Mineralwasser &amp; Früchtekorb</li>
         <li>Technik &amp; WLAN inklusive</li>
       </ul>
     </div>
@@ -151,7 +173,6 @@
         <li>Begrüssungskaffee</li>
         <li>Kaffeepause vor- und nachmittags</li>
         <li>3-Gang-Mittagsmenü</li>
-        <li>Mineralwasser &amp; Früchtekorb</li>
         <li>Technik &amp; WLAN inklusive</li>
       </ul>
     </div>
@@ -169,15 +190,105 @@
     </div>
   </div>
 
-  <div style="max-width: var(--content-w); margin: 4rem auto 0; text-align: center;">
-    <h3 style="font-size: 1.5rem; font-style: italic; font-weight: 400; margin-bottom: 2rem;">Bestuhlungsvarianten</h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem;">
-      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">Parlamentarisch</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 60 Pers.</span></div>
-      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">Theater</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 80 Pers.</span></div>
-      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">Blocktisch</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 26 Pers.</span></div>
-      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">U-Form</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 36 Pers.</span></div>
-      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">O-Form</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 32 Pers.</span></div>
-      <div style="background: var(--c-white); padding: 1.5rem 1rem;"><strong style="font-family: var(--font-display); color: var(--c-darkgreen); display: block; margin-bottom: 0.25rem;">Bankett</strong><span style="font-size: 0.8rem; color: var(--c-text-soft);">max. 50 Pers.</span></div>
+  <!-- BESTUHLUNG TABELLE MIT ICONS -->
+  <div class="bestuhlung">
+    <h3 class="bestuhlung__title">Bestuhlungsvarianten</h3>
+    <div class="bestuhlung__grid">
+      <!-- Header -->
+      <div class="bestuhlung__cell bestuhlung__cell--header">Parlamentarische Bestuhlung</div>
+      <div class="bestuhlung__cell bestuhlung__cell--header">Theater­bestuhlung</div>
+      <div class="bestuhlung__cell bestuhlung__cell--header">Blocktisch</div>
+      <div class="bestuhlung__cell bestuhlung__cell--header">U-Form</div>
+      <div class="bestuhlung__cell bestuhlung__cell--header">O-Form</div>
+      <div class="bestuhlung__cell bestuhlung__cell--header">Bankett</div>
+      <!-- Icons -->
+      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#2D4036">
+          <!-- Stühle Reihe 1 -->
+          <circle cx="15" cy="5" r="3"/><circle cx="28" cy="5" r="3"/><circle cx="41" cy="5" r="3"/><circle cx="54" cy="5" r="3"/><circle cx="67" cy="5" r="3"/><circle cx="80" cy="5" r="3"/>
+          <!-- Tisch 1 -->
+          <rect x="10" y="12" width="75" height="6" rx="1"/>
+          <!-- Stühle Reihe 2 -->
+          <circle cx="15" cy="25" r="3"/><circle cx="28" cy="25" r="3"/><circle cx="41" cy="25" r="3"/><circle cx="54" cy="25" r="3"/><circle cx="67" cy="25" r="3"/><circle cx="80" cy="25" r="3"/>
+          <!-- Tisch 2 -->
+          <rect x="10" y="32" width="75" height="6" rx="1"/>
+          <!-- Stühle Reihe 3 -->
+          <circle cx="15" cy="45" r="3"/><circle cx="28" cy="45" r="3"/><circle cx="41" cy="45" r="3"/><circle cx="54" cy="45" r="3"/><circle cx="67" cy="45" r="3"/><circle cx="80" cy="45" r="3"/>
+          <!-- Tisch 3 -->
+          <rect x="10" y="52" width="75" height="6" rx="1"/>
+          <!-- Stühle Reihe 4 -->
+          <circle cx="15" cy="65" r="3"/><circle cx="28" cy="65" r="3"/><circle cx="41" cy="65" r="3"/><circle cx="54" cy="65" r="3"/><circle cx="67" cy="65" r="3"/><circle cx="80" cy="65" r="3"/>
+        </g>
+      </svg></div>
+      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#2D4036"><circle cx="15" cy="8" r="2.5"/><circle cx="24" cy="8" r="2.5"/><circle cx="33" cy="8" r="2.5"/><circle cx="42" cy="8" r="2.5"/><circle cx="51" cy="8" r="2.5"/><circle cx="60" cy="8" r="2.5"/><circle cx="69" cy="8" r="2.5"/><circle cx="78" cy="8" r="2.5"/><circle cx="87" cy="8" r="2.5"/><circle cx="15" cy="17" r="2.5"/><circle cx="24" cy="17" r="2.5"/><circle cx="33" cy="17" r="2.5"/><circle cx="42" cy="17" r="2.5"/><circle cx="51" cy="17" r="2.5"/><circle cx="60" cy="17" r="2.5"/><circle cx="69" cy="17" r="2.5"/><circle cx="78" cy="17" r="2.5"/><circle cx="87" cy="17" r="2.5"/><circle cx="15" cy="26" r="2.5"/><circle cx="24" cy="26" r="2.5"/><circle cx="33" cy="26" r="2.5"/><circle cx="42" cy="26" r="2.5"/><circle cx="51" cy="26" r="2.5"/><circle cx="60" cy="26" r="2.5"/><circle cx="69" cy="26" r="2.5"/><circle cx="78" cy="26" r="2.5"/><circle cx="87" cy="26" r="2.5"/><circle cx="15" cy="35" r="2.5"/><circle cx="24" cy="35" r="2.5"/><circle cx="33" cy="35" r="2.5"/><circle cx="42" cy="35" r="2.5"/><circle cx="51" cy="35" r="2.5"/><circle cx="60" cy="35" r="2.5"/><circle cx="69" cy="35" r="2.5"/><circle cx="78" cy="35" r="2.5"/><circle cx="87" cy="35" r="2.5"/><circle cx="15" cy="44" r="2.5"/><circle cx="24" cy="44" r="2.5"/><circle cx="33" cy="44" r="2.5"/><circle cx="42" cy="44" r="2.5"/><circle cx="51" cy="44" r="2.5"/><circle cx="60" cy="44" r="2.5"/><circle cx="69" cy="44" r="2.5"/><circle cx="78" cy="44" r="2.5"/><circle cx="87" cy="44" r="2.5"/><circle cx="15" cy="53" r="2.5"/><circle cx="24" cy="53" r="2.5"/><circle cx="33" cy="53" r="2.5"/><circle cx="42" cy="53" r="2.5"/><circle cx="51" cy="53" r="2.5"/><circle cx="60" cy="53" r="2.5"/><circle cx="69" cy="53" r="2.5"/><circle cx="78" cy="53" r="2.5"/><circle cx="87" cy="53" r="2.5"/><circle cx="15" cy="62" r="2.5"/><circle cx="24" cy="62" r="2.5"/><circle cx="33" cy="62" r="2.5"/><circle cx="42" cy="62" r="2.5"/><circle cx="51" cy="62" r="2.5"/><circle cx="60" cy="62" r="2.5"/><circle cx="69" cy="62" r="2.5"/><circle cx="78" cy="62" r="2.5"/><circle cx="87" cy="62" r="2.5"/></g>
+      </svg></div>
+      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#2D4036">
+          <!-- Obere Stühle -->
+          <circle cx="22" cy="12" r="3"/><circle cx="38" cy="12" r="3"/><circle cx="54" cy="12" r="3"/><circle cx="70" cy="12" r="3"/>
+          <!-- Tisch -->
+          <rect x="18" y="22" width="60" height="26" rx="1"/>
+          <!-- Untere Stühle -->
+          <circle cx="22" cy="58" r="3"/><circle cx="38" cy="58" r="3"/><circle cx="54" cy="58" r="3"/><circle cx="70" cy="58" r="3"/>
+          <!-- Seiten -->
+          <circle cx="10" cy="35" r="3"/><circle cx="86" cy="35" r="3"/>
+        </g>
+      </svg></div>
+      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#2D4036">
+          <!-- Stühle oben über linkem Schenkel -->
+          <circle cx="22" cy="8" r="2.5"/><circle cx="34" cy="8" r="2.5"/><circle cx="46" cy="8" r="2.5"/><circle cx="58" cy="8" r="2.5"/><circle cx="70" cy="8" r="2.5"/>
+          <!-- Linker Schenkel -->
+          <rect x="20" y="15" width="60" height="6"/>
+          <!-- Linke Seite -->
+          <rect x="20" y="21" width="6" height="35"/>
+          <circle cx="14" cy="28" r="2.5"/><circle cx="14" cy="40" r="2.5"/><circle cx="14" cy="52" r="2.5"/>
+          <!-- Rechte Seite -->
+          <rect x="74" y="21" width="6" height="35"/>
+          <circle cx="86" cy="28" r="2.5"/><circle cx="86" cy="40" r="2.5"/><circle cx="86" cy="52" r="2.5"/>
+        </g>
+      </svg></div>
+      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#2D4036">
+          <!-- Stühle oben -->
+          <circle cx="22" cy="8" r="2.5"/><circle cx="34" cy="8" r="2.5"/><circle cx="46" cy="8" r="2.5"/><circle cx="58" cy="8" r="2.5"/><circle cx="70" cy="8" r="2.5"/>
+          <!-- Tisch oben -->
+          <rect x="20" y="15" width="60" height="6"/>
+          <!-- Linke Seite -->
+          <rect x="20" y="21" width="6" height="28"/>
+          <circle cx="14" cy="28" r="2.5"/><circle cx="14" cy="40" r="2.5"/>
+          <!-- Rechte Seite -->
+          <rect x="74" y="21" width="6" height="28"/>
+          <circle cx="86" cy="28" r="2.5"/><circle cx="86" cy="40" r="2.5"/>
+          <!-- Tisch unten -->
+          <rect x="20" y="49" width="60" height="6"/>
+          <!-- Stühle unten -->
+          <circle cx="22" cy="62" r="2.5"/><circle cx="34" cy="62" r="2.5"/><circle cx="46" cy="62" r="2.5"/><circle cx="58" cy="62" r="2.5"/><circle cx="70" cy="62" r="2.5"/>
+        </g>
+      </svg></div>
+      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#2D4036">
+          <!-- Runder Tisch -->
+          <circle cx="50" cy="35" r="15"/>
+          <!-- Stühle drumrum -->
+          <circle cx="50" cy="10" r="3"/>
+          <circle cx="72" cy="20" r="3"/>
+          <circle cx="78" cy="35" r="3"/>
+          <circle cx="72" cy="50" r="3"/>
+          <circle cx="50" cy="60" r="3"/>
+          <circle cx="28" cy="50" r="3"/>
+          <circle cx="22" cy="35" r="3"/>
+          <circle cx="28" cy="20" r="3"/>
+        </g>
+      </svg></div>
+      <!-- Kapazitäten -->
+      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 60 Personen</div>
+      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 80 Personen</div>
+      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 26 Personen</div>
+      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 36 Personen</div>
+      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 32 Personen</div>
+      <div class="bestuhlung__cell bestuhlung__cell--cap">Lange Tische max. 50 Personen<br>Runde Tische max. 40 Personen</div>
     </div>
   </div>
 </section>
@@ -187,7 +298,6 @@
     <span class="kicker">Anfrage</span>
     <h2 style="font-style: italic; font-weight: 400;">Erzählen Sie uns von Ihrem Anlass.</h2>
   </div>
-
   <form class="form" onsubmit="event.preventDefault(); alert('Konzept-Vorschau: Formular wird später angebunden.');">
     <div class="form__row">
       <div><label>Vorname *</label><input type="text" required></div>
@@ -201,12 +311,8 @@
       <div>
         <label>Art des Anlasses</label>
         <select>
-          <option>Firmenanlass</option>
-          <option>Hochzeit</option>
-          <option>Geburtstag / Privatfeier</option>
-          <option>Seminar / Workshop</option>
-          <option>Beerdigung / Trauerfeier</option>
-          <option>Anderes</option>
+          <option>Firmenanlass</option><option>Hochzeit</option><option>Geburtstag / Privatfeier</option>
+          <option>Seminar / Workshop</option><option>Beerdigung / Trauerfeier</option><option>Anderes</option>
         </select>
       </div>
       <div><label>Personenzahl</label><input type="number" min="1"></div>
@@ -216,17 +322,12 @@
       <div>
         <label>Bevorzugter Raum</label>
         <select>
-          <option>Noch offen</option>
-          <option>Erker (bis 40)</option>
-          <option>Stübli (bis 56)</option>
-          <option>Gewölbekeller (bis 30)</option>
-          <option>Restaurant (130)</option>
-          <option>Terrasse (bis 80)</option>
-          <option>Aula (bis 40)</option>
+          <option>Noch offen</option><option>Erker (bis 40)</option><option>Stübli (bis 56)</option>
+          <option>Gewölbekeller (bis 30)</option><option>Restaurant (130)</option><option>Terrasse (bis 80)</option><option>Aula (bis 40)</option>
         </select>
       </div>
     </div>
-    <div><label>Ihre Nachricht</label><textarea placeholder="Erzählen Sie uns mehr über Ihren Anlass…"></textarea></div>
+    <div><label>Ihre Nachricht</label><textarea placeholder="Erzählen Sie uns mehr…"></textarea></div>
     <div style="text-align: center; margin-top: 1rem;">
       <button type="submit" class="btn btn--dark">Anfrage senden</button>
     </div>
@@ -244,6 +345,7 @@
       <ul>
         <li>Schulstrasse 11</li>
         <li>5070 Frick</li>
+        <li><a href="tel:+41628655380">062 865 53 80</a></li>
         <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
       </ul>
     </div>
@@ -251,6 +353,7 @@
       <h4>Entdecken</h4>
       <ul>
         <li><a href="restaurant.html">Restaurant</a></li>
+        <li><a href="speisekarte.html">Speisekarte</a></li>
         <li><a href="hotel.html">Hotel</a></li>
         <li><a href="events.html">Events &amp; Seminare</a></li>
         <li><a href="galerie.html">Galerie</a></li>
@@ -271,9 +374,7 @@
     <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
   </div>
 </footer>
-
 <div class="concept-badge">Konzept · Vorschau</div>
-
 <script src="js/main.js"></script>
 
 </body>

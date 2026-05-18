@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kontakt · Müllerhof</title>
-<meta name="description" content="Müllerhof Frick – Restaurant, Hotel und Eventlocation. Wo Begegnung zuhause ist.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,7 +25,7 @@
 
 <section class="hero hero--short">
   <div class="hero__bg"></div>
-  <div class="hero__placeholder"><div class="hero__placeholder-label">[ Bild: Eingang oder Aussenansicht ]</div></div>
+  <div class="hero__placeholder"><div class="hero__placeholder-label">[ Bild: Aussenansicht Müllerhof ]</div></div>
   <div class="hero__overlay"></div>
   <div class="hero__content">
     <p class="hero__sub">Kontakt</p>
@@ -36,18 +35,10 @@
 
 <div class="quick-bar">
   <div class="quick-bar__inner">
-    <div class="quick-bar__item">
-      <span class="quick-bar__label">Öffnungszeiten</span>
-      <span class="quick-bar__value">[ Öffnungszeiten folgen ]</span>
-    </div>
-    <div class="quick-bar__item">
-      <span class="quick-bar__label">Adresse</span>
-      <span class="quick-bar__value">Schulstrasse 11 · 5070 Frick</span>
-    </div>
-    <div class="quick-bar__item">
-      <span class="quick-bar__label">E-Mail</span>
-      <span class="quick-bar__value"><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></span>
-    </div>
+    <div class="quick-bar__item"><span class="quick-bar__label">Öffnungszeiten</span><span class="quick-bar__value">[ Öffnungszeiten folgen ]</span></div>
+    <div class="quick-bar__item"><span class="quick-bar__label">Adresse</span><span class="quick-bar__value">Schulstrasse 11 · 5070 Frick</span></div>
+    <div class="quick-bar__item"><span class="quick-bar__label">Telefon</span><span class="quick-bar__value"><a href="tel:+41628655380">062 865 53 80</a></span></div>
+    <div class="quick-bar__item"><span class="quick-bar__label">E-Mail</span><span class="quick-bar__value"><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></span></div>
   </div>
 </div>
 
@@ -56,11 +47,14 @@
     <div>
       <span class="kicker">Kontakt</span>
       <h2 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-style: italic; font-weight: 400; margin-bottom: 2rem;">So erreichen Sie uns.</h2>
-
       <div style="display: grid; gap: 1.5rem;">
         <div>
           <div style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; margin-bottom: 0.5rem;">Adresse</div>
           <div style="font-size: 1.05rem;">Restaurant &amp; Hotel Müllerhof<br>Schulstrasse 11<br>5070 Frick</div>
+        </div>
+        <div>
+          <div style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; margin-bottom: 0.5rem;">Telefon</div>
+          <div style="font-size: 1.05rem;"><a href="tel:+41628655380" style="color: inherit;">062 865 53 80</a></div>
         </div>
         <div>
           <div style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; margin-bottom: 0.5rem;">E-Mail</div>
@@ -72,11 +66,9 @@
         </div>
       </div>
     </div>
-
     <div>
       <span class="kicker">Nachricht</span>
       <h2 style="font-size: clamp(1.75rem, 3vw, 2.5rem); font-style: italic; font-weight: 400; margin-bottom: 2rem;">Schreiben Sie uns.</h2>
-
       <form class="form" onsubmit="event.preventDefault(); alert('Konzept-Vorschau: Formular wird später angebunden.');" style="margin: 0;">
         <div><label>Name *</label><input type="text" required></div>
         <div><label>E-Mail *</label><input type="email" required></div>
@@ -92,7 +84,6 @@
     <span class="kicker">Anreise</span>
     <h2 style="font-style: italic; font-weight: 400;">So kommen Sie zu uns.</h2>
   </div>
-
   <div style="max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
     <div style="background: var(--c-white); padding: 3rem;">
       <h3 style="font-size: 1.3rem; font-style: italic; font-weight: 400; margin-bottom: 1.5rem;">Mit dem Auto</h3>
@@ -109,7 +100,7 @@
         <li>› Ab Zürich: IR36 direkt bis Frick</li>
         <li>› Ab Basel: IR36 oder S1 bis Frick</li>
         <li>› Ab Brugg: IR36 oder Bus 137 bis Frick</li>
-        <li>› Ab Bahnhof Frick: Bus 136 bis Frick, Firma Müller</li>
+        <li>› Ab Bahnhof Frick: Bus 136 bis Müller</li>
       </ul>
     </div>
   </div>
@@ -119,9 +110,7 @@
   <div class="map-wrap">
     <iframe
       src="https://www.openstreetmap.org/export/embed.html?bbox=8.0090%2C47.5070%2C8.0250%2C47.5160&amp;layer=mapnik&amp;marker=47.5115%2C8.0170"
-      loading="lazy"
-      title="Karte Müllerhof Frick"
-      referrerpolicy="no-referrer-when-downgrade">
+      loading="lazy" title="Karte Müllerhof Frick" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
 </section>
@@ -137,6 +126,7 @@
       <ul>
         <li>Schulstrasse 11</li>
         <li>5070 Frick</li>
+        <li><a href="tel:+41628655380">062 865 53 80</a></li>
         <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
       </ul>
     </div>
@@ -144,6 +134,7 @@
       <h4>Entdecken</h4>
       <ul>
         <li><a href="restaurant.html">Restaurant</a></li>
+        <li><a href="speisekarte.html">Speisekarte</a></li>
         <li><a href="hotel.html">Hotel</a></li>
         <li><a href="events.html">Events &amp; Seminare</a></li>
         <li><a href="galerie.html">Galerie</a></li>
@@ -164,9 +155,7 @@
     <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
   </div>
 </footer>
-
 <div class="concept-badge">Konzept · Vorschau</div>
-
 <script src="js/main.js"></script>
 
 </body>

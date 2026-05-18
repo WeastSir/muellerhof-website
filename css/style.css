@@ -1,4 +1,4 @@
-/* MÜLLERHOF – Globale Styles */
+/* MÜLLERHOF – Globale Styles V3 */
 
 :root {
   --c-beige-light: #F2EDE3;
@@ -74,9 +74,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spac
 .hero__scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 5; color: var(--c-beige-light); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.7; animation: bounce 2s ease-in-out infinite; }
 @keyframes bounce { 0%,100% { transform: translate(-50%, 0); opacity: 0.7; } 50% { transform: translate(-50%, 8px); opacity: 1; } }
 
-/* QUICK BAR (ohne Telefon) */
+/* QUICK BAR */
 .quick-bar { background: var(--c-darkgreen); color: var(--c-beige-light); padding: 2rem 3rem; }
-.quick-bar__inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; align-items: center; }
+.quick-bar__inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; align-items: center; }
 .quick-bar__item { display: flex; flex-direction: column; gap: 0.25rem; border-left: 1px solid rgba(242,237,227,0.2); padding-left: 1.5rem; }
 .quick-bar__item:first-child { border-left: none; }
 .quick-bar__label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.7; font-weight: 700; }
@@ -103,7 +103,7 @@ section { padding: 8rem 3rem; }
 .intro h2 { font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 2rem; font-style: italic; font-weight: 400; }
 .intro p { font-size: 1.15rem; max-width: 700px; margin: 0 auto; color: var(--c-text-soft); line-height: 1.8; }
 
-/* PLATZHALTER-TEXT */
+/* PLATZHALTER */
 .placeholder-text { background: rgba(103, 74, 45, 0.06); border-left: 3px solid var(--c-brown); padding: 1.25rem 1.5rem; color: var(--c-text-soft); font-style: italic; margin: 1.5rem 0; font-size: 0.95rem; }
 .placeholder-text strong { color: var(--c-brown); font-style: normal; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.7rem; display: block; margin-bottom: 0.5rem; }
 
@@ -140,17 +140,6 @@ section { padding: 8rem 3rem; }
 .room-card__name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--c-beige-light); margin-bottom: 0.5rem; letter-spacing: 0.05em; }
 .room-card__cap { font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c-sand); font-weight: 700; }
 
-/* SPEISEKARTE */
-.menu-section { margin-bottom: 4rem; }
-.menu-section h3 { font-size: 1.75rem; font-style: italic; font-weight: 400; margin-bottom: 0.5rem; text-align: center; }
-.menu-section__sub { text-align: center; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; margin-bottom: 2.5rem; }
-.dish { padding: 1.5rem 0; border-bottom: 1px solid rgba(103, 74, 45, 0.15); }
-.dish:last-child { border-bottom: none; }
-.dish__head { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 0.4rem; align-items: baseline; }
-.dish__name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--c-darkgreen); }
-.dish__price { font-family: var(--font-display); font-weight: 700; color: var(--c-brown); white-space: nowrap; }
-.dish__desc { font-size: 0.9rem; color: var(--c-text-soft); }
-
 /* ZIMMER */
 .zimmer-grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .zimmer-card { background: var(--c-white); overflow: hidden; transition: transform 0.4s, box-shadow 0.4s; }
@@ -171,6 +160,66 @@ section { padding: 8rem 3rem; }
 .pauschale__list { list-style: none; margin-bottom: 2rem; flex: 1; }
 .pauschale__list li { padding: 0.6rem 0; font-size: 0.9rem; color: var(--c-text-soft); border-bottom: 1px solid rgba(103, 74, 45, 0.1); }
 .pauschale__list li::before { content: "›"; color: var(--c-brown); font-weight: 700; margin-right: 0.75rem; }
+
+/* BESTUHLUNGS-TABELLE wie im PDF */
+.bestuhlung {
+  max-width: var(--max-w);
+  margin: 4rem auto 0;
+}
+.bestuhlung__title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  color: var(--c-darkgreen);
+}
+.bestuhlung__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid var(--c-darkgreen);
+  background: var(--c-sand);
+}
+.besttuhlung__col {
+  display: contents;
+}
+.bestuhlung__cell {
+  padding: 1rem 0.75rem;
+  border-right: 1px solid var(--c-darkgreen);
+  border-bottom: 1px solid var(--c-darkgreen);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bestuhlung__cell:nth-child(6n) { border-right: none; }
+.bestuhlung__cell--header {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--c-darkgreen);
+  background: var(--c-sand);
+  min-height: 70px;
+}
+.bestuhlung__cell--icon {
+  background: var(--c-sand);
+  min-height: 130px;
+  padding: 1rem;
+}
+.bestuhlung__cell--icon svg {
+  max-width: 100%;
+  max-height: 100px;
+  height: auto;
+}
+.bestuhlung__cell--cap {
+  background: var(--c-sand);
+  min-height: 90px;
+  font-size: 0.85rem;
+  color: var(--c-text);
+  line-height: 1.4;
+}
+.bestuhlung__row:last-child .bestuhlung__cell { border-bottom: none; }
 
 /* FORMULAR */
 .form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; }
@@ -205,6 +254,130 @@ section { padding: 8rem 3rem; }
 .legal h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 3rem; font-style: italic; font-weight: 400; }
 .legal h2 { font-size: 1.3rem; margin: 2.5rem 0 1rem; font-weight: 700; }
 
+/* PDF VIEWER (für Bankett & Seminare) */
+.pdf-viewer {
+  background: var(--c-sand);
+  min-height: 100vh;
+  padding: 6rem 1rem 3rem;
+}
+.pdf-back {
+  max-width: 1100px;
+  margin: 0 auto 1.5rem;
+}
+.pdf-back a {
+  font-family: var(--font-display);
+  color: var(--c-darkgreen);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid var(--c-darkgreen);
+  padding-bottom: 4px;
+}
+.pdf-frame {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--c-beige-light);
+  height: 85vh;
+  box-shadow: 0 30px 80px rgba(45, 64, 54, 0.2);
+}
+.pdf-frame iframe, .pdf-frame embed, .pdf-frame object {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* === SPEISEKARTE FLYER === */
+.flyer-wrap {
+  background: var(--c-sand);
+  min-height: 100vh;
+  padding: 6rem 1rem 3rem;
+}
+.flyer-back {
+  max-width: 1100px;
+  margin: 0 auto 1.5rem;
+}
+.flyer-back a {
+  font-family: var(--font-display);
+  color: var(--c-darkgreen);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid var(--c-darkgreen);
+  padding-bottom: 4px;
+}
+.chapter-nav {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.chapter-link {
+  background: transparent;
+  border: 1px solid var(--c-darkgreen);
+  color: var(--c-darkgreen);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.chapter-link:hover, .chapter-link.active {
+  background: var(--c-darkgreen);
+  color: var(--c-beige-light);
+}
+.flyer {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+.page {
+  background: var(--c-beige-light);
+  min-height: 1100px;
+  padding: 5rem 4rem;
+  box-shadow: 0 30px 80px rgba(45, 64, 54, 0.2), 0 10px 30px rgba(45, 64, 54, 0.1);
+  display: none;
+  position: relative;
+}
+.page.active { display: block; animation: pageIn 0.5s ease; }
+@keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.page::before, .page::after { content: ""; position: absolute; width: 50px; height: 50px; border: 1px solid var(--c-brown); opacity: 0.4; }
+.page::before { top: 1.25rem; left: 1.25rem; border-right: none; border-bottom: none; }
+.page::after { bottom: 1.25rem; right: 1.25rem; border-left: none; border-top: none; }
+
+.page__kicker { text-align: center; font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; margin-bottom: 1rem; }
+.page__title { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.75rem); font-style: italic; font-weight: 400; text-align: center; color: var(--c-darkgreen); margin-bottom: 0.5rem; line-height: 1.1; }
+.page__subtitle { text-align: center; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-text-soft); margin-bottom: 1.5rem; font-weight: 700; }
+.page__divider { width: 60px; height: 1px; background: var(--c-brown); margin: 0 auto 2.5rem; }
+
+.flyer-dish { padding: 1rem 0; border-bottom: 1px solid rgba(103, 74, 45, 0.18); }
+.flyer-dish:last-child { border-bottom: none; }
+.flyer-dish__head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.3rem; }
+.flyer-dish__name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--c-darkgreen); }
+.flyer-dish__price { font-family: var(--font-display); font-weight: 700; color: var(--c-brown); white-space: nowrap; font-size: 0.95rem; }
+.flyer-dish__desc { font-size: 0.85rem; color: var(--c-text-soft); line-height: 1.5; }
+
+.flyer-section { margin-bottom: 2.5rem; }
+.flyer-section:last-child { margin-bottom: 0; }
+.flyer-section h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--c-darkgreen); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.4rem; text-align: center; }
+.flyer-section .sub { text-align: center; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; margin-bottom: 1.2rem; opacity: 0.7; }
+
+.flyer-nav { max-width: 900px; margin: 2rem auto 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.flyer-btn { background: var(--c-darkgreen); color: var(--c-beige-light); border: none; padding: 1rem 2rem; font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: background 0.3s; }
+.flyer-btn:hover:not(:disabled) { background: var(--c-brown); }
+.flyer-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.flyer-indicator { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--c-darkgreen); font-weight: 700; }
+.flyer-indicator strong { font-size: 1.1rem; }
+
 /* FOOTER */
 .footer { background: var(--c-darkgreen); color: var(--c-beige-light); padding: 5rem 3rem 2rem; }
 .footer__inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 4rem; }
@@ -217,8 +390,15 @@ section { padding: 8rem 3rem; }
 .footer a:hover { opacity: 1; }
 .footer__bottom { max-width: var(--max-w); margin: 0 auto; padding-top: 2rem; border-top: 1px solid rgba(242,237,227,0.15); display: flex; justify-content: space-between; font-size: 0.8rem; opacity: 0.7; flex-wrap: wrap; gap: 1rem; }
 
-/* BADGE */
 .concept-badge { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--c-brown); color: var(--c-beige-light); padding: 0.75rem 1.25rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; border-radius: 2px; z-index: 200; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+/* SPEISE-CARDS auf Restaurant */
+.speise-grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+.speise-card { background: var(--c-beige-light); padding: 3rem 2rem; text-align: center; border: 1px solid rgba(103, 74, 45, 0.15); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+.speise-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(45, 64, 54, 0.12); }
+.speise-card__icon { width: 50px; height: 50px; margin: 0 auto 1.5rem; color: var(--c-brown); }
+.speise-card h3 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 1.5rem; margin-bottom: 0.5rem; }
+.speise-card p { color: var(--c-text-soft); font-size: 0.9rem; margin-bottom: 2rem; flex: 1; }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -228,7 +408,7 @@ section { padding: 8rem 3rem; }
   .nav__menu.open { display: flex; }
   .nav.transparent .nav__menu.open .nav__link { color: var(--c-darkgreen); }
   .nav__toggle { display: block; }
-  .quick-bar__inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .quick-bar__inner { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .pillars__grid { grid-template-columns: 1fr; }
   .split__inner { grid-template-columns: 1fr; }
   .split__text { padding: 4rem 2rem; }
@@ -238,8 +418,16 @@ section { padding: 8rem 3rem; }
   .footer__inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .form__row { grid-template-columns: 1fr; }
   section, .pillars, .intro, .legal { padding: 5rem 1.5rem; }
+  .page { padding: 3rem 1.5rem; min-height: 80vh; }
+  .page::before, .page::after { width: 30px; height: 30px; }
+  .page__title { font-size: 2rem; }
+  .pdf-frame { height: 75vh; }
+  .bestuhlung__grid { grid-template-columns: 1fr; }
+  .bestuhlung__cell { border-right: none; min-height: auto; padding: 1rem; }
+  .bestuhlung__cell--header { padding-top: 1.5rem; }
 }
 @media (max-width: 500px) {
+  .quick-bar__inner { grid-template-columns: 1fr; }
   .rooms-grid, .gallery-grid, .partners-grid, .footer__inner { grid-template-columns: 1fr; }
   .nav__logo { height: 40px; }
 }
