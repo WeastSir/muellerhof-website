@@ -11,9 +11,7 @@
 
 <nav class="nav transparent" id="nav">
   <a href="index.html"><img src="images/logo.png" alt="Müllerhof" class="nav__logo"></a>
-  <button class="nav__toggle" id="navToggle" aria-label="Menü">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="nav__toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
   <ul class="nav__menu" id="navMenu">
     <li><a href="index.html" class="nav__link">Home</a></li>
     <li><a href="restaurant.html" class="nav__link active">Restaurant</a></li>
@@ -28,13 +26,11 @@
 
 <section class="hero hero--short">
   <div class="hero__bg hero__bg--brown"></div>
-  <div class="hero__placeholder">
-    <div class="hero__placeholder-label">[ Bild: Stübli mit warmer Lichtstimmung ]</div>
-  </div>
+  <div class="hero__placeholder"><div class="hero__placeholder-label">[ Bild: Stübli mit warmer Lichtstimmung ]</div></div>
   <div class="hero__overlay"></div>
   <div class="hero__content">
     <p class="hero__sub">Restaurant</p>
-    <h1 class="hero__claim">Gutbürgerlich.<br>Ehrlich. Heute.</h1>
+    <h1 class="hero__claim">[ Headline Restaurant ]</h1>
     <div class="hero__cta-group">
       <a href="#reservieren" class="btn btn--primary">Tisch reservieren</a>
       <a href="#speisekarte" class="btn btn--ghost">Speisekarte</a>
@@ -42,119 +38,241 @@
   </div>
 </section>
 
-<section>
-  <div class="section__inner section__center">
-    <span class="kicker">Wochenmenü</span>
-    <h2 style="font-size: clamp(2rem, 4vw, 3.25rem); font-style: italic; font-weight: 400; margin-bottom: 1rem;">Diese Woche bei uns</h2>
-    <p style="color: var(--c-brown); font-size: 0.85rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; margin-bottom: 3rem;">KW 21 · 18. – 24. Mai 2026</p>
-
-    <ul class="menu-list">
-      <li><span class="menu-list__day">Montag</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
-      <li><span class="menu-list__day">Dienstag</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
-      <li><span class="menu-list__day">Mittwoch</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
-      <li><span class="menu-list__day">Donnerstag</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
-      <li><span class="menu-list__day">Freitag</span><span class="menu-list__dish">[ Tagesmenü Platzhalter ]</span><span class="menu-list__price">CHF –.–</span></li>
-    </ul>
-
-    <div class="placeholder-note">
-      <strong>Hinweis Konzept:</strong> Die Wochenmenüs werden später aus dem Dokument „Menüs mit Preisen" eingepflegt. Einfache wöchentliche Aktualisierung über HTML-Editor oder CMS möglich.
-    </div>
-  </div>
-</section>
-
-<section id="speisekarte" class="section--sand">
+<!-- HOFKLASSIKER -->
+<section id="speisekarte">
   <div class="section__inner">
     <div class="section__header">
-      <span class="kicker">Speisekarte</span>
-      <h2 style="font-style: italic; font-weight: 400;">Was uns auf den Teller bringt.</h2>
+      <span class="kicker">Hofklassiker</span>
+      <h2 style="font-style: italic; font-weight: 400;">Die Lieblinge des Hauses.</h2>
     </div>
 
     <div class="menu-section">
-      <h3>Vorspeisen</h3>
-      <p class="menu-section__sub">Zum Start</p>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Vorspeise 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Vorspeise 2 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Vorspeise 3 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-    </div>
-
-    <div class="menu-section">
-      <h3>Hauptgänge</h3>
-      <p class="menu-section__sub">Aus Küche & Pfanne</p>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Hauptgang 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Hauptgang 2 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Hauptgang 3 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Vegetarisch ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-    </div>
-
-    <div class="menu-section">
-      <h3>Desserts</h3>
-      <p class="menu-section__sub">Süsses Finale</p>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Dessert 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Dessert 2 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Beschreibung folgt aus Menü-Dokument ]</div></div>
-    </div>
-
-    <div class="menu-section">
-      <h3>Frühstück & Znüni</h3>
-      <p class="menu-section__sub">Für einen guten Start</p>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Frühstücksvariante 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Inhalt folgt aus Frühstücks-Dokument ]</div></div>
-      <div class="dish"><div class="dish__head"><span class="dish__name">[ Znüni-Variante 1 ]</span><span class="dish__price">CHF –.–</span></div><div class="dish__desc">[ Inhalt folgt aus Frühstücks-Dokument ]</div></div>
-    </div>
-
-    <div class="placeholder-note" style="max-width: 100%;">
-      <strong>Hinweis Konzept:</strong> Speisekarte wird aus den Dokumenten „Menüs mit Preisen" und „Frühstück & Znüni" befüllt. Weinkarte und Getränke folgen separat.
+      <div class="dish"><div class="dish__head"><span class="dish__name">Kalbs Cordon Bleu</span><span class="dish__price">auf Anfrage</span></div><div class="dish__desc">Gefüllt mit Schinken und Käse, serviert mit Gemüsebouquet und knusprigen Pommes frites</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Schweinsbratwurst mit Rösti</span><span class="dish__price">CHF 24.50</span></div><div class="dish__desc">Feine Schweizer Schweinsbratwurst, dazu hausgemachte Butterrösti und Zwiebelsauce</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Hofburger mit Pommes</span><span class="dish__price">CHF 25.50</span></div><div class="dish__desc">Rindfleisch-Patty, Käse, Zwiebeln, Cornichons und BBQ-Sauce im Brioche-Bun, dazu Pommes frites</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Fitnessteller Poulet</span><span class="dish__price">CHF 24.50</span></div><div class="dish__desc">Gegrillte Pouletbruststreifen auf gemischtem Salat und leichter Hausvinaigrette</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Älplermagronen</span><span class="dish__price">CHF 21.50</span></div><div class="dish__desc">Traditionelle Teigwaren mit Kartoffeln, Rahm und Käse, serviert mit Röstzwiebeln und Apfelmus</div></div>
     </div>
   </div>
 </section>
 
+<!-- STÜBLI VORSPEISEN -->
+<section class="section--sand">
+  <div class="section__inner">
+    <div class="section__header">
+      <span class="kicker">Stübli</span>
+      <h2 style="font-style: italic; font-weight: 400;">Vorspeisen</h2>
+    </div>
+
+    <div class="menu-section">
+      <h3>Vegetarisch</h3>
+      <p class="menu-section__sub">— Vegi —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Hofgartensalat</span><span class="dish__price">CHF 11.50</span></div><div class="dish__desc">Bunter Blattsalat mit saisonalem Gemüse und Hausdressing</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Geräuchertes Karottencarpaccio mit Ziegenkäse</span><span class="dish__price">CHF 17.50</span></div><div class="dish__desc">Dünn geschnittene, geräucherte Karotten mit mariniertem Ziegenkäse und frischen Kräutern</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Hofgartenpastete mit Pickles</span><span class="dish__price">CHF 16.50</span></div><div class="dish__desc">Hausgemachte Gemüsepastete mit Cornichons und Gemüse-Pickles</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Klassisch</h3>
+      <p class="menu-section__sub">— Vorspeisen —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Weissweinsuppe</span><span class="dish__price">CHF 13.50</span></div><div class="dish__desc">Feine Weissweinschaumsuppe auf Basis von Geflügel- oder Kalbsfond, mit Croutons</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Dani's Wurst-Käsesalat</span><span class="dish__price">CHF 18.50</span></div><div class="dish__desc">Hauskreation mit Wurst, Käse, Zwiebeln und Essiggurken auf Blattsalat</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Markbein</span><span class="dish__price">CHF 15.50</span></div><div class="dish__desc">Im Ofen gebratenes Markbein mit Kräutern, dazu Toastbrot und Meersalz</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Kalbfleischpastete mit Pickles</span><span class="dish__price">CHF 18.50</span></div><div class="dish__desc">Feine Kalbfleischpastete mit hausgemachten Gemüse-Pickles und Cornichons</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Tartar am Tisch mit Belperknolle und Brioche</span><span class="dish__price">auf Anfrage</span></div><div class="dish__desc">Rindstatar (Schweiz), am Tisch zubereitet, verfeinert mit Belperknolle, serviert mit Brioche und Butter</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Geräucherte Forelle</span><span class="dish__price">CHF 21.50</span></div><div class="dish__desc">Hausgeräucherte Forelle mit Kräutersalat und Meerrettichschaum</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HAUPTGÄNGE -->
 <section>
+  <div class="section__inner">
+    <div class="section__header">
+      <span class="kicker">Stübli</span>
+      <h2 style="font-style: italic; font-weight: 400;">Hauptgänge</h2>
+    </div>
+
+    <div class="menu-section">
+      <h3>Vegetarisch</h3>
+      <p class="menu-section__sub">— Vegi —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">BBQ Aubergine mit Chimichurri</span><span class="dish__price">CHF 29.50</span></div><div class="dish__desc">Im Ofen geschmorte Aubergine mit BBQ-Glasur, Chimichurri und Kartoffelbeilage</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Trüffelravioli mit Käseschaum und Nussbutter</span><span class="dish__price">CHF 34.50</span></div><div class="dish__desc">Gefüllte Ravioli mit Trüffel, serviert im Käseschaum und brauner Nussbutter, dazu etwas Kresse</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Mit Fleisch &amp; Fisch</h3>
+      <p class="menu-section__sub">— Klassisch —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Kalbs Cordon Bleu mit Gemüsebouquet und Pommes frites</span><span class="dish__price">auf Anfrage</span></div><div class="dish__desc">Kalbs-Cordon-Bleu, gefüllt mit Schinken und Käse, dazu Gemüsebouquet und knusprige Pommes frites</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Tartar am Tisch mit Belperknolle und Brioche</span><span class="dish__price">auf Anfrage</span></div><div class="dish__desc">Rindstatar (Schweiz), am Tisch zubereitet, mit Belperknolle, Brioche / Pommes Frites</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Kalbs-Läberli mit Rösti</span><span class="dish__price">CHF 34.50</span></div><div class="dish__desc">Zarte Kalbsleber an Madeirasauce, serviert mit knuspriger Butterrösti</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Fricker Bierbraten mit Kartoffelstock und Bohnen</span><span class="dish__price">CHF 33.50</span></div><div class="dish__desc">Im Bier geschmorter Schweinsbraten mit cremigem Kartoffelstock und Bohnen</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Filet Stroganoff mit hausgemachten Chorizo-Spätzli</span><span class="dish__price">CHF 42.50</span></div><div class="dish__desc">Rindsfiletstreifen Stroganoff mit Champignons und Peperoni, dazu hausgemachte Chorizo-Spätzli</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Rhein-Zander auf Rauchheu mit Reis und jungem Spinat</span><span class="dish__price">CHF 39.50</span></div><div class="dish__desc">Auf Rauchheu gegarter Zander mit Butterreis und jungem Blattspinat</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DESSERT -->
+<section class="section--sand">
+  <div class="section__inner">
+    <div class="section__header">
+      <span class="kicker">Süsses Finale</span>
+      <h2 style="font-style: italic; font-weight: 400;">Dessert &amp; Käse</h2>
+    </div>
+
+    <div class="menu-section">
+      <div class="dish"><div class="dish__head"><span class="dish__name">Fricktaler Rahmkirschtorte</span><span class="dish__price">CHF 11.50</span></div><div class="dish__desc">Hausgemachte Rahmkirschtorte aus der Region</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Apfelstrudel</span><span class="dish__price">CHF 10.50</span></div><div class="dish__desc">Warmer Apfelstrudel mit Vanillesauce</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Gebrannte Creme</span><span class="dish__price">CHF 11.50</span></div><div class="dish__desc">Klassische gebrannte Vanillecreme</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Schokoladenmousse am Tisch</span><span class="dish__price">CHF 12.50</span></div><div class="dish__desc">Locker geschlagenes Schokoladenmousse, am Tisch angerichtet</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Käseauswahl von Jumi</span><span class="dish__price">CHF 15.50</span></div><div class="dish__desc">Auswahl regionaler Käse mit Brot und Früchtekompott</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOUNGE -->
+<section>
+  <div class="section__inner">
+    <div class="section__header">
+      <span class="kicker">Snacking Menü</span>
+      <h2 style="font-style: italic; font-weight: 400;">Lounge</h2>
+    </div>
+
+    <div class="menu-section">
+      <h3>Vegetarisch</h3>
+      <p class="menu-section__sub">— Vegi —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Hausgemachter Käsekuchen</span><span class="dish__price">CHF 8.50</span></div><div class="dish__desc">Cremiger Käsekuchen aus unserer Patisserie, mit knusprigem Mürbeteig</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Hof Fries</span><span class="dish__price">CHF 9.50</span></div><div class="dish__desc">Knusprige Pommes frites mit Hausdips</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Knoblibrot</span><span class="dish__price">CHF 8.50</span></div><div class="dish__desc">Im Ofen gebackenes Knoblauchbrot mit Kräuterbutter</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Käsplättli mit Birnenbrot</span><span class="dish__price">CHF 19.50</span></div><div class="dish__desc">Auswahl regionaler Käse mit Birnenbrot, Nüssen und Trauben</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Hausgemachte Pickles vom Garten</span><span class="dish__price">CHF 8.50</span></div><div class="dish__desc">Eingelegtes Gemüse aus dem eigenen Garten, würzig und knackig</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Mit Fleisch &amp; Fisch</h3>
+      <p class="menu-section__sub">— Klassisch —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Fleischkäse mit Bürli</span><span class="dish__price">CHF 15.50</span></div><div class="dish__desc">Scheibe warmen Fleischkäses mit knusprigem Bürli und Senf</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Fischknusperli mit Tartarsauce</span><span class="dish__price">CHF 18.50</span></div><div class="dish__desc">Knusprig gebackene Fischknusperli mit Tartarsauce und Zitronenschnitz</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Fleischplättli mit Sauerteigbrot</span><span class="dish__price">CHF 21.50</span></div><div class="dish__desc">Auswahl von Trockenfleisch und Wurst mit Sauerteigbrot und Essiggurken</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Gemischtes Plättli</span><span class="dish__price">CHF 24.50</span></div><div class="dish__desc">Käse- und Fleischauswahl mit Brot, Birnenbrot, Nüssen und Pickles</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FRÜHSTÜCK -->
+<section class="section--sand">
+  <div class="section__inner">
+    <div class="section__header">
+      <span class="kicker">Frühstück &amp; Brunch</span>
+      <h2 style="font-style: italic; font-weight: 400;">Für einen guten Start.</h2>
+      <p>Frühstück CHF 20 · Brunch CHF 40 · Buffet-Angebot</p>
+    </div>
+
+    <div class="menu-section">
+      <h3>Im Pauschalpreis inbegriffen</h3>
+      <p class="menu-section__sub">— Buffet —</p>
+
+      <div class="dish"><div class="dish__head"><span class="dish__name">Brote &amp; Gebäcke</span></div><div class="dish__desc">Schweizer Zopf, Vollkornbrote, Ruchbrot · Gipfeli und Buttergipfeli · Verschiedene Brötchen (Körner, Weizen, Dinkel)</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Aufstriche &amp; Beläge</span></div><div class="dish__desc">Butter · Schweizer Konfitüren (Aprikose, Heidelbeere, Hagebutte) · Honig aus der Region</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Käse-Auswahl</span></div><div class="dish__desc">Emmentaler, Gruyère, Appenzeller · Bergkäse aus lokaler Produktion · Frischkäse</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Fleisch &amp; Wurstwaren</span></div><div class="dish__desc">Bündnerfleisch · Schweizer Rohschinken · Salami aus der Region</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Müesli-Station</span></div><div class="dish__desc">Birchermüesli (klassisch nach Bircher-Benner) · Verschiedene Müesli-Mischungen · Joghurt und Milch zum Anrichten</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Früchte</span></div><div class="dish__desc">Saisonales Schweizer Obst · Frischer Obstsalat · Trockenfrüchte</div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Ein Eiergericht à la carte (inbegriffen)</span></div><div class="dish__desc">Rührei mit Kräutern · Spiegelei · Gekochtes Ei · Omelette natur</div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>À la carte</h3>
+      <p class="menu-section__sub">— Gegen Aufpreis —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Spezialitäten</span><span class="dish__price">auf Anfrage</span></div><div class="dish__desc">Eggs Benedict · Omelette mit Füllungen (Käse, Schinken, Gemüse) · Rührei mit Räucherlachs oder Trüffel · Zusätzliche Eierspeisen</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ZNÜNI -->
+<section>
+  <div class="section__inner">
+    <div class="section__header">
+      <span class="kicker">Znüni</span>
+      <h2 style="font-style: italic; font-weight: 400;">Für zwischendurch.</h2>
+    </div>
+
+    <div class="menu-section">
+      <h3>Sandwiches &amp; Brote</h3>
+      <p class="menu-section__sub">— Herzhaft —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Schnitzelbrot</span><span class="dish__price">CHF 9.50</span></div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Schinkensandwich</span><span class="dish__price">CHF 7.00</span></div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Käsesandwich</span><span class="dish__price">CHF 6.50</span></div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Süssgebäck</h3>
+      <p class="menu-section__sub">— Patisserie —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Cremeschnitte</span><span class="dish__price">CHF 4.50</span></div></div>
+    </div>
+
+    <div class="menu-section">
+      <h3>Kioskartikel</h3>
+      <p class="menu-section__sub">— Riegel —</p>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Mars / Snickers / Twix</span><span class="dish__price">CHF 2.00</span></div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Kinder Riegel</span><span class="dish__price">CHF 1.00</span></div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Kägi fret</span><span class="dish__price">CHF 2.00</span></div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Balisto</span><span class="dish__price">CHF 1.80</span></div></div>
+      <div class="dish"><div class="dish__head"><span class="dish__name">Kit Kat</span><span class="dish__price">CHF 2.00</span></div></div>
+    </div>
+
+    <div class="placeholder-text"><strong>Platzhalter</strong>Weinkarte &amp; Getränke – folgt – wird vom Müllerhof-Team nachgereicht</div>
+  </div>
+</section>
+
+<!-- 3 RÄUME -->
+<section class="section--sand">
   <div class="section__inner">
     <div class="section__header">
       <span class="kicker">Unsere Räume</span>
       <h2 style="font-style: italic; font-weight: 400;">Drei Welten unter einem Dach.</h2>
     </div>
 
-    <div class="pillars__grid" style="background: transparent; max-width: var(--max-w); margin: 0 auto;">
-      <article class="pillar" style="background: var(--c-sand);">
-        <div class="pillar__img"><span class="pillar__placeholder">[ Bild: Stübli ]</span></div>
+    <div class="pillars__grid" style="background: transparent; max-width: var(--max-w);">
+      <article class="pillar">
+        <div class="pillar__img"><span class="pillar__placeholder">[ Stübli ]</span></div>
         <div class="pillar__body">
           <span class="pillar__kicker">Stübli</span>
-          <h3>Wohnliche Wärme.</h3>
-          <p>Holz, weiche Stoffe, Kerzenlicht. Hier fühlt man sich wie zuhause – nur dass jemand anderes kocht.</p>
+          <h3>[ Headline ]</h3>
+          <p>[ Beschreibung Stübli folgt. ]</p>
         </div>
       </article>
-      <article class="pillar" style="background: var(--c-sand);">
-        <div class="pillar__img"><span class="pillar__placeholder">[ Bild: Alts Höfli ]</span></div>
+      <article class="pillar">
+        <div class="pillar__img"><span class="pillar__placeholder">[ Alts Höfli ]</span></div>
         <div class="pillar__body">
           <span class="pillar__kicker">Alts Höfli</span>
-          <h3>Geschichte und Genuss.</h3>
-          <p>Der historische Charakter des Müllerhofs trifft auf moderne Gastlichkeit – ein Raum mit Erinnerung.</p>
+          <h3>[ Headline ]</h3>
+          <p>[ Beschreibung Alts Höfli folgt. ]</p>
         </div>
       </article>
-      <article class="pillar" style="background: var(--c-sand);">
-        <div class="pillar__img"><span class="pillar__placeholder">[ Bild: s'Wohnzimmer ]</span></div>
+      <article class="pillar">
+        <div class="pillar__img"><span class="pillar__placeholder">[ s'Wohnzimmer ]</span></div>
         <div class="pillar__body">
           <span class="pillar__kicker">s'Wohnzimmer</span>
-          <h3>Begegnung pur.</h3>
-          <p>Der Treffpunkt zum Plaudern, Anstossen und Verweilen – mitten im Geschehen.</p>
+          <h3>[ Headline ]</h3>
+          <p>[ Beschreibung s'Wohnzimmer folgt. ]</p>
         </div>
       </article>
     </div>
   </div>
 </section>
 
+<!-- RESERVIERUNG -->
 <section id="reservieren" class="section--dark section__center">
   <span class="kicker kicker--light">Reservation</span>
   <h2 style="color: var(--c-beige-light); font-size: clamp(2rem, 4vw, 3.25rem); font-style: italic; font-weight: 400; margin-bottom: 1.5rem;">Tisch reservieren</h2>
-  <p style="max-width: 600px; margin: 0 auto 3rem; color: rgba(242,237,227,0.85); font-size: 1.05rem;">
-    Reservieren Sie Ihren Tisch bequem online über aleno – jederzeit, schnell und unkompliziert.
-  </p>
+  <p style="max-width: 600px; margin: 0 auto 3rem; color: rgba(242,237,227,0.85); font-size: 1.05rem;">Reservieren Sie Ihren Tisch bequem online über aleno.</p>
 
-  <div style="background: rgba(242,237,227,0.05); border: 1px dashed rgba(242,237,227,0.3); padding: 4rem 2rem; max-width: 700px; margin: 0 auto 2rem;">
+  <div style="background: rgba(242,237,227,0.05); border: 1px dashed rgba(242,237,227,0.3); padding: 4rem 2rem; max-width: 700px; margin: 0 auto;">
     <p style="color: var(--c-sand); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; margin-bottom: 1rem;">[ Aleno Widget – Integration ]</p>
-    <p style="color: rgba(242,237,227,0.7); font-style: italic;">Hier wird das Aleno-Reservierungswidget per iframe eingebettet, sobald der Account eingerichtet ist.</p>
+    <p style="color: rgba(242,237,227,0.7); font-style: italic;">Hier wird das Aleno-Reservierungswidget eingebettet, sobald der Account eingerichtet ist.</p>
   </div>
-
-  <a href="tel:+41628655380" class="btn btn--ghost">Oder anrufen: 062 865 53 80</a>
 </section>
 
 <footer class="footer">
@@ -163,17 +281,14 @@
       <img src="images/logo.png" alt="Müllerhof">
       <p class="footer__claim">Wo Begegnung zuhause ist. Restaurant, Hotel und Eventlocation im Herzen von Frick.</p>
     </div>
-
     <div>
       <h4>Kontakt</h4>
       <ul>
         <li>Schulstrasse 11</li>
         <li>5070 Frick</li>
-        <li><a href="tel:+41628655380">062 865 53 80</a></li>
         <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
       </ul>
     </div>
-
     <div>
       <h4>Entdecken</h4>
       <ul>
@@ -183,7 +298,6 @@
         <li><a href="galerie.html">Galerie</a></li>
       </ul>
     </div>
-
     <div>
       <h4>Reservation</h4>
       <ul>
@@ -194,10 +308,9 @@
       </ul>
     </div>
   </div>
-
   <div class="footer__bottom">
     <span>© 2026 Müllerhof · Frick</span>
-    <span><a href="#" style="color: inherit;">Impressum</a> · <a href="#" style="color: inherit;">Datenschutz</a></span>
+    <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
   </div>
 </footer>
 
