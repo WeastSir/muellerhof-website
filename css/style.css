@@ -68,6 +68,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spac
 .hero__placeholder-label { position: absolute; top: 90px; right: 1.5rem; background: rgba(242, 237, 227, 0.8); color: var(--c-darkgreen); padding: 0.35rem 0.7rem; font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; border: 1px dashed var(--c-brown); max-width: 260px; opacity: 0.6; pointer-events: none; }
 .hero__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(45,64,54,0.3) 0%, rgba(45,64,54,0.6) 100%); z-index: 4; }
 .hero__content { position: relative; z-index: 5; color: var(--c-beige-light); max-width: 900px; padding: 0 2rem; }
+.hero__logo { display: block; width: clamp(240px, 34vw, 460px); height: auto; margin: 0 auto 2rem; filter: drop-shadow(0 6px 28px rgba(0,0,0,0.35)); }
 .hero__claim { font-family: var(--font-display); font-size: clamp(2.25rem, 5.5vw, 5rem); font-weight: 700; letter-spacing: 0.03em; line-height: 1.1; color: var(--c-beige-light); margin-bottom: 1.5rem; }
 .hero__sub { font-size: 1rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; opacity: 0.9; margin-bottom: 2.5rem; }
 .hero__cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
