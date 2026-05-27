@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community · Müllerhof</title>
+<meta name="description" content="Die Müllerhof-Community – Erlebnisse teilen, bewerten, gemeinsam erinnern.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav transparent" id="nav">
+  <a href="index.html"><img src="images/logo.png" alt="Müllerhof" class="nav__logo"></a>
+  <button class="nav__toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
+  <ul class="nav__menu" id="navMenu">
+    <li><a href="index.html" class="nav__link">Home</a></li>
+    <li><a href="restaurant.html" class="nav__link">Restaurant</a></li>
+    <li><a href="hotel.html" class="nav__link">Hotel</a></li>
+    <li><a href="events.html" class="nav__link">Events</a></li>
+    <li><a href="seminare.html" class="nav__link">Seminare</a></li>
+    <li><a href="community.html" class="nav__link active">Community</a></li>
+    <li><a href="ueber-uns.html" class="nav__link">Über uns</a></li>
+    <li><a href="karriere.html" class="nav__link">Karriere</a></li>
+    <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
+    <li><a href="restaurant.html#reservieren" class="nav__link nav__cta">Reservieren</a></li>
+  </ul>
+</nav>
+
+<section class="hero hero--short hero--photo">
+  <div class="hero__photo" style="background-image: url('images/wohnzimmer.png');"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <p class="hero__sub">Community</p>
+    <h1 class="hero__claim">Erlebnisse teilen.<br>Erinnerungen schaffen.</h1>
+    <p class="hero__tagline">Deine Müllerhof-Stories.</p>
+  </div>
+</section>
+
+<section class="intro section__center">
+  <div class="section__inner">
+    <span class="kicker">Müllerhof Community</span>
+    <h2 class="intro__headline">Erzähl uns von deinem Müllerhof-Moment.</h2>
+    <p class="intro__lead">Hier können unsere Gäste ihre Erlebnisse teilen: vom gemütlichen Sonntagsbrunch, vom Hochzeitstanz im Garten, vom Jass-Abend mit den Enkeln. Schreib einen kurzen Post, lade ein Foto hoch und gib uns Sterne – wir freuen uns auf deine Geschichte!</p>
+  </div>
+</section>
+
+<!-- POST FORMULAR -->
+<section class="intro" style="background: var(--c-sand);">
+  <div class="section__inner" style="max-width: 800px;">
+    <div class="section__header" style="text-align: center;">
+      <span class="kicker">Eigenen Post teilen</span>
+      <h2 style="font-style: italic; font-weight: 400;">Was war dein Müllerhof-Erlebnis?</h2>
+    </div>
+    <form class="form post-form" onsubmit="addPost(event)">
+      <div class="form__row">
+        <div><label>Vorname</label><input type="text" id="post-name" required maxlength="50" placeholder="z.B. Maria"></div>
+        <div><label>Wo warst du?</label>
+          <select id="post-ort">
+            <option>Restaurant</option>
+            <option>Alte Höfli</option>
+            <option>Wohnzimmer</option>
+            <option>Stübli</option>
+            <option>Hotel</option>
+            <option>Event / Hochzeit / Geburtstag</option>
+            <option>Seminar</option>
+            <option>Garten / Terrasse</option>
+            <option>Sonntagsbrunch</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label>Sterne-Bewertung</label>
+        <div class="star-input" id="star-input">
+          <button type="button" data-value="1" aria-label="1 Stern">★</button>
+          <button type="button" data-value="2" aria-label="2 Sterne">★</button>
+          <button type="button" data-value="3" aria-label="3 Sterne">★</button>
+          <button type="button" data-value="4" aria-label="4 Sterne">★</button>
+          <button type="button" data-value="5" aria-label="5 Sterne">★</button>
+          <span class="star-input__value" id="star-value">5 von 5</span>
+        </div>
+        <input type="hidden" id="post-rating" value="5">
+      </div>
+      <div><label>Deine Geschichte</label><textarea id="post-text" required maxlength="500" placeholder="Erzähl uns kurz von deinem Erlebnis im Müllerhof..." rows="4"></textarea></div>
+      <div class="upload-block">
+        <label>Foto (optional)</label>
+        <div class="file-upload">
+          <input type="file" id="post-photo" accept="image/*" onchange="previewPhoto(this);">
+          <label for="post-photo" class="file-upload__button">Foto wählen</label>
+          <span id="photo-name" class="file-upload__name">Keine Datei gewählt</span>
+        </div>
+        <div id="photo-preview" style="margin-top: 1rem; display: none;">
+          <img id="photo-preview-img" src="" alt="Vorschau" style="max-width: 200px; max-height: 200px; border: 2px solid var(--c-brown);">
+          <button type="button" onclick="removePhoto()" style="background: none; border: none; color: var(--c-brown); cursor: pointer; margin-left: 1rem; text-decoration: underline;">Foto entfernen</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn--dark">Post veröffentlichen</button>
+      <p style="font-size: 0.8rem; color: var(--c-brown); text-align: center; font-style: italic; padding: 1rem; background: rgba(103,74,45,0.08); border-left: 3px solid var(--c-brown); margin-top: 1rem;">⚠ Demo-Modus: Posts werden aktuell nur in deinem Browser gespeichert. Das Community-Backend folgt vor Go-Live.</p>
+    </form>
+  </div>
+</section>
+
+<!-- POSTS LISTE -->
+<section class="intro">
+  <div class="section__inner" style="max-width: 900px;">
+    <div class="section__header" style="text-align: center;">
+      <span class="kicker">Was die Community sagt</span>
+      <h2 style="font-style: italic; font-weight: 400;">Eindrücke aus dem Müllerhof.</h2>
+      <p>Geschichten unserer Gäste – sortiert nach Aktualität.</p>
+    </div>
+    <div id="posts-container" class="posts-list">
+      <!-- Posts werden via JS eingefügt -->
+    </div>
+    <p id="no-posts" style="text-align: center; color: var(--c-text-soft); font-style: italic; padding: 3rem 0; display: none;">Noch keine Posts. Sei die*der Erste! ☝</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__logo">
+      <img src="images/logo.png" alt="Müllerhof">
+      <p class="footer__claim">Das Wohnzimmer von Frick. Restaurant, Hotel und Begegnungsort im Herzen des Fricktals.</p>
+      <a href="#" class="footer__social" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;flex-shrink:0;"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.86s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.69 3.69 0 01-1.38-.9 3.69 3.69 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.85 5.85 0 00-2.12 1.38A5.85 5.85 0 00.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.73 1.48 1.39 2.13a5.88 5.88 0 002.12 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 00-1.38-2.12A5.85 5.85 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+        <span>Instagram</span>
+        <span class="footer__social-note">(folgt)</span>
+      </a>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <ul>
+        <li>Schulstrasse 11</li>
+        <li>5070 Frick</li>
+        <li><a href="tel:+41628655380">062 865 53 80</a></li>
+        <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Entdecken</h4>
+      <ul>
+        <li><a href="restaurant.html">Restaurant</a></li>
+        <li><a href="speisekarte.html">Speisekarte</a></li>
+        <li><a href="hotel.html">Hotel</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="seminare.html">Seminare</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="karriere.html">Karriere</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reservation</h4>
+      <ul>
+        <li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
+        <li><a href="hotel.html#buchen">Zimmer buchen</a></li>
+        <li><a href="events.html#anfrage">Dein Event</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 Müllerhof · Frick</span>
+    <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
+  </div>
+</footer>
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ============================================================
+//  SUPABASE KONFIGURATION – Müllerhof Community
+// ============================================================
+const SUPABASE_URL = 'https://rcnmnthscvfippedgmuu.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_EbLVUn9ckvKSLkpKkq5dTQ_UufHkMMG';
+const PHOTO_BUCKET = 'community-photos';
+
+// Supabase Client initialisieren (falls Keys gesetzt)
+let supabase = null;
+const USE_SUPABASE = SUPABASE_URL && SUPABASE_ANON_KEY;
+if (USE_SUPABASE && window.supabase) {
+  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+// === Sterne-Auswahl ===
+let currentRating = 5;
+const starButtons = document.querySelectorAll('.star-input button');
+const starValue = document.getElementById('star-value');
+const ratingInput = document.getElementById('post-rating');
+
+function updateStars(value) {
+  currentRating = value;
+  ratingInput.value = value;
+  starValue.textContent = value + ' von 5';
+  starButtons.forEach(btn => {
+    if (parseInt(btn.dataset.value) <= value) {
+      btn.classList.add('is-active');
+    } else {
+      btn.classList.remove('is-active');
+    }
+  });
+}
+starButtons.forEach(btn => {
+  btn.addEventListener('click', () => updateStars(parseInt(btn.dataset.value)));
+  btn.addEventListener('mouseover', () => {
+    starButtons.forEach(b => {
+      b.classList.toggle('is-hover', parseInt(b.dataset.value) <= parseInt(btn.dataset.value));
+    });
+  });
+});
+document.getElementById('star-input').addEventListener('mouseleave', () => {
+  starButtons.forEach(b => b.classList.remove('is-hover'));
+});
+updateStars(5);
+
+// === Foto-Vorschau ===
+let currentPhoto = null;
+function previewPhoto(input) {
+  const file = input.files[0];
+  if (!file) { removePhoto(); return; }
+  document.getElementById('photo-name').textContent = file.name;
+  const reader = new FileReader();
+  reader.onload = e => {
+    currentPhoto = e.target.result;
+    document.getElementById('photo-preview-img').src = currentPhoto;
+    document.getElementById('photo-preview').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+function removePhoto() {
+  currentPhoto = null;
+  document.getElementById('post-photo').value = '';
+  document.getElementById('photo-name').textContent = 'Keine Datei gewählt';
+  document.getElementById('photo-preview').style.display = 'none';
+}
+
+// === Posts speichern & laden ===
+const STORAGE_KEY = 'muellerhof_community_posts';
+
+// Lokaler Demo-Modus (localStorage)
+function loadPostsLocal() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+function savePostsLocal(posts) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(posts)); }
+  catch(e) { alert('Speichern fehlgeschlagen (Browser-Speicher voll?).'); }
+}
+
+// Supabase-Modus
+async function loadPostsSupabase() {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (error) { console.error(error); return []; }
+  return data.map(p => ({
+    id: p.id,
+    name: p.name,
+    ort: p.ort,
+    text: p.text,
+    rating: p.rating,
+    photo: p.photo_url || null,
+    date: p.created_at
+  }));
+}
+
+async function savePostSupabase(post) {
+  let photoUrl = null;
+  if (post.photoFile) {
+    const fileName = Date.now() + '-' + post.photoFile.name.replace(/[^a-zA-Z0-9.]/g, '_');
+    const { data: upload, error: uploadError } = await supabase.storage
+      .from(PHOTO_BUCKET)
+      .upload(fileName, post.photoFile);
+    if (uploadError) { console.error(uploadError); alert('Foto-Upload fehlgeschlagen.'); return null; }
+    const { data: urlData } = supabase.storage.from(PHOTO_BUCKET).getPublicUrl(fileName);
+    photoUrl = urlData.publicUrl;
+  }
+  const { data, error } = await supabase
+    .from('posts')
+    .insert([{
+      name: post.name,
+      ort: post.ort,
+      text: post.text,
+      rating: post.rating,
+      photo_url: photoUrl
+    }])
+    .select();
+  if (error) { console.error(error); alert('Speichern fehlgeschlagen.'); return null; }
+  return data[0];
+}
+
+async function deletePostSupabase(id) {
+  const { error } = await supabase.from('posts').delete().eq('id', id);
+  if (error) console.error(error);
+}
+
+async function addPost(event) {
+  event.preventDefault();
+  const name = document.getElementById('post-name').value.trim();
+  const ort = document.getElementById('post-ort').value;
+  const text = document.getElementById('post-text').value.trim();
+  const photoInput = document.getElementById('post-photo');
+  const photoFile = photoInput.files[0] || null;
+  if (!name || !text) return;
+
+  if (USE_SUPABASE) {
+    await savePostSupabase({ name, ort, text, rating: currentRating, photoFile });
+    await renderPosts();
+    alert('Vielen Dank! Dein Post ist online und für alle sichtbar.');
+  } else {
+    const posts = loadPostsLocal();
+    posts.unshift({
+      id: Date.now(), name, ort, text,
+      rating: currentRating, photo: currentPhoto,
+      date: new Date().toISOString()
+    });
+    savePostsLocal(posts);
+    await renderPosts();
+    alert('Demo: Post wurde lokal gespeichert (nur in deinem Browser sichtbar). Sobald Supabase verbunden ist, wird der Post für alle Gäste sichtbar.');
+  }
+  // Reset
+  document.getElementById('post-name').value = '';
+  document.getElementById('post-text').value = '';
+  removePhoto();
+  updateStars(5);
+  return false;
+}
+
+async function deletePost(id) {
+  if (!confirm('Diesen Post wirklich löschen?')) return;
+  if (USE_SUPABASE) {
+    await deletePostSupabase(id);
+  } else {
+    const posts = loadPostsLocal().filter(p => p.id !== id);
+    savePostsLocal(posts);
+  }
+  await renderPosts();
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  const now = new Date();
+  const diffMs = now - d;
+  const diffMin = Math.floor(diffMs / 60000);
+  if (diffMin < 1) return 'gerade eben';
+  if (diffMin < 60) return 'vor ' + diffMin + ' Min.';
+  const diffH = Math.floor(diffMin / 60);
+  if (diffH < 24) return 'vor ' + diffH + ' Std.';
+  const diffD = Math.floor(diffH / 24);
+  if (diffD < 7) return 'vor ' + diffD + ' Tag' + (diffD === 1 ? '' : 'en');
+  return d.toLocaleDateString('de-CH');
+}
+
+async function renderPosts() {
+  const container = document.getElementById('posts-container');
+  const noPosts = document.getElementById('no-posts');
+  const posts = USE_SUPABASE ? await loadPostsSupabase() : loadPostsLocal();
+  if (posts.length === 0) {
+    container.innerHTML = '';
+    noPosts.style.display = 'block';
+    return;
+  }
+  noPosts.style.display = 'none';
+  container.innerHTML = posts.map(p => `
+    <article class="post-card">
+      <div class="post-card__head">
+        <div class="post-card__avatar">${p.name.charAt(0).toUpperCase()}</div>
+        <div class="post-card__meta">
+          <div class="post-card__name">${escapeHtml(p.name)}</div>
+          <div class="post-card__ort">${escapeHtml(p.ort)} · ${formatDate(p.date)}</div>
+        </div>
+        <div class="post-card__rating">${'★'.repeat(p.rating)}${'☆'.repeat(5 - p.rating)}</div>
+      </div>
+      <p class="post-card__text">${escapeHtml(p.text)}</p>
+      ${p.photo ? `<img src="${p.photo}" alt="Bild von ${escapeHtml(p.name)}" class="post-card__photo">` : ''}
+      <div class="post-card__actions">
+        <button onclick="deletePost(${p.id})" class="post-card__delete">Eigenen Post löschen</button>
+      </div>
+    </article>
+  `).join('');
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// Demo-Modus: Beispiel-Posts beim ersten Besuch
+if (!USE_SUPABASE && loadPostsLocal().length === 0) {
+  const examples = [
+    {
+      id: 1,
+      name: 'Beispiel · Maria',
+      ort: 'Sonntagsbrunch',
+      text: 'So lecker und so gemütlich – wir kommen jetzt jeden Sonntag mit den Enkeln. Vielen Dank für das herzliche Empfang!',
+      rating: 5, photo: null,
+      date: new Date(Date.now() - 86400000 * 3).toISOString()
+    },
+    {
+      id: 2,
+      name: 'Beispiel · Stefan',
+      ort: 'Event / Hochzeit / Geburtstag',
+      text: 'Unser Hochzeitsapéro im Garten war einfach magisch. Das Team hat einen perfekten Abend gezaubert. Danke!',
+      rating: 5, photo: null,
+      date: new Date(Date.now() - 86400000 * 7).toISOString()
+    },
+    {
+      id: 3,
+      name: 'Beispiel · Lukas',
+      ort: 'Stübli',
+      text: 'Ehrliche, gute Küche. Das Kalbs-Cordon-Bleu war ein Traum. Komme gerne wieder.',
+      rating: 4, photo: null,
+      date: new Date(Date.now() - 86400000 * 14).toISOString()
+    }
+  ];
+  savePostsLocal(examples);
+}
+
+// Beim Laden Posts anzeigen
+renderPosts();
+</script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
