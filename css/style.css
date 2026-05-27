@@ -566,10 +566,10 @@ section { padding: 8rem 3rem; }
 .file-upload__name { font-size: 0.85rem; color: var(--c-text-soft); font-style: italic; flex: 1; min-width: 200px; }
 
 /* === FOOTER SOCIAL === */
-.footer__social { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--c-sand) !important; text-decoration: none; margin-top: 1.5rem; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; opacity: 0.9; transition: opacity 0.3s; }
-.footer__social svg { width: 22px; height: 22px; fill: currentColor; }
-.footer__social:hover { opacity: 1; color: var(--c-beige-light) !important; }
-.footer__social-note { font-size: 0.7rem; opacity: 0.6; margin-left: 0.4rem; font-style: italic; }
+.footer .footer__social { display: inline-flex !important; align-items: center; gap: 0.6rem; color: var(--c-sand) !important; text-decoration: none; margin-top: 1.5rem; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; opacity: 0.9; transition: opacity 0.3s; width: auto !important; max-width: max-content; }
+.footer .footer__social svg { width: 22px !important; height: 22px !important; max-width: 22px !important; max-height: 22px !important; min-width: 22px; min-height: 22px; fill: currentColor; flex-shrink: 0; display: inline-block !important; }
+.footer .footer__social:hover { opacity: 1; color: var(--c-beige-light) !important; }
+.footer .footer__social-note { font-size: 0.7rem; opacity: 0.6; margin-left: 0.4rem; font-style: italic; }
 
 /* === REGELMÄSSIGE EVENTS === */
 .regular-grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
