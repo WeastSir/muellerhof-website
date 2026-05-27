@@ -53,7 +53,7 @@
     </div>
     <form class="form post-form" onsubmit="addPost(event)">
       <div class="form__row">
-        <div><label>Vorname</label><input type="text" id="post-name" required maxlength="50" placeholder="z.B. Maria"></div>
+        <div><label>Vorname</label><input type="text" id="post-name" required maxlength="50"></div>
         <div><label>Wo warst du?</label>
           <select id="post-ort">
             <option>Restaurant</option>
@@ -95,7 +95,6 @@
         </div>
       </div>
       <button type="submit" class="btn btn--dark">Post veröffentlichen</button>
-      <p style="font-size: 0.8rem; color: var(--c-brown); text-align: center; font-style: italic; padding: 1rem; background: rgba(103,74,45,0.08); border-left: 3px solid var(--c-brown); margin-top: 1rem;">⚠ Demo-Modus: Posts werden aktuell nur in deinem Browser gespeichert. Das Community-Backend folgt vor Go-Live.</p>
     </form>
   </div>
 </section>
