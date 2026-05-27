@@ -365,15 +365,15 @@ async function renderPosts() {
         <div class="post-card__avatar">${p.name.charAt(0).toUpperCase()}</div>
         <div class="post-card__meta">
           <div class="post-card__name">${escapeHtml(p.name)}</div>
-          <div class="post-card__ort">${escapeHtml(p.ort)} · ${formatDate(p.date)}</div>
+          <div class="post-card__sub">
+            <span class="post-card__rating">${'★'.repeat(p.rating)}${'☆'.repeat(5 - p.rating)}</span>
+            <span class="post-card__ort">${escapeHtml(p.ort)}</span>
+            <span class="post-card__date">${formatDate(p.date)}</span>
+          </div>
         </div>
-        <div class="post-card__rating">${'★'.repeat(p.rating)}${'☆'.repeat(5 - p.rating)}</div>
       </div>
       <p class="post-card__text">${escapeHtml(p.text)}</p>
-      ${p.photo ? `<img src="${p.photo}" alt="Bild von ${escapeHtml(p.name)}" class="post-card__photo">` : ''}
-      <div class="post-card__actions">
-        <button onclick="deletePost(${p.id})" class="post-card__delete">Eigenen Post löschen</button>
-      </div>
+      ${p.photo ? `<img src="${p.photo}" alt="Bild von ${escapeHtml(p.name)}" class="post-card__photo" onclick="window.open(this.src, '_blank')">` : ''}
     </article>
   `).join('');
 }
