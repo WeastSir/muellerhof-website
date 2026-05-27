@@ -1,0 +1,20 @@
+# macOS System
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporäre Dateien
+*.tmp
+~$*
