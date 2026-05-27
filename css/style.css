@@ -558,10 +558,26 @@ section { padding: 8rem 3rem; }
 }
 
 /* === COMMUNITY-SEITE === */
-.star-input { display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
-.star-input button { background: none; border: none; font-size: 2rem; color: rgba(103,74,45,0.25); cursor: pointer; transition: color 0.2s, transform 0.2s; padding: 0.25rem; line-height: 1; }
-.star-input button.is-active, .star-input button.is-hover { color: var(--c-brown); }
-.star-input button:hover { transform: scale(1.15); }
+.star-input { display: flex !important; align-items: center; gap: 0.4rem; margin-bottom: 0.5rem; flex-wrap: wrap; padding: 0.5rem 0; }
+.star-input button {
+  background: transparent !important;
+  border: none !important;
+  font-size: 2.2rem !important;
+  color: rgba(103,74,45,0.22) !important;
+  cursor: pointer !important;
+  transition: color 0.2s, transform 0.15s;
+  padding: 0.3rem !important;
+  line-height: 1;
+  font-family: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+.star-input button.is-active,
+.star-input button.is-hover { color: #674A2D !important; }
+.star-input button:hover { transform: scale(1.25); }
 .star-input__value { margin-left: 1rem; font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--c-text-soft); font-weight: 700; }
 
 .posts-list { display: grid; gap: 1.5rem; max-width: 800px; margin: 0 auto; }

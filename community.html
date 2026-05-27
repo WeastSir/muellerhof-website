@@ -173,10 +173,10 @@ const SUPABASE_ANON_KEY = 'sb_publishable_EbLVUn9ckvKSLkpKkq5dTQ_UufHkMMG';
 const PHOTO_BUCKET = 'community-photos';
 
 // Supabase Client initialisieren (falls Keys gesetzt)
-let supabase = null;
+let sbClient = null;
 const USE_SUPABASE = SUPABASE_URL && SUPABASE_ANON_KEY;
 if (USE_SUPABASE && window.supabase) {
-  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
 // === Sterne-Auswahl ===
@@ -246,7 +246,7 @@ function savePostsLocal(posts) {
 
 // Supabase-Modus
 async function loadPostsSupabase() {
-  const { data, error } = await supabase
+  const { data, error } = await sbClient
     .from('posts')
     .select('*')
     .order('created_at', { ascending: false });
@@ -266,14 +266,14 @@ async function savePostSupabase(post) {
   let photoUrl = null;
   if (post.photoFile) {
     const fileName = Date.now() + '-' + post.photoFile.name.replace(/[^a-zA-Z0-9.]/g, '_');
-    const { data: upload, error: uploadError } = await supabase.storage
+    const { data: upload, error: uploadError } = await sbClient.storage
       .from(PHOTO_BUCKET)
       .upload(fileName, post.photoFile);
     if (uploadError) { console.error(uploadError); alert('Foto-Upload fehlgeschlagen.'); return null; }
-    const { data: urlData } = supabase.storage.from(PHOTO_BUCKET).getPublicUrl(fileName);
+    const { data: urlData } = sbClient.storage.from(PHOTO_BUCKET).getPublicUrl(fileName);
     photoUrl = urlData.publicUrl;
   }
-  const { data, error } = await supabase
+  const { data, error } = await sbClient
     .from('posts')
     .insert([{
       name: post.name,
@@ -288,7 +288,7 @@ async function savePostSupabase(post) {
 }
 
 async function deletePostSupabase(id) {
-  const { error } = await supabase.from('posts').delete().eq('id', id);
+  const { error } = await sbClient.from('posts').delete().eq('id', id);
   if (error) console.error(error);
 }
 
