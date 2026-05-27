@@ -557,6 +557,34 @@ section { padding: 8rem 3rem; }
   font-weight: 700;
 }
 
+/* === REGELMÄSSIGE EVENTS === */
+.regular-grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.regular-card { background: rgba(242,237,227,0.06); border: 1px solid rgba(216,203,181,0.2); padding: 2rem 1.5rem; text-align: center; }
+.regular-card__day { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-sand); font-weight: 700; margin-bottom: 0.75rem; }
+.regular-card__name { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 1.5rem; color: var(--c-beige-light); margin-bottom: 0.5rem; }
+.regular-card__note { font-size: 0.85rem; opacity: 0.7; }
+
+/* === EVENT-LISTE MIT DATUM === */
+.event-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.event-list__item { display: flex; align-items: center; gap: 2rem; padding: 1.5rem 0; border-bottom: 1px solid rgba(103,74,45,0.15); transition: padding 0.3s, background 0.3s; }
+.event-list__item:hover { background: rgba(216,203,181,0.25); padding-left: 1rem; padding-right: 1rem; }
+.event-list__item:last-child { border-bottom: none; }
+.event-list__date { flex-shrink: 0; width: 90px; text-align: center; padding: 0.75rem 0.5rem; background: var(--c-darkgreen); color: var(--c-beige-light); display: flex; flex-direction: column; align-items: center; gap: 0.1rem; }
+.event-list__item--highlight .event-list__date { background: var(--c-brown); }
+.event-list__day { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; line-height: 1; }
+.event-list__month { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 700; opacity: 0.85; }
+.event-list__body { flex: 1; }
+.event-list__body h3 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 1.4rem; color: var(--c-darkgreen); margin-bottom: 0.25rem; }
+.event-list__loc { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .regular-grid { grid-template-columns: 1fr; }
+  .event-list__item { gap: 1rem; padding: 1rem 0; }
+  .event-list__date { width: 70px; padding: 0.5rem 0.25rem; }
+  .event-list__day { font-size: 1.4rem; }
+  .event-list__body h3 { font-size: 1.15rem; }
+}
+
 /* === TIMELINE (Geschichte) === */
 .timeline { display: grid; grid-template-columns: 140px 1fr; gap: 2rem 2.5rem; max-width: 820px; margin: 0 auto; }
 .timeline__year { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--c-brown); border-right: 2px solid var(--c-brown); padding-right: 2rem; text-align: right; letter-spacing: 0.03em; }
