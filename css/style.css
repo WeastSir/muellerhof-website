@@ -431,3 +431,79 @@ section { padding: 8rem 3rem; }
   .rooms-grid, .gallery-grid, .partners-grid, .footer__inner { grid-template-columns: 1fr; }
   .nav__logo { height: 40px; }
 }
+
+/* === HERO MIT FOTO === */
+.hero--photo .hero__photo {
+  position: absolute; inset: 0; z-index: 1;
+  background-size: cover; background-position: center;
+  filter: brightness(0.65);
+}
+.hero__tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: var(--c-sand);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05em;
+}
+
+/* === INTRO ERWEITERT === */
+.intro__headline { font-size: clamp(2.25rem, 5vw, 4rem); font-style: italic; font-weight: 400; margin-bottom: 2rem; color: var(--c-darkgreen); }
+.intro__lead { font-size: 1.15rem; max-width: 760px; margin: 0 auto 2rem; color: var(--c-text-soft); line-height: 1.8; }
+.intro__usp { font-family: var(--font-display); font-size: 1.15rem; color: var(--c-brown); max-width: 700px; margin: 0 auto; line-height: 1.5; padding-top: 2rem; border-top: 1px solid rgba(103,74,45,0.2); }
+
+/* === BEREICHE (3 Gastro-Bereiche) === */
+.bereiche { background: var(--c-sand); padding: 8rem 3rem; }
+.bereiche__grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.bereich-card { background: var(--c-beige-light); display: flex; flex-direction: column; transition: transform 0.4s, box-shadow 0.4s; overflow: hidden; }
+.bereich-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(45, 64, 54, 0.15); }
+.bereich-card__img { aspect-ratio: 4/3; background-size: cover; background-position: center; }
+.bereich-card__body { padding: 2.5rem 2rem; display: flex; flex-direction: column; flex: 1; }
+.bereich-card__body h3 { font-size: 1.5rem; margin: 0.5rem 0 1rem; font-style: italic; font-weight: 400; }
+.bereich-card__body p { color: var(--c-text-soft); margin-bottom: 1.5rem; font-size: 0.95rem; flex: 1; }
+
+/* === SPLIT MIT FOTO === */
+.split__img--photo { background-size: cover; background-position: center; }
+
+/* === KARRIERE / STELLEN === */
+.stellen-grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.stelle-card { background: var(--c-beige-light); padding: 2.5rem 2rem; border-top: 4px solid var(--c-brown); transition: transform 0.3s; display: flex; flex-direction: column; }
+.stelle-card:hover { transform: translateY(-4px); }
+.stelle-card__kicker { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; margin-bottom: 0.75rem; }
+.stelle-card h3 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 1.4rem; margin-bottom: 1rem; }
+.stelle-card p { color: var(--c-text-soft); margin-bottom: 1.5rem; font-size: 0.95rem; flex: 1; }
+.stelle-card__pensum { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c-darkgreen); font-weight: 700; margin-bottom: 1rem; }
+.benefits-grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.benefit { padding: 2rem; background: rgba(242,237,227,0.08); border-left: 3px solid var(--c-sand); }
+.benefit h4 { color: var(--c-sand); font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.5rem; }
+.benefit p { font-size: 0.9rem; color: rgba(242,237,227,0.85); line-height: 1.6; }
+
+/* === TEAM === */
+.team-grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+.team-card { text-align: center; }
+.team-card__img { aspect-ratio: 1; background: linear-gradient(135deg, var(--c-sage), var(--c-darkgreen)); border-radius: 50%; max-width: 200px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: var(--c-beige-light); font-family: var(--font-display); font-size: 3rem; font-style: italic; }
+.team-card__name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--c-darkgreen); margin-bottom: 0.25rem; letter-spacing: 0.05em; }
+.team-card__role { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; }
+
+/* === SPEISEKARTEN-AUSWAHL Buttons (Restaurant Seite) === */
+.karten-grid { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.karte-link { background: var(--c-beige-light); border: 1px solid rgba(103,74,45,0.2); padding: 2rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.5rem; transition: all 0.3s; }
+.karte-link:hover { background: var(--c-darkgreen); border-color: var(--c-darkgreen); transform: translateY(-3px); }
+.karte-link:hover .karte-link__name, .karte-link:hover .karte-link__type { color: var(--c-beige-light); }
+.karte-link__type { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-brown); font-weight: 700; transition: color 0.3s; }
+.karte-link__name { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 1.4rem; color: var(--c-darkgreen); transition: color 0.3s; }
+.karte-link__arrow { margin-top: 0.5rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; }
+
+/* === TIMELINE (Geschichte) === */
+.timeline { display: grid; grid-template-columns: 140px 1fr; gap: 2rem 2.5rem; max-width: 820px; margin: 0 auto; }
+.timeline__year { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--c-brown); border-right: 2px solid var(--c-brown); padding-right: 2rem; text-align: right; letter-spacing: 0.03em; }
+.timeline__text { color: var(--c-text-soft); line-height: 1.8; font-size: 1rem; }
+
+/* RESPONSIVE für neue Komponenten */
+@media (max-width: 900px) {
+  .bereiche { padding: 5rem 1.5rem; }
+  .bereiche__grid { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: 1fr; gap: 0.5rem 0; }
+  .timeline__year { text-align: left; border-right: none; padding-right: 0; padding-bottom: 0.25rem; padding-top: 1.5rem; border-bottom: 1px solid var(--c-brown); margin-bottom: 0.5rem; }
+}
+

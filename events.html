@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Events & Seminare · Müllerhof</title>
+<title>Events · Müllerhof</title>
+<meta name="description" content="Events im Müllerhof: Private Anlässe, Hochzeiten, Geburtstage, Workshops, Jass-Nachmittage und Sonntagsbrunches.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,329 +17,175 @@
     <li><a href="restaurant.html" class="nav__link">Restaurant</a></li>
     <li><a href="hotel.html" class="nav__link">Hotel</a></li>
     <li><a href="events.html" class="nav__link active">Events</a></li>
-    <li><a href="galerie.html" class="nav__link">Galerie</a></li>
+    <li><a href="seminare.html" class="nav__link">Seminare</a></li>
     <li><a href="ueber-uns.html" class="nav__link">Über uns</a></li>
+    <li><a href="karriere.html" class="nav__link">Karriere</a></li>
     <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
     <li><a href="restaurant.html#reservieren" class="nav__link nav__cta">Reservieren</a></li>
   </ul>
 </nav>
 
-<section class="hero hero--short">
-  <div class="hero__bg"></div>
-  <div class="hero__placeholder"><div class="hero__placeholder-label">[ Bild: Bankett-Saal mit Kerzenlicht ]</div></div>
+<section class="hero hero--short hero--photo">
+  <div class="hero__photo" style="background-image: url('images/aula-anlass.png');"></div>
   <div class="hero__overlay"></div>
   <div class="hero__content">
-    <p class="hero__sub">Events · Bankett · Seminare</p>
-    <h1 class="hero__claim">[ Headline Events ]</h1>
-    <div class="hero__cta-group">
-      <a href="#anfrage" class="btn btn--primary">Anfrage stellen</a>
-      <a href="#raeume" class="btn btn--ghost">Räume ansehen</a>
-    </div>
+    <p class="hero__sub">Events &amp; Veranstaltungen</p>
+    <h1 class="hero__claim">Anlässe<br>mit Wirkung.</h1>
+    <p class="hero__tagline">Vom Familienfest bis zur Hochzeit.</p>
   </div>
 </section>
 
-<section class="intro">
+<section class="intro section__center">
   <div class="section__inner">
-    <span class="kicker">Für unvergessliche Momente</span>
-    <h2 style="font-style: italic; font-weight: 400;">Ob Firmenanlass, Seminar<br>oder private Feier.</h2>
-    <p>Im Müllerhof wird jeder Anlass zu einem besonderen Erlebnis. Flexible Räumlichkeiten, individuelle Betreuung und eine ehrliche, gutbürgerliche Küche sorgen für einen rundum gelungenen Event.</p>
+    <span class="kicker">Events im Müllerhof</span>
+    <h2 class="intro__headline">Gemeinschaft erlebbar machen.</h2>
+    <p class="intro__lead">Auf Events legen wir grossen Wert: Sie fördern Verbundenheit und Gemeinschaft und tragen unsere Werte nach aussen. Veranstaltungen bringen Menschen zusammen und machen Gastfreundschaft, Authentizität und gelebte Gemeinschaft erlebbar. Workshops, Kurse und gemeinsame Aktivitäten schaffen Raum für Austausch zwischen den Generationen.</p>
   </div>
 </section>
 
-<!-- Dokumentationen als Karten -->
-<section class="section--sand">
+<section class="bereiche">
   <div class="section__header">
-    <span class="kicker">Dokumentationen</span>
-    <h2 style="font-style: italic; font-weight: 400;">Alle Details auf einen Blick.</h2>
-    <p>Detaillierte Informationen zu unseren Bankett- und Seminarangeboten.</p>
+    <span class="kicker">Eventkategorien</span>
+    <h2>Drei Arten von Anlässen.</h2>
   </div>
-
-  <div class="speise-grid" style="max-width: 900px;">
-    <article class="speise-card">
-      <svg class="speise-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M3 7v13a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V7"/>
-        <path d="M3 7l9-4 9 4"/>
-        <path d="M9 21V11h6v10"/>
-      </svg>
-      <h3>Bankett</h3>
-      <p>Komplette Bankett-Dokumentation mit Räumen, Kapazitäten, Menü-Optionen und Konditionen.</p>
-      <a href="bankett.html" class="btn btn--outline">Dokumentation öffnen</a>
-    </article>
-
-    <article class="speise-card">
-      <svg class="speise-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <rect x="2" y="6" width="20" height="14" rx="2"/>
-        <path d="M2 10h20"/>
-        <path d="M8 2v4"/>
-        <path d="M16 2v4"/>
-      </svg>
-      <h3>Seminare</h3>
-      <p>Komplette Seminar-Dokumentation mit Pauschalen, Ausstattung, Bestuhlungsvarianten und AGBs.</p>
-      <a href="seminare.html" class="btn btn--outline">Dokumentation öffnen</a>
-    </article>
-  </div>
-</section>
-
-<section id="raeume" class="section--dark">
-  <div class="section__header">
-    <span class="kicker kicker--light">Räumlichkeiten</span>
-    <h2 style="font-style: italic; font-weight: 400;">Sechs Räume.<br>Unzählige Möglichkeiten.</h2>
-  </div>
-  <div class="rooms-grid">
-    <div class="room-card"><div class="room-card__name">Erker</div><div class="room-card__cap">bis 40 Personen</div></div>
-    <div class="room-card"><div class="room-card__name">Stübli</div><div class="room-card__cap">bis 56 Personen</div></div>
-    <div class="room-card"><div class="room-card__name">Gewölbekeller</div><div class="room-card__cap">bis 30 Personen</div></div>
-    <div class="room-card"><div class="room-card__name">Restaurant</div><div class="room-card__cap">130 Personen</div></div>
-    <div class="room-card"><div class="room-card__name">Terrasse</div><div class="room-card__cap">bis 80 Personen</div></div>
-    <div class="room-card"><div class="room-card__name">Aula</div><div class="room-card__cap">bis 40 Personen</div></div>
-  </div>
-</section>
-
-<section>
-  <div class="section__header">
-    <span class="kicker">Bankett</span>
-    <h2 style="font-style: italic; font-weight: 400;">Kulinarik &amp; Genuss</h2>
-  </div>
-  <div class="pauschale-grid">
-    <div class="pauschale">
-      <span class="pauschale__kicker">Apéro</span>
-      <h3 class="pauschale__name">4 Canapés</h3>
-      <div class="pauschale__price">CHF 30.–</div>
-      <p class="pauschale__price-sub">pro Person</p>
-      <ul class="pauschale__list">
-        <li>Auswahl an 4 Canapés</li>
-        <li>Saisonal &amp; frisch zubereitet</li>
-      </ul>
-    </div>
-    <div class="pauschale">
-      <span class="pauschale__kicker">3-Gang Menü</span>
-      <h3 class="pauschale__name">Klassisch</h3>
-      <div class="pauschale__price">ab CHF 65.–</div>
-      <p class="pauschale__price-sub">pro Person</p>
-      <ul class="pauschale__list">
-        <li>Vorspeise · Hauptgang · Dessert</li>
-        <li>Vegetarisch auf Anfrage</li>
-      </ul>
-    </div>
-    <div class="pauschale">
-      <span class="pauschale__kicker">4-Gang Menü</span>
-      <h3 class="pauschale__name">Erweitert</h3>
-      <div class="pauschale__price">ab CHF 80.–</div>
-      <p class="pauschale__price-sub">pro Person</p>
-      <ul class="pauschale__list">
-        <li>Vorspeise · Zwischengang</li>
-        <li>Hauptgang · Dessert</li>
-      </ul>
-    </div>
-    <div class="pauschale">
-      <span class="pauschale__kicker">5-Gang Menü</span>
-      <h3 class="pauschale__name">Festlich</h3>
-      <div class="pauschale__price">auf Anfrage</div>
-      <p class="pauschale__price-sub">pro Person</p>
-      <ul class="pauschale__list">
-        <li>Komplettes Festmenü</li>
-        <li>Individuell zusammengestellt</li>
-      </ul>
-    </div>
-  </div>
-  <p style="text-align: center; margin-top: 3rem; color: var(--c-text-soft); font-style: italic; max-width: 700px; margin-left: auto; margin-right: auto;">
-    Weissweine ab CHF 30.– / Flasche · Rotweine ab CHF 35.– / Flasche
-  </p>
-</section>
-
-<section class="section--sand">
-  <div class="section__header">
-    <span class="kicker">Seminare</span>
-    <h2 style="font-style: italic; font-weight: 400;">Seminarpauschalen</h2>
-  </div>
-  <div class="pauschale-grid">
-    <div class="pauschale" style="background: var(--c-white);">
-      <span class="pauschale__kicker">Halber Tag</span>
-      <h3 class="pauschale__name">Kompakt</h3>
-      <div class="pauschale__price">CHF 45.–</div>
-      <p class="pauschale__price-sub">pro Person</p>
-      <ul class="pauschale__list">
-        <li>Begrüssungskaffee</li>
-        <li>1× Kaffeepause</li>
-        <li>3-Gang-Mittagsmenü +30.–</li>
-        <li>Technik &amp; WLAN inklusive</li>
-      </ul>
-    </div>
-    <div class="pauschale" style="background: var(--c-white); border-top-color: var(--c-darkgreen);">
-      <span class="pauschale__kicker">Ganzer Tag</span>
-      <h3 class="pauschale__name">Standard</h3>
-      <div class="pauschale__price">CHF 95.–</div>
-      <p class="pauschale__price-sub">pro Person</p>
-      <ul class="pauschale__list">
-        <li>Begrüssungskaffee</li>
-        <li>Kaffeepause vor- und nachmittags</li>
-        <li>3-Gang-Mittagsmenü</li>
-        <li>Technik &amp; WLAN inklusive</li>
-      </ul>
-    </div>
-    <div class="pauschale" style="background: var(--c-white); border-top-color: var(--c-sage);">
-      <span class="pauschale__kicker">Ganzer Tag + Übernachtung</span>
-      <h3 class="pauschale__name">Komplett</h3>
-      <div class="pauschale__price">CHF 250.–</div>
-      <p class="pauschale__price-sub">pro Person</p>
-      <ul class="pauschale__list">
-        <li>Alle Leistungen Ganzer Tag</li>
-        <li>2-Gang Mittag + 3-Gang Abend</li>
-        <li>Übernachtung im DZ als EZ</li>
-        <li>Inkl. Frühstück</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- BESTUHLUNG TABELLE MIT ICONS -->
-  <div class="bestuhlung">
-    <h3 class="bestuhlung__title">Bestuhlungsvarianten</h3>
-    <div class="bestuhlung__grid">
-      <!-- Header -->
-      <div class="bestuhlung__cell bestuhlung__cell--header">Parlamentarische Bestuhlung</div>
-      <div class="bestuhlung__cell bestuhlung__cell--header">Theater­bestuhlung</div>
-      <div class="bestuhlung__cell bestuhlung__cell--header">Blocktisch</div>
-      <div class="bestuhlung__cell bestuhlung__cell--header">U-Form</div>
-      <div class="bestuhlung__cell bestuhlung__cell--header">O-Form</div>
-      <div class="bestuhlung__cell bestuhlung__cell--header">Bankett</div>
-      <!-- Icons -->
-      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#2D4036">
-          <!-- Stühle Reihe 1 -->
-          <circle cx="15" cy="5" r="3"/><circle cx="28" cy="5" r="3"/><circle cx="41" cy="5" r="3"/><circle cx="54" cy="5" r="3"/><circle cx="67" cy="5" r="3"/><circle cx="80" cy="5" r="3"/>
-          <!-- Tisch 1 -->
-          <rect x="10" y="12" width="75" height="6" rx="1"/>
-          <!-- Stühle Reihe 2 -->
-          <circle cx="15" cy="25" r="3"/><circle cx="28" cy="25" r="3"/><circle cx="41" cy="25" r="3"/><circle cx="54" cy="25" r="3"/><circle cx="67" cy="25" r="3"/><circle cx="80" cy="25" r="3"/>
-          <!-- Tisch 2 -->
-          <rect x="10" y="32" width="75" height="6" rx="1"/>
-          <!-- Stühle Reihe 3 -->
-          <circle cx="15" cy="45" r="3"/><circle cx="28" cy="45" r="3"/><circle cx="41" cy="45" r="3"/><circle cx="54" cy="45" r="3"/><circle cx="67" cy="45" r="3"/><circle cx="80" cy="45" r="3"/>
-          <!-- Tisch 3 -->
-          <rect x="10" y="52" width="75" height="6" rx="1"/>
-          <!-- Stühle Reihe 4 -->
-          <circle cx="15" cy="65" r="3"/><circle cx="28" cy="65" r="3"/><circle cx="41" cy="65" r="3"/><circle cx="54" cy="65" r="3"/><circle cx="67" cy="65" r="3"/><circle cx="80" cy="65" r="3"/>
-        </g>
-      </svg></div>
-      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#2D4036"><circle cx="15" cy="8" r="2.5"/><circle cx="24" cy="8" r="2.5"/><circle cx="33" cy="8" r="2.5"/><circle cx="42" cy="8" r="2.5"/><circle cx="51" cy="8" r="2.5"/><circle cx="60" cy="8" r="2.5"/><circle cx="69" cy="8" r="2.5"/><circle cx="78" cy="8" r="2.5"/><circle cx="87" cy="8" r="2.5"/><circle cx="15" cy="17" r="2.5"/><circle cx="24" cy="17" r="2.5"/><circle cx="33" cy="17" r="2.5"/><circle cx="42" cy="17" r="2.5"/><circle cx="51" cy="17" r="2.5"/><circle cx="60" cy="17" r="2.5"/><circle cx="69" cy="17" r="2.5"/><circle cx="78" cy="17" r="2.5"/><circle cx="87" cy="17" r="2.5"/><circle cx="15" cy="26" r="2.5"/><circle cx="24" cy="26" r="2.5"/><circle cx="33" cy="26" r="2.5"/><circle cx="42" cy="26" r="2.5"/><circle cx="51" cy="26" r="2.5"/><circle cx="60" cy="26" r="2.5"/><circle cx="69" cy="26" r="2.5"/><circle cx="78" cy="26" r="2.5"/><circle cx="87" cy="26" r="2.5"/><circle cx="15" cy="35" r="2.5"/><circle cx="24" cy="35" r="2.5"/><circle cx="33" cy="35" r="2.5"/><circle cx="42" cy="35" r="2.5"/><circle cx="51" cy="35" r="2.5"/><circle cx="60" cy="35" r="2.5"/><circle cx="69" cy="35" r="2.5"/><circle cx="78" cy="35" r="2.5"/><circle cx="87" cy="35" r="2.5"/><circle cx="15" cy="44" r="2.5"/><circle cx="24" cy="44" r="2.5"/><circle cx="33" cy="44" r="2.5"/><circle cx="42" cy="44" r="2.5"/><circle cx="51" cy="44" r="2.5"/><circle cx="60" cy="44" r="2.5"/><circle cx="69" cy="44" r="2.5"/><circle cx="78" cy="44" r="2.5"/><circle cx="87" cy="44" r="2.5"/><circle cx="15" cy="53" r="2.5"/><circle cx="24" cy="53" r="2.5"/><circle cx="33" cy="53" r="2.5"/><circle cx="42" cy="53" r="2.5"/><circle cx="51" cy="53" r="2.5"/><circle cx="60" cy="53" r="2.5"/><circle cx="69" cy="53" r="2.5"/><circle cx="78" cy="53" r="2.5"/><circle cx="87" cy="53" r="2.5"/><circle cx="15" cy="62" r="2.5"/><circle cx="24" cy="62" r="2.5"/><circle cx="33" cy="62" r="2.5"/><circle cx="42" cy="62" r="2.5"/><circle cx="51" cy="62" r="2.5"/><circle cx="60" cy="62" r="2.5"/><circle cx="69" cy="62" r="2.5"/><circle cx="78" cy="62" r="2.5"/><circle cx="87" cy="62" r="2.5"/></g>
-      </svg></div>
-      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#2D4036">
-          <!-- Obere Stühle -->
-          <circle cx="22" cy="12" r="3"/><circle cx="38" cy="12" r="3"/><circle cx="54" cy="12" r="3"/><circle cx="70" cy="12" r="3"/>
-          <!-- Tisch -->
-          <rect x="18" y="22" width="60" height="26" rx="1"/>
-          <!-- Untere Stühle -->
-          <circle cx="22" cy="58" r="3"/><circle cx="38" cy="58" r="3"/><circle cx="54" cy="58" r="3"/><circle cx="70" cy="58" r="3"/>
-          <!-- Seiten -->
-          <circle cx="10" cy="35" r="3"/><circle cx="86" cy="35" r="3"/>
-        </g>
-      </svg></div>
-      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#2D4036">
-          <!-- Stühle oben über linkem Schenkel -->
-          <circle cx="22" cy="8" r="2.5"/><circle cx="34" cy="8" r="2.5"/><circle cx="46" cy="8" r="2.5"/><circle cx="58" cy="8" r="2.5"/><circle cx="70" cy="8" r="2.5"/>
-          <!-- Linker Schenkel -->
-          <rect x="20" y="15" width="60" height="6"/>
-          <!-- Linke Seite -->
-          <rect x="20" y="21" width="6" height="35"/>
-          <circle cx="14" cy="28" r="2.5"/><circle cx="14" cy="40" r="2.5"/><circle cx="14" cy="52" r="2.5"/>
-          <!-- Rechte Seite -->
-          <rect x="74" y="21" width="6" height="35"/>
-          <circle cx="86" cy="28" r="2.5"/><circle cx="86" cy="40" r="2.5"/><circle cx="86" cy="52" r="2.5"/>
-        </g>
-      </svg></div>
-      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#2D4036">
-          <!-- Stühle oben -->
-          <circle cx="22" cy="8" r="2.5"/><circle cx="34" cy="8" r="2.5"/><circle cx="46" cy="8" r="2.5"/><circle cx="58" cy="8" r="2.5"/><circle cx="70" cy="8" r="2.5"/>
-          <!-- Tisch oben -->
-          <rect x="20" y="15" width="60" height="6"/>
-          <!-- Linke Seite -->
-          <rect x="20" y="21" width="6" height="28"/>
-          <circle cx="14" cy="28" r="2.5"/><circle cx="14" cy="40" r="2.5"/>
-          <!-- Rechte Seite -->
-          <rect x="74" y="21" width="6" height="28"/>
-          <circle cx="86" cy="28" r="2.5"/><circle cx="86" cy="40" r="2.5"/>
-          <!-- Tisch unten -->
-          <rect x="20" y="49" width="60" height="6"/>
-          <!-- Stühle unten -->
-          <circle cx="22" cy="62" r="2.5"/><circle cx="34" cy="62" r="2.5"/><circle cx="46" cy="62" r="2.5"/><circle cx="58" cy="62" r="2.5"/><circle cx="70" cy="62" r="2.5"/>
-        </g>
-      </svg></div>
-      <div class="bestuhlung__cell bestuhlung__cell--icon"><svg viewBox="0 0 100 70" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#2D4036">
-          <!-- Runder Tisch -->
-          <circle cx="50" cy="35" r="15"/>
-          <!-- Stühle drumrum -->
-          <circle cx="50" cy="10" r="3"/>
-          <circle cx="72" cy="20" r="3"/>
-          <circle cx="78" cy="35" r="3"/>
-          <circle cx="72" cy="50" r="3"/>
-          <circle cx="50" cy="60" r="3"/>
-          <circle cx="28" cy="50" r="3"/>
-          <circle cx="22" cy="35" r="3"/>
-          <circle cx="28" cy="20" r="3"/>
-        </g>
-      </svg></div>
-      <!-- Kapazitäten -->
-      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 60 Personen</div>
-      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 80 Personen</div>
-      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 26 Personen</div>
-      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 36 Personen</div>
-      <div class="bestuhlung__cell bestuhlung__cell--cap">max. 32 Personen</div>
-      <div class="bestuhlung__cell bestuhlung__cell--cap">Lange Tische max. 50 Personen<br>Runde Tische max. 40 Personen</div>
-    </div>
-  </div>
-</section>
-
-<section id="anfrage">
-  <div class="section__header">
-    <span class="kicker">Anfrage</span>
-    <h2 style="font-style: italic; font-weight: 400;">Erzählen Sie uns von Ihrem Anlass.</h2>
-  </div>
-  <form class="form" onsubmit="event.preventDefault(); alert('Konzept-Vorschau: Formular wird später angebunden.');">
-    <div class="form__row">
-      <div><label>Vorname *</label><input type="text" required></div>
-      <div><label>Nachname *</label><input type="text" required></div>
-    </div>
-    <div class="form__row">
-      <div><label>E-Mail *</label><input type="email" required></div>
-      <div><label>Telefon</label><input type="tel"></div>
-    </div>
-    <div class="form__row">
-      <div>
-        <label>Art des Anlasses</label>
-        <select>
-          <option>Firmenanlass</option><option>Hochzeit</option><option>Geburtstag / Privatfeier</option>
-          <option>Seminar / Workshop</option><option>Beerdigung / Trauerfeier</option><option>Anderes</option>
-        </select>
+  <div class="bereiche__grid">
+    <article class="bereich-card">
+      <div class="bereich-card__img" style="background-image: url('images/aula-anlass.png');"></div>
+      <div class="bereich-card__body">
+        <span class="pillar__kicker">Private Anlässe</span>
+        <h3>Hochzeiten, Geburtstage, Familienfeste.</h3>
+        <p>Vom Gewölbekeller über das Stübli bis zur Terrasse – wir haben den passenden Raum für deinen Anlass. Auch Feiern nach kirchlichen Zeremonien sind herzlich willkommen.</p>
+        <a href="#anfrage" class="pillar__link">Dein Event anfragen →</a>
       </div>
-      <div><label>Personenzahl</label><input type="number" min="1"></div>
-    </div>
-    <div class="form__row">
-      <div><label>Wunschdatum</label><input type="date"></div>
-      <div>
-        <label>Bevorzugter Raum</label>
-        <select>
-          <option>Noch offen</option><option>Erker (bis 40)</option><option>Stübli (bis 56)</option>
-          <option>Gewölbekeller (bis 30)</option><option>Restaurant (130)</option><option>Terrasse (bis 80)</option><option>Aula (bis 40)</option>
-        </select>
+    </article>
+    <article class="bereich-card">
+      <div class="bereich-card__img" style="background-image: url('images/wohnzimmer.png');"></div>
+      <div class="bereich-card__body">
+        <span class="pillar__kicker">Regelmässig</span>
+        <h3>Sonntagsbrunch, Jass, Workshops.</h3>
+        <p>Wöchentlicher Sonntagsbrunch, monatlicher Jass-Nachmittag und saisonal spezifische Angebote für verschiedene Zielgruppen und Generationen.</p>
+        <a href="#programm" class="pillar__link">Aktuelles Programm →</a>
       </div>
+    </article>
+    <article class="bereich-card">
+      <div class="bereich-card__img" style="background-image: url('images/gewoelbekeller.png');"></div>
+      <div class="bereich-card__body">
+        <span class="pillar__kicker">Saisonal</span>
+        <h3>Specials &amp; Workshops.</h3>
+        <p>Im Gewölbekeller gibt's spezielle Dining-Erlebnisse über das Jahr verteilt. Im alte Höfli finden Familien- und Kinderaktivitäten statt. Saisonale Kulinarik immer dabei.</p>
+        <a href="#programm" class="pillar__link">Specials ansehen →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section--dark" id="programm">
+  <div class="section__header">
+    <span class="kicker kicker--light">Upcoming · ab August 2027</span>
+    <h2 style="font-style: italic; font-weight: 400;">Was läuft im Müllerhof?</h2>
+    <p>Unsere kommenden Veranstaltungen. Aktualitätenschau: „Was läuft in Frick &amp; im Müllerhof".</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit">
+      <h4>Sonntagsbrunch</h4>
+      <p style="opacity: 0.85;">Jeden Sonntag im alte Höfli · grosses Buffet mit regionalen Produkten · 9:30–13:30.</p>
     </div>
-    <div><label>Ihre Nachricht</label><textarea placeholder="Erzählen Sie uns mehr…"></textarea></div>
-    <div style="text-align: center; margin-top: 1rem;">
+    <div class="benefit">
+      <h4>Jass-Nachmittag</h4>
+      <p style="opacity: 0.85;">Monatlich · Karten, Kaffee und Kuchen · Generationenübergreifend.</p>
+    </div>
+    <div class="benefit">
+      <h4>Gewölbekeller Dining</h4>
+      <p style="opacity: 0.85;">Saisonale Dining-Erlebnisse in einzigartiger Atmosphäre · Mehrgänger nach Saison.</p>
+    </div>
+    <div class="benefit">
+      <h4>Familien-Workshops</h4>
+      <p style="opacity: 0.85;">Backen, Kochen, Basteln im alte Höfli · Für Kinder und die ganze Familie.</p>
+    </div>
+    <div class="benefit">
+      <h4>Garten-Apéros</h4>
+      <p style="opacity: 0.85;">Sommerabende im Garten mit Apéro, Musik und gemütlichem Ambiente.</p>
+    </div>
+    <div class="benefit">
+      <h4>Generationen-Treff</h4>
+      <p style="opacity: 0.85;">Workshops, bei denen Jung und Alt gemeinsam Wissen und Erfahrungen austauschen.</p>
+    </div>
+  </div>
+</section>
+
+<section class="split">
+  <div class="split__inner">
+    <div class="split__img split__img--photo" style="background-image: url('images/garten.png');"></div>
+    <div class="split__text">
+      <span class="kicker">Garten · Terrasse</span>
+      <h2 style="font-style: italic; font-weight: 400;">Unsere Marktnische:<br>grosse Rasenfläche.</h2>
+      <p>Was uns einzigartig macht: ein grosser Garten mit Rasenfläche. Perfekt für Hochzeiten unter freiem Himmel, Sommer-Afterworks, Familienfeste, Garten-Apéros und alle Anlässe, bei denen man der Natur näher sein möchte.</p>
+      <p>Auf Anfrage kombinieren wir Garten, Terrasse und Innenräume zu deinem perfekten Event-Setup.</p>
+      <a href="#anfrage" class="btn btn--dark">Garten-Event anfragen</a>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="galerie">
+  <div class="section__inner">
+    <div class="section__header" style="text-align: center;">
+      <span class="kicker">Eventgalerie</span>
+      <h2 style="font-style: italic; font-weight: 400;">Bereits durchgeführte Anlässe.</h2>
+      <p>Ein Blick in unsere Eventgeschichte – von intimen Familienfesten bis zu grossen Feiern.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item" style="background-image: url('images/aula-anlass.png'); background-size: cover; background-position: center;"></div>
+      <div class="gallery-item" style="background-image: url('images/stuebli-anlass.png'); background-size: cover; background-position: center;"></div>
+      <div class="gallery-item" style="background-image: url('images/garten.png'); background-size: cover; background-position: center;"></div>
+      <div class="gallery-item" style="background-image: url('images/gewoelbekeller.png'); background-size: cover; background-position: center;"></div>
+      <div class="gallery-item" style="background-image: url('images/wohnzimmer.png'); background-size: cover; background-position: center;"></div>
+      <div class="gallery-item" style="background-image: url('images/alte-hoefli.png'); background-size: cover; background-position: center;"></div>
+    </div>
+    <div class="section__center" style="margin-top: 3rem;">
+      <a href="galerie.html" class="btn btn--outline">Komplette Galerie</a>
+    </div>
+  </div>
+</section>
+
+<section class="section--sage section__center" id="anfrage">
+  <span class="kicker kicker--light">Dein Event</span>
+  <h2 style="font-size: clamp(2.25rem, 5vw, 4rem); font-style: italic; font-weight: 400; margin-bottom: 1.5rem;">Dein Event im Müllerhof.</h2>
+  <p style="max-width: 720px; margin: 0 auto 2.5rem;">Geburtstag? Hochzeit? Firmenanlass? Familienfeier? Erzähl uns, was du planst – wir machen dir ein passendes Angebot.</p>
+  <div style="max-width: 700px; margin: 0 auto; background: rgba(255,255,255,0.95); padding: 3rem 2rem;">
+    <form class="form" onsubmit="alert('Eventanfrage übermittelt (Demo).'); return false;">
+      <div class="form__row">
+        <div><label>Vorname &amp; Name</label><input type="text" required></div>
+        <div><label>Telefon</label><input type="tel"></div>
+      </div>
+      <div class="form__row">
+        <div><label>E-Mail</label><input type="email" required></div>
+        <div><label>Wunschdatum</label><input type="date"></div>
+      </div>
+      <div class="form__row">
+        <div><label>Art des Anlasses</label>
+          <select>
+            <option>Hochzeit</option>
+            <option>Geburtstag</option>
+            <option>Familienfest</option>
+            <option>Firmenanlass</option>
+            <option>Apéro / Afterwork</option>
+            <option>Workshop</option>
+            <option>Sonstiges</option>
+          </select>
+        </div>
+        <div><label>Personenzahl</label><input type="number" min="1" max="200"></div>
+      </div>
+      <div><label>Wünsche &amp; Anmerkungen</label><textarea placeholder="Was schwebt dir vor?"></textarea></div>
       <button type="submit" class="btn btn--dark">Anfrage senden</button>
-    </div>
-  </form>
+    </form>
+  </div>
 </section>
 
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__logo">
       <img src="images/logo.png" alt="Müllerhof">
-      <p class="footer__claim">Wo Begegnung zuhause ist. Restaurant, Hotel und Eventlocation im Herzen von Frick.</p>
+      <p class="footer__claim">Das Wohnzimmer von Frick. Restaurant, Hotel und Begegnungsort im Herzen des Fricktals.</p>
     </div>
     <div>
       <h4>Kontakt</h4>
@@ -355,8 +202,9 @@
         <li><a href="restaurant.html">Restaurant</a></li>
         <li><a href="speisekarte.html">Speisekarte</a></li>
         <li><a href="hotel.html">Hotel</a></li>
-        <li><a href="events.html">Events &amp; Seminare</a></li>
-        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="seminare.html">Seminare</a></li>
+        <li><a href="karriere.html">Karriere</a></li>
       </ul>
     </div>
     <div>
@@ -364,7 +212,7 @@
       <ul>
         <li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
         <li><a href="hotel.html#buchen">Zimmer buchen</a></li>
-        <li><a href="events.html#anfrage">Bankettanfrage</a></li>
+        <li><a href="events.html#anfrage">Dein Event</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
       </ul>
     </div>
@@ -374,7 +222,7 @@
     <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
   </div>
 </footer>
-<div class="concept-badge">Konzept · Vorschau</div>
+
 <script src="js/main.js"></script>
 
 </body>

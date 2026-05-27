@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Restaurant · Müllerhof</title>
+<meta name="description" content="Drei Gastronomiebereiche im Müllerhof: Stübli, alte Höfli und Wohnzimmer.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,141 +17,165 @@
     <li><a href="restaurant.html" class="nav__link active">Restaurant</a></li>
     <li><a href="hotel.html" class="nav__link">Hotel</a></li>
     <li><a href="events.html" class="nav__link">Events</a></li>
-    <li><a href="galerie.html" class="nav__link">Galerie</a></li>
+    <li><a href="seminare.html" class="nav__link">Seminare</a></li>
     <li><a href="ueber-uns.html" class="nav__link">Über uns</a></li>
+    <li><a href="karriere.html" class="nav__link">Karriere</a></li>
     <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
     <li><a href="restaurant.html#reservieren" class="nav__link nav__cta">Reservieren</a></li>
   </ul>
 </nav>
 
-<section class="hero hero--short">
-  <div class="hero__bg hero__bg--brown"></div>
-  <div class="hero__placeholder"><div class="hero__placeholder-label">[ Bild: Stübli mit warmer Lichtstimmung ]</div></div>
+<section class="hero hero--short hero--photo">
+  <div class="hero__photo" style="background-image: url('images/stuebli.png');"></div>
   <div class="hero__overlay"></div>
   <div class="hero__content">
     <p class="hero__sub">Restaurant</p>
-    <h1 class="hero__claim">[ Headline Restaurant ]</h1>
-    <div class="hero__cta-group">
-      <a href="#reservieren" class="btn btn--primary">Tisch reservieren</a>
-      <a href="speisekarte.html" class="btn btn--ghost">Speisekarte</a>
+    <h1 class="hero__claim">Drei Bereiche.<br>Ein Wohnzimmer.</h1>
+    <p class="hero__tagline">Wo Begegnung zuhause ist.</p>
+  </div>
+</section>
+
+<section class="intro section__center">
+  <div class="section__inner">
+    <span class="kicker">Restauration</span>
+    <h2 class="intro__headline">Vielseitiges Angebot.<br>Stimmiges Gesamtbild.</h2>
+    <p class="intro__lead">Mit den drei Gastronomiebereichen <strong>alte Höfli</strong>, <strong>Wohnzimmer</strong> und <strong>Stübli</strong> entsteht ein vielseitiges Angebot mit unterschiedlichen Stimmungen und Nutzungsmöglichkeiten – und doch ein einheitliches und stimmiges Gesamtbild. Der Fokus liegt konsequent auf regionalen Produkten und einer traditionellen Küche.</p>
+  </div>
+</section>
+
+<!-- ALTE HÖFLI -->
+<section class="split" id="hoefli">
+  <div class="split__inner">
+    <div class="split__img split__img--photo" style="background-image: url('images/alte-hoefli.png');"></div>
+    <div class="split__text">
+      <span class="kicker">Alte Höfli</span>
+      <h2 style="font-style: italic; font-weight: 400;">Frühstück. Znüni. Mittag.</h2>
+      <p>Das alte Höfli bildet den traditionellen Hauptbereich des Hauses und steht für unkomplizierte, alltagsnahe Gastronomie. Es ist der tägliche erste Anlaufpunkt für Frühstück, Znüni und Mittagsverpflegung.</p>
+      <p>Das Frühstücksangebot umfasst ein grosszügiges Buffet mit regionalen Produkten, Früchten, Käse, Brot und Gebäck sowie Birchermüesli, ergänzt durch Eierspeisen à la carte. Am Sonntag verwandelt sich das alte Höfli in einen Brunch-Treffpunkt mit grosszügigem Buffet aus regionalen Produkten.</p>
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem;">
+        <a href="pdfs/Speisekarte_alteHoefli.pdf" target="_blank" class="btn btn--dark">Speisekarte</a>
+        <a href="pdfs/Getraenkekarte_alteHoefli.pdf" target="_blank" class="btn btn--outline">Getränkekarte</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="intro">
-  <div class="section__inner">
-    <span class="kicker">Willkommen</span>
-    <div class="placeholder-text"><strong>Platzhalter</strong>Intro-Headline Restaurant</div>
-    <div class="placeholder-text"><strong>Platzhalter</strong>Intro-Text Restaurant – kurze Vorstellung der Küche</div>
+<!-- DAS WOHNZIMMER -->
+<section class="split split--reverse" id="wohnzimmer">
+  <div class="split__inner">
+    <div class="split__img split__img--photo" style="background-image: url('images/wohnzimmer.png');"></div>
+    <div class="split__text">
+      <span class="kicker">Das Wohnzimmer</span>
+      <h2 style="font-style: italic; font-weight: 400;">Apéro. Austausch. Ankommen.</h2>
+      <p>Das Wohnzimmer ist der gemütliche Begegnungsbereich des Müllerhofs und steht für entspannte Aufenthalte, gesellige Apéros und gemeinsame Momente. Die Gäste gelangen über das alte Höfli oder den Haupteingang in diesen bedienten Bereich.</p>
+      <p>Das Angebot umfasst hausgemachte Spezialitäten und regionale Produkte – perfekt für den Apéro nach Feierabend, ein gemütliches Treffen mit Freunden oder einfach um anzukommen.</p>
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem;">
+        <a href="pdfs/Speisekarte_Wohnzimmer.pdf" target="_blank" class="btn btn--dark">Speisekarte</a>
+        <a href="pdfs/Getraenkekarte_Wohnzimmer.pdf" target="_blank" class="btn btn--outline">Getränkekarte</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- KARTEN-AUSWAHL -->
-<section class="section--sand">
+<!-- DAS STÜBLI -->
+<section class="split" id="stuebli">
+  <div class="split__inner">
+    <div class="split__img split__img--photo" style="background-image: url('images/stuebli.png');"></div>
+    <div class="split__text">
+      <span class="kicker">Das Stübli</span>
+      <h2 style="font-style: italic; font-weight: 400;">À la carte. Klassisch. Gepflegt.</h2>
+      <p>Das Stübli bildet den klassischen bedienten Restaurantbereich mit À-la-carte-Angebot und gepflegtem Ambiente. Es ist sowohl über Mittag als auch am Abend geöffnet und richtet sich an Gäste, die ein ruhigeres und persönlich betreutes Restauranterlebnis suchen.</p>
+      <p>Die Küche setzt auf gutbürgerliche, regional verankerte Produkte und klassische Zubereitungen mit modernem Anspruch. Das Angebot umfasst sorgfältig zubereitete Vorspeisen, Hauptgänge und hausgemachte Desserts.</p>
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem;">
+        <a href="pdfs/Speisekarte_Stuebli.pdf" target="_blank" class="btn btn--dark">Speisekarte</a>
+        <a href="pdfs/Weinkarte_Stuebli.pdf" target="_blank" class="btn btn--outline">Weinkarte</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALLE KARTEN AUF EINEN BLICK -->
+<section class="section--dark">
   <div class="section__header">
-    <span class="kicker">Karten &amp; Genuss</span>
-    <h2 style="font-style: italic; font-weight: 400;">Was wir servieren.</h2>
-    <p>Wählen Sie aus unseren Karten – Hauptkarte, Frühstück und mehr.</p>
+    <span class="kicker kicker--light">Karten-Übersicht</span>
+    <h2 style="font-style: italic; font-weight: 400;">Alle Karten auf einen Blick.</h2>
+    <p>Speisen, Getränke, Wein – alle Karten unserer drei Bereiche zum Direkt-Ansehen.</p>
   </div>
-
-  <div class="speise-grid">
-    <article class="speise-card">
-      <svg class="speise-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M8 4v4a4 4 0 0 0 8 0V4"/>
-        <line x1="12" y1="8" x2="12" y2="22"/>
-        <path d="M4 4v6a4 4 0 0 0 4 4v8"/>
-      </svg>
-      <h3>Speisekarte</h3>
-      <p>Hofklassiker, Vorspeisen, Hauptgänge, Dessert &amp; Lounge.</p>
-      <a href="speisekarte.html" class="btn btn--outline">Karte ansehen</a>
-    </article>
-
-    <article class="speise-card">
-      <svg class="speise-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M12 7v5l3 3"/>
-      </svg>
-      <h3>Frühstück &amp; Brunch</h3>
-      <p>Buffet-Angebot mit Schweizer Spezialitäten.</p>
-      <a href="speisekarte.html#fruehstueck" class="btn btn--outline">Karte ansehen</a>
-    </article>
-
-    <article class="speise-card">
-      <svg class="speise-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M3 11h18"/>
-        <path d="M5 11V7a7 7 0 0 1 14 0v4"/>
-        <path d="M5 11v5a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-5"/>
-      </svg>
-      <h3>Znüni</h3>
-      <p>Für die kleine Pause zwischendurch.</p>
-      <a href="speisekarte.html#znueni" class="btn btn--outline">Karte ansehen</a>
-    </article>
-
-    <article class="speise-card">
-      <svg class="speise-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M6 3h12l-1 9a5 5 0 0 1-10 0L6 3z"/>
-        <path d="M12 17v4"/>
-        <path d="M8 21h8"/>
-      </svg>
-      <h3>Wein &amp; Getränke</h3>
-      <p>Sorgfältig ausgewählte Weine und Getränke.</p>
-      <a href="#" class="btn btn--outline" style="opacity: 0.5; pointer-events: none;">In Vorbereitung</a>
-    </article>
+  <div class="karten-grid">
+    <a href="pdfs/Speisekarte_alteHoefli.pdf" target="_blank" class="karte-link">
+      <span class="karte-link__type">Alte Höfli</span>
+      <span class="karte-link__name">Speisekarte</span>
+      <span class="karte-link__arrow">PDF öffnen →</span>
+    </a>
+    <a href="pdfs/Getraenkekarte_alteHoefli.pdf" target="_blank" class="karte-link">
+      <span class="karte-link__type">Alte Höfli</span>
+      <span class="karte-link__name">Getränkekarte</span>
+      <span class="karte-link__arrow">PDF öffnen →</span>
+    </a>
+    <a href="pdfs/Speisekarte_Wohnzimmer.pdf" target="_blank" class="karte-link">
+      <span class="karte-link__type">Wohnzimmer</span>
+      <span class="karte-link__name">Speisekarte</span>
+      <span class="karte-link__arrow">PDF öffnen →</span>
+    </a>
+    <a href="pdfs/Getraenkekarte_Wohnzimmer.pdf" target="_blank" class="karte-link">
+      <span class="karte-link__type">Wohnzimmer</span>
+      <span class="karte-link__name">Getränkekarte</span>
+      <span class="karte-link__arrow">PDF öffnen →</span>
+    </a>
+    <a href="pdfs/Speisekarte_Stuebli.pdf" target="_blank" class="karte-link">
+      <span class="karte-link__type">Stübli</span>
+      <span class="karte-link__name">Speisekarte</span>
+      <span class="karte-link__arrow">PDF öffnen →</span>
+    </a>
+    <a href="pdfs/Weinkarte_Stuebli.pdf" target="_blank" class="karte-link">
+      <span class="karte-link__type">Stübli</span>
+      <span class="karte-link__name">Weinkarte</span>
+      <span class="karte-link__arrow">PDF öffnen →</span>
+    </a>
   </div>
 </section>
 
-<!-- 3 RÄUME -->
-<section>
+<!-- RESERVIEREN -->
+<section class="intro" id="reservieren">
   <div class="section__inner">
-    <div class="section__header">
-      <span class="kicker">Unsere Räume</span>
-      <h2 style="font-style: italic; font-weight: 400;">Drei Welten unter einem Dach.</h2>
+    <div class="section__header" style="text-align: center;">
+      <span class="kicker">Reservation</span>
+      <h2 style="font-style: italic; font-weight: 400;">Tisch reservieren.</h2>
+      <p>Wir freuen uns auf dich. Reserviere telefonisch, per E-Mail oder über unser Formular.</p>
     </div>
-    <div class="pillars__grid" style="background: transparent; max-width: var(--max-w);">
-      <article class="pillar" style="background: var(--c-sand);">
-        <div class="pillar__img"><span class="pillar__placeholder">[ Stübli ]</span></div>
-        <div class="pillar__body">
-          <span class="pillar__kicker">Stübli</span>
-          <h3>[ Headline ]</h3>
-          <p>[ Beschreibung Stübli folgt. ]</p>
-        </div>
-      </article>
-      <article class="pillar" style="background: var(--c-sand);">
-        <div class="pillar__img"><span class="pillar__placeholder">[ Alts Höfli ]</span></div>
-        <div class="pillar__body">
-          <span class="pillar__kicker">Alts Höfli</span>
-          <h3>[ Headline ]</h3>
-          <p>[ Beschreibung Alts Höfli folgt. ]</p>
-        </div>
-      </article>
-      <article class="pillar" style="background: var(--c-sand);">
-        <div class="pillar__img"><span class="pillar__placeholder">[ s'Wohnzimmer ]</span></div>
-        <div class="pillar__body">
-          <span class="pillar__kicker">s'Wohnzimmer</span>
-          <h3>[ Headline ]</h3>
-          <p>[ Beschreibung s'Wohnzimmer folgt. ]</p>
-        </div>
-      </article>
-    </div>
+    <form class="form" onsubmit="alert('Reservation übermittelt (Demo).'); return false;">
+      <div class="form__row">
+        <div><label>Vorname &amp; Name</label><input type="text" required></div>
+        <div><label>Personen</label><input type="number" min="1" max="50" required></div>
+      </div>
+      <div class="form__row">
+        <div><label>Datum</label><input type="date" required></div>
+        <div><label>Uhrzeit</label><input type="time" required></div>
+      </div>
+      <div class="form__row">
+        <div><label>Telefon</label><input type="tel"></div>
+        <div><label>E-Mail</label><input type="email" required></div>
+      </div>
+      <div><label>Bereich (optional)</label>
+        <select>
+          <option>Egal / freie Wahl</option>
+          <option>Alte Höfli</option>
+          <option>Wohnzimmer</option>
+          <option>Stübli</option>
+        </select>
+      </div>
+      <div><label>Wünsche / Anlass</label><textarea></textarea></div>
+      <button type="submit" class="btn btn--dark">Reservation senden</button>
+      <p style="font-size: 0.85rem; color: var(--c-text-soft); text-align: center;">Oder direkt: <a href="tel:+41628655380" style="color: var(--c-brown); font-weight: 700;">062 865 53 80</a> · <a href="mailto:info@muellerhof.ch" style="color: var(--c-brown); font-weight: 700;">info@muellerhof.ch</a></p>
+    </form>
   </div>
-</section>
-
-<section id="reservieren" class="section--dark section__center">
-  <span class="kicker kicker--light">Reservation</span>
-  <h2 style="color: var(--c-beige-light); font-size: clamp(2rem, 4vw, 3.25rem); font-style: italic; font-weight: 400; margin-bottom: 1.5rem;">Tisch reservieren</h2>
-  <p style="max-width: 600px; margin: 0 auto 3rem; color: rgba(242,237,227,0.85); font-size: 1.05rem;">Reservieren Sie Ihren Tisch bequem online über aleno.</p>
-  <div style="background: rgba(242,237,227,0.05); border: 1px dashed rgba(242,237,227,0.3); padding: 4rem 2rem; max-width: 700px; margin: 0 auto 2rem;">
-    <p style="color: var(--c-sand); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; margin-bottom: 1rem;">[ Aleno Widget – Integration ]</p>
-    <p style="color: rgba(242,237,227,0.7); font-style: italic;">Hier wird das Aleno-Reservierungswidget eingebettet, sobald der Account eingerichtet ist.</p>
-  </div>
-  <a href="tel:+41628655380" class="btn btn--ghost">Oder anrufen: 062 865 53 80</a>
 </section>
 
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__logo">
       <img src="images/logo.png" alt="Müllerhof">
-      <p class="footer__claim">Wo Begegnung zuhause ist. Restaurant, Hotel und Eventlocation im Herzen von Frick.</p>
+      <p class="footer__claim">Das Wohnzimmer von Frick. Restaurant, Hotel und Begegnungsort im Herzen des Fricktals.</p>
     </div>
     <div>
       <h4>Kontakt</h4>
@@ -167,8 +192,9 @@
         <li><a href="restaurant.html">Restaurant</a></li>
         <li><a href="speisekarte.html">Speisekarte</a></li>
         <li><a href="hotel.html">Hotel</a></li>
-        <li><a href="events.html">Events &amp; Seminare</a></li>
-        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="seminare.html">Seminare</a></li>
+        <li><a href="karriere.html">Karriere</a></li>
       </ul>
     </div>
     <div>
@@ -176,7 +202,7 @@
       <ul>
         <li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
         <li><a href="hotel.html#buchen">Zimmer buchen</a></li>
-        <li><a href="events.html#anfrage">Bankettanfrage</a></li>
+        <li><a href="events.html#anfrage">Dein Event</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
       </ul>
     </div>
@@ -186,7 +212,7 @@
     <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
   </div>
 </footer>
-<div class="concept-badge">Konzept · Vorschau</div>
+
 <script src="js/main.js"></script>
 
 </body>
