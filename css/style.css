@@ -901,6 +901,44 @@ section { padding: 8rem 3rem; }
   .news-card { grid-template-columns: 1fr; }
 }
 
+/* Bereich-Card – Mehrbild-Collage */
+.bereich-card__gallery {
+  display: grid;
+  gap: 4px;
+  aspect-ratio: 4/3;
+  background: var(--c-sand);
+}
+.bereich-card__gallery-item {
+  background-size: cover;
+  background-position: center;
+}
+.bereich-card__gallery--2 { grid-template-columns: 1fr 1fr; }
+.bereich-card__gallery--3 {
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.bereich-card__gallery--3 .bereich-card__gallery-item:nth-child(1) { grid-row: 1 / 3; }
+.bereich-card__gallery--4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+/* Zimmer-Card – Galerie (mehrere Bilder) */
+.zimmer-card__gallery { display: grid; gap: 4px; min-height: 220px; background: var(--c-sand); }
+.zimmer-card__gallery-item { background-size: cover; background-position: center; }
+.zimmer-card__gallery--2 { grid-template-columns: 1fr 1fr; }
+.zimmer-card__gallery--3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+.zimmer-card__gallery--3 .zimmer-card__gallery-item:nth-child(1) { grid-row: 1 / 3; }
+.zimmer-card__gallery--4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+/* News-Card – Galerie */
+.news-card__gallery { display: grid; gap: 4px; min-height: 160px; background: var(--c-sand); }
+.news-card__gallery-item { background-size: cover; background-position: center; }
+.news-card__gallery--2 { grid-template-columns: 1fr 1fr; }
+.news-card__gallery--3 { grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; }
+.news-card__gallery--3 .news-card__gallery-item:nth-child(1) { grid-row: 1 / 3; }
+.news-card__gallery--4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
 /* Team-Cards */
 .team-card {
   background: var(--c-white);

@@ -97,20 +97,41 @@ body { font-family: var(--font-sans); background: var(--c-bg); color: var(--c-te
   padding: 0 0.75rem;
   overflow-y: auto;
 }
-.nav-group { margin-bottom: 0.4rem; }
-.nav-group-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.65);
-  padding: 0.6rem 0.85rem 0.3rem;
+.nav-group { margin-bottom: 0.15rem; }
+.nav-group-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: rgba(255,255,255,0.85);
+  font-family: inherit;
+  font-size: 0.9rem;
   font-weight: 700;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  margin-top: 0.3rem;
+  text-align: left;
+  padding: 0.55rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
 }
+.nav-group-toggle:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.nav-group-toggle::after {
+  content: '▸';
+  font-size: 0.7rem;
+  opacity: 0.6;
+  transition: transform 0.15s;
+  margin-left: 0.5rem;
+}
+.nav-group.open > .nav-group-toggle::after { transform: rotate(90deg); }
+.nav-group > .nav-sub { display: none; }
+.nav-group.open > .nav-sub { display: block; }
+
 .nav-item.nav-sub {
   font-size: 0.82rem;
-  padding: 0.4rem 0.85rem 0.4rem 1.5rem;
+  padding: 0.35rem 0.85rem 0.35rem 1.7rem;
   color: rgba(255,255,255,0.7);
+  margin-bottom: 1px;
 }
 .nav-item.nav-sub:hover { color: #fff; background: rgba(255,255,255,0.05); }
 .nav-item.nav-sub.active { background: var(--c-accent); color: #fff; font-weight: 600; }

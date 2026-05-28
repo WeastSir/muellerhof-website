@@ -186,12 +186,24 @@ function makeSortable(tbodyEl, tableName) {
 }
 
 $$('.nav-item').forEach(b => b.addEventListener('click', () => {
+  // Falls Sub-Item: Eltern-Gruppe sicher offen halten
+  const group = b.closest('.nav-group');
+  if (group) group.classList.add('open');
   switchView(b.dataset.view, {
     clickedEl: b,
     filter: b.dataset.filter,
     list: b.dataset.list,
     typ: b.dataset.typ,
   });
+}));
+
+/* Toggle für Gruppen-Überschriften */
+$$('.nav-group-toggle').forEach(t => t.addEventListener('click', (e) => {
+  const group = t.closest('.nav-group');
+  if (!group) return;
+  // Andere zumachen (Akkordeon-Verhalten)
+  $$('.nav-group').forEach(g => { if (g !== group) g.classList.remove('open'); });
+  group.classList.toggle('open');
 }));
 $$('[data-view-link]').forEach(c => c.addEventListener('click', () => switchView(c.dataset.viewLink)));
 
@@ -230,7 +242,10 @@ function openModal(title, bodyHtml, onSave) {
   modalOnSave = onSave;
   $('#modal').classList.remove('hidden');
   // ALLE Bild-URL / Logo-URL / PDF-URL Felder zu Drag&Drop-Upload-Feldern aufwerten
-  setTimeout(() => enhanceImageInputs($('#modalBody')), 10);
+  setTimeout(() => {
+    enhanceImageInputs($('#modalBody'));
+    setupMultiImageFields();
+  }, 10);
 }
 
 /* =============================================================
@@ -378,7 +393,7 @@ function eventFormHtml(e = {}) {
         <div><label>Ort</label><input type="text" name="ort" placeholder="Aula, Stübli, Garten…" value="${escapeAttr(e.ort || '')}"></div>
       </div>
       <div><label>Beschreibung</label><textarea name="beschreibung" rows="3">${escapeHtml(e.beschreibung || '')}</textarea></div>
-      <div><label>Bild-URL (optional)</label><input type="text" name="bild_url" value="${escapeAttr(e.bild_url || '')}" placeholder="https://… oder images/…"></div>
+      ${multiImagesFieldHtml(e.bilder || e.bild_url || '', 'Bilder (mehrere möglich, sortierbar)')}
       <div><label>Link-URL (optional)</label><input type="text" name="link_url" value="${escapeAttr(e.link_url || '')}"></div>
       <div class="form-row">
         <div><label>Sortierung</label><input type="number" name="sort_order" value="${e.sort_order ?? 0}"></div>
@@ -777,7 +792,7 @@ function newsFormHtml(n = {}) {
         </select>
       </div>
       <div><label>Text</label><textarea name="text" rows="4">${escapeHtml(n.text||'')}</textarea></div>
-      <div><label>Bild-URL (optional)</label><input type="text" name="bild_url" value="${escapeAttr(n.bild_url||'')}"></div>
+      ${multiImagesFieldHtml(n.bilder || n.bild_url || '', 'Bilder (mehrere möglich)')}
       <div class="form-row">
         <div><label>Gültig ab</label><input type="date" name="gueltig_ab" value="${n.gueltig_ab || today}"></div>
         <div><label>Gültig bis (optional)</label><input type="date" name="gueltig_bis" value="${n.gueltig_bis || ''}"></div>
@@ -1110,7 +1125,7 @@ function zimmerFormHtml(z = {}) {
     </div>
     <div><label>Beschreibung</label><textarea name="beschreibung" rows="3">${escapeHtml(z.beschreibung||'')}</textarea></div>
     <div><label>Ausstattung</label><textarea name="ausstattung" rows="2" placeholder="Doppelbett, eigenes Bad, WLAN, Föhn…">${escapeHtml(z.ausstattung||'')}</textarea></div>
-    <div><label>Bild-URL</label><input type="text" name="bild_url" value="${escapeAttr(z.bild_url||'')}" placeholder="https://… oder images/…"></div>
+    ${multiImagesFieldHtml(z.bilder || z.bild_url || '', 'Zimmer-Bilder (mehrere möglich)')}
     <div class="form-row">
       <div><label>Sortierung</label><input type="number" name="sort_order" value="${z.sort_order ?? 0}"></div>
       <div style="display:flex;align-items:end;gap:1rem;">
@@ -1180,10 +1195,8 @@ function teamFormHtml(t = {}) {
       <div><label>Bereich</label><input type="text" name="bereich" value="${escapeAttr(t.bereich||'')}" placeholder="Service, Küche, Hotel…"></div>
     </div>
     <div><label>Bio / kurze Beschreibung</label><textarea name="bio" rows="3">${escapeHtml(t.bio||'')}</textarea></div>
-    <div class="form-row">
-      <div><label>E-Mail (optional)</label><input type="email" name="email" value="${escapeAttr(t.email||'')}"></div>
-      <div><label>Bild-URL</label><input type="text" name="bild_url" value="${escapeAttr(t.bild_url||'')}"></div>
-    </div>
+    <div><label>E-Mail (optional)</label><input type="email" name="email" value="${escapeAttr(t.email||'')}"></div>
+    ${multiImagesFieldHtml(t.bilder || t.bild_url || '', 'Foto(s) – meist 1 reicht')}
     <div class="form-row">
       <div><label>Sortierung</label><input type="number" name="sort_order" value="${t.sort_order ?? 0}"></div>
       <div style="display:flex;align-items:end;"><label class="form-check"><input type="checkbox" name="aktiv" ${t.aktiv !== false ? 'checked' : ''}> Aktiv</label></div>
@@ -1316,10 +1329,8 @@ function partnerFormHtml(p = {}) {
     <div><label>Name *</label><input type="text" name="name" value="${escapeAttr(p.name||'')}" required></div>
     <div><label>Kategorie</label><input type="text" name="kategorie" value="${escapeAttr(p.kategorie||'')}" placeholder="Verein, Lieferant, Institution"></div>
     <div><label>Beschreibung</label><textarea name="beschreibung" rows="3">${escapeHtml(p.beschreibung||'')}</textarea></div>
-    <div class="form-row">
-      <div><label>Logo-URL</label><input type="text" name="logo_url" value="${escapeAttr(p.logo_url||'')}"></div>
-      <div><label>Bild-URL</label><input type="text" name="bild_url" value="${escapeAttr(p.bild_url||'')}"></div>
-    </div>
+    <div><label>Logo-URL</label><input type="text" name="logo_url" value="${escapeAttr(p.logo_url||'')}"></div>
+    ${multiImagesFieldHtml(p.bilder || p.bild_url || '', 'Bilder (mehrere möglich)')}
     <div><label>Website-URL</label><input type="text" name="website_url" value="${escapeAttr(p.website_url||'')}" placeholder="https://…"></div>
     <div class="form-row">
       <div><label>Sortierung</label><input type="number" name="sort_order" value="${p.sort_order ?? 0}"></div>
@@ -1424,7 +1435,21 @@ function cardFormHtml(c = {}) {
     </div>
     <div><label>Untertitel</label><input type="text" name="untertitel" value="${escapeAttr(c.untertitel||'')}" placeholder="z.B. 'bis 130 Personen', 'Mittwoch'"></div>
     <div><label>Beschreibung</label><textarea name="beschreibung" rows="3">${escapeHtml(c.beschreibung||'')}</textarea></div>
-    <div><label>Bild-URL</label><input type="text" name="bild_url" value="${escapeAttr(c.bild_url||'')}"></div>
+
+    <!-- BILDER (mehrfach + sortierbar) -->
+    <div>
+      <label>Bilder (mehrere möglich, per Drag&amp;Drop sortieren)</label>
+      <div id="cardImagesList" data-images="${escapeAttr(c.bilder || c.bild_url || '')}"></div>
+      <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.5rem;">
+        <label class="img-drop__btn">📷 Bild hinzufügen
+          <input type="file" accept="image/*" hidden id="cardImageAdd">
+        </label>
+        <span style="font-size:0.8rem;color:var(--c-text-soft);font-style:italic;">Erstes Bild = Hauptbild. Bei mehreren wird auf der Webseite eine Collage gezeigt.</span>
+      </div>
+      <input type="hidden" name="bilder" id="cardBilderField" value="${escapeAttr(c.bilder || c.bild_url || '')}">
+      <input type="hidden" name="bild_url" id="cardBildUrlField" value="">
+    </div>
+
     <div class="form-row">
       <div><label>Link-URL</label><input type="text" name="link_url" value="${escapeAttr(c.link_url||'')}" placeholder="restaurant.html#hoefli"></div>
       <div><label>Link-Text</label><input type="text" name="link_text" value="${escapeAttr(c.link_text||'')}" placeholder="Mehr →"></div>
@@ -1436,6 +1461,166 @@ function cardFormHtml(c = {}) {
   </div>`;
 }
 
+/* Generische Multi-Image-Manager (wiederverwendbar für alle Forms)
+   HTML: <div data-multi-images="initial_urls\n..."></div>
+         <input type="hidden" name="bilder" data-multi-images-field>
+         <input type="hidden" name="bild_url" data-multi-images-first>
+*/
+function setupMultiImageFields() {
+  document.querySelectorAll('[data-multi-images]').forEach(list => {
+    if (list._initialized) return; list._initialized = true;
+    let urls = (list.dataset.multiImages || '').split('\n').map(s => s.trim()).filter(Boolean);
+    const hiddenAll = list.closest('.form-grid, form, [class*="form"]')?.querySelector('[data-multi-images-field]') || document.querySelector('[data-multi-images-field]');
+    const hiddenFirst = list.closest('.form-grid, form, [class*="form"]')?.querySelector('[data-multi-images-first]') || document.querySelector('[data-multi-images-first]');
+
+    function sync() {
+      if (hiddenAll) hiddenAll.value = urls.join('\n');
+      if (hiddenFirst) hiddenFirst.value = urls[0] || '';
+    }
+    function render() {
+      if (!urls.length) {
+        list.innerHTML = '<div style="padding:1rem;text-align:center;color:var(--c-text-soft);font-style:italic;background:var(--c-bg);border:2px dashed var(--c-line);border-radius:4px;">Noch keine Bilder. Füge unten welche hinzu.</div>';
+      } else {
+        list.innerHTML = urls.map((u, i) => `
+          <div class="img-row" data-idx="${i}" style="display:flex;align-items:center;gap:0.5rem;padding:0.4rem;background:var(--c-bg);border:1px solid var(--c-line);border-radius:4px;margin-bottom:0.3rem;">
+            <span class="img-drag" style="cursor:grab;font-size:1.1rem;color:var(--c-text-soft);user-select:none;letter-spacing:-2px;">⋮⋮</span>
+            <div style="width:50px;height:50px;background-image:url('${u.replace(/'/g,"\\'")}');background-size:cover;background-position:center;border-radius:3px;flex-shrink:0;"></div>
+            <input type="text" value="${u.replace(/"/g,'&quot;')}" data-url-idx="${i}" style="flex:1;padding:0.35rem 0.5rem;border:1px solid var(--c-line);border-radius:3px;font-size:0.85rem;">
+            <button type="button" class="img-drop__btn" style="background:var(--c-danger)" data-remove-idx="${i}">×</button>
+          </div>`).join('');
+      }
+      sync();
+      list.querySelectorAll('[data-url-idx]').forEach(inp => {
+        inp.addEventListener('input', () => { urls[Number(inp.dataset.urlIdx)] = inp.value; sync(); });
+      });
+      list.querySelectorAll('[data-remove-idx]').forEach(btn => {
+        btn.addEventListener('click', () => { urls.splice(Number(btn.dataset.removeIdx), 1); render(); });
+      });
+      if (window.Sortable) {
+        window.Sortable.create(list, {
+          animation: 180, handle: '.img-drag',
+          onEnd: (e) => {
+            const moved = urls.splice(e.oldIndex, 1)[0];
+            urls.splice(e.newIndex, 0, moved);
+            render();
+          }
+        });
+      }
+    }
+    render();
+    // Upload button (eindeutige ID per Suchen)
+    const addBtn = list.parentNode.querySelector('[data-multi-images-add]');
+    if (addBtn) addBtn.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      toast('Lade hoch…');
+      try {
+        const ext = file.name.split('.').pop();
+        const name = `${Date.now()}-${Math.round(Math.random()*1e6)}.${ext}`;
+        const { error: upErr } = await sb.storage.from(STORAGE_BUCKET).upload(name, file);
+        if (upErr) throw upErr;
+        const { data: pub } = sb.storage.from(STORAGE_BUCKET).getPublicUrl(name);
+        await sb.from('cms_medien').insert({ filename: file.name, url: pub.publicUrl, alt: file.name });
+        urls.push(pub.publicUrl);
+        render();
+        toast('Bild hinzugefügt', 'success');
+      } catch (err) { toast('Fehler: ' + err.message, 'error'); }
+      e.target.value = '';
+    });
+  });
+}
+
+/* HTML-Schnipsel für ein Multi-Image-Feld in jedem Form */
+function multiImagesFieldHtml(initial = '', label = 'Bilder (mehrere, sortierbar)') {
+  return `<div>
+    <label>${escapeHtml(label)}</label>
+    <div data-multi-images="${escapeAttr(initial)}"></div>
+    <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.5rem;">
+      <label class="img-drop__btn">📷 Bild hinzufügen
+        <input type="file" accept="image/*" hidden data-multi-images-add>
+      </label>
+      <span style="font-size:0.78rem;color:var(--c-text-soft);font-style:italic;">Erstes Bild = Hauptbild. Drag&amp;Drop zum Sortieren.</span>
+    </div>
+    <input type="hidden" name="bilder" data-multi-images-field value="${escapeAttr(initial)}">
+    <input type="hidden" name="bild_url" data-multi-images-first value="${escapeAttr((initial||'').split('\n')[0] || '')}">
+  </div>`;
+}
+
+/* Multi-Image-Manager für Karten – nach Modal-Öffnung initialisieren */
+function setupCardImages() {
+  setupMultiImageFields();
+  const list = document.getElementById('cardImagesList');
+  if (!list) return;
+  let urls = (list.dataset.images || '').split('\n').map(s => s.trim()).filter(Boolean);
+
+  function render() {
+    if (!urls.length) {
+      list.innerHTML = '<div style="padding:1rem;text-align:center;color:var(--c-text-soft);font-style:italic;background:var(--c-bg);border:2px dashed var(--c-line);border-radius:4px;">Noch keine Bilder. Füge unten welche hinzu.</div>';
+    } else {
+      list.innerHTML = urls.map((u, i) => `
+        <div class="card-img-row" data-idx="${i}" style="display:flex;align-items:center;gap:0.5rem;padding:0.4rem;background:var(--c-bg);border:1px solid var(--c-line);border-radius:4px;margin-bottom:0.3rem;">
+          <span class="card-img-drag" style="cursor:grab;font-size:1.1rem;color:var(--c-text-soft);user-select:none;letter-spacing:-2px;">⋮⋮</span>
+          <div style="width:50px;height:50px;background-image:url('${u.replace(/'/g,"\\'")}');background-size:cover;background-position:center;border-radius:3px;flex-shrink:0;"></div>
+          <input type="text" value="${u.replace(/"/g,'&quot;')}" data-url-idx="${i}" style="flex:1;padding:0.35rem 0.5rem;border:1px solid var(--c-line);border-radius:3px;font-size:0.85rem;">
+          <button type="button" class="img-drop__btn" style="background:var(--c-danger)" data-remove-idx="${i}">×</button>
+        </div>`).join('');
+    }
+    // Hidden field aktualisieren
+    document.getElementById('cardBilderField').value = urls.join('\n');
+    document.getElementById('cardBildUrlField').value = urls[0] || '';
+
+    // URL-Inputs sync
+    list.querySelectorAll('[data-url-idx]').forEach(inp => {
+      inp.addEventListener('input', () => {
+        urls[Number(inp.dataset.urlIdx)] = inp.value;
+        document.getElementById('cardBilderField').value = urls.join('\n');
+        document.getElementById('cardBildUrlField').value = urls[0] || '';
+      });
+    });
+    // Remove buttons
+    list.querySelectorAll('[data-remove-idx]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        urls.splice(Number(btn.dataset.removeIdx), 1);
+        render();
+      });
+    });
+    // Sortable
+    if (window.Sortable) {
+      window.Sortable.create(list, {
+        animation: 180, handle: '.card-img-drag',
+        onEnd: (e) => {
+          const moved = urls.splice(e.oldIndex, 1)[0];
+          urls.splice(e.newIndex, 0, moved);
+          render();
+        }
+      });
+    }
+  }
+  render();
+
+  // Upload-Button
+  const fileInput = document.getElementById('cardImageAdd');
+  if (fileInput) fileInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    toast('Lade hoch…');
+    try {
+      const ext = file.name.split('.').pop();
+      const name = `${Date.now()}-${Math.round(Math.random()*1e6)}.${ext}`;
+      const { error: upErr } = await sb.storage.from(STORAGE_BUCKET).upload(name, file);
+      if (upErr) throw upErr;
+      const { data: pub } = sb.storage.from(STORAGE_BUCKET).getPublicUrl(name);
+      await sb.from('cms_medien').insert({ filename: file.name, url: pub.publicUrl, alt: file.name });
+      urls.push(pub.publicUrl);
+      render();
+      toast('Bild hinzugefügt', 'success');
+    } catch (err) {
+      toast('Fehler: ' + err.message, 'error');
+    }
+    e.target.value = '';
+  });
+}
+
 $('#newCardBtn').addEventListener('click', () => {
   openModal('Neuer Eintrag', cardFormHtml(), async () => {
     const f = readForm();
@@ -1444,6 +1629,7 @@ $('#newCardBtn').addEventListener('click', () => {
     if (error) throw error;
     toast('Gespeichert', 'success'); loadCardsList();
   });
+  setTimeout(setupCardImages, 20);
 });
 
 window.editCard = async (id) => {
@@ -1455,6 +1641,7 @@ window.editCard = async (id) => {
     if (error) throw error;
     toast('Aktualisiert', 'success'); loadCardsList();
   });
+  setTimeout(setupCardImages, 20);
 };
 
 window.deleteCard = async (id) => {

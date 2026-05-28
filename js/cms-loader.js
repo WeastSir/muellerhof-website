@@ -123,7 +123,7 @@
     if (!filtered.length) { container.innerHTML = ''; return; }
     container.innerHTML = filtered.map(n => `
       <article class="news-card">
-        ${n.bild_url ? `<div class="news-card__img" style="background-image:url('${esc(n.bild_url)}');"></div>` : ''}
+        ${renderImageGallery(n, 'news-card')}
         <div class="news-card__body">
           ${n.kategorie ? `<span class="news-card__cat">${esc(n.kategorie)}</span>` : ''}
           <h3>${esc(n.titel)}</h3>
@@ -236,6 +236,16 @@
       </article>`).join('');
   }
 
+  // Helper: rendert Galerie ODER Einzelbild aus bilder/bild_url
+  function renderImageGallery(item, baseClass) {
+    const urls = ((item.bilder || item.bild_url || '').toString()).split('\n').map(s => s.trim()).filter(Boolean);
+    if (!urls.length) return '';
+    if (urls.length === 1) return `<div class="${baseClass}__img" style="background-image:url('${esc(urls[0])}');"></div>`;
+    const cls = `${baseClass}__gallery ${baseClass}__gallery--${Math.min(urls.length, 4)}`;
+    return `<div class="${cls}">${urls.slice(0,4).map(u =>
+      `<div class="${baseClass}__gallery-item" style="background-image:url('${esc(u)}');"></div>`).join('')}</div>`;
+  }
+
   // ---- ZIMMER ----
   async function loadZimmer() {
     const container = document.querySelector('[data-cms-zimmer]');
@@ -245,7 +255,7 @@
     if (!data.length) { container.innerHTML = ''; return; }
     container.innerHTML = data.map(z => `
       <article class="zimmer-card">
-        ${z.bild_url ? `<div class="zimmer-card__img" style="background-image:url('${esc(z.bild_url)}');"></div>` : ''}
+        ${renderImageGallery(z, 'zimmer-card')}
         <div class="zimmer-card__body">
           <h3>${esc(z.name)}</h3>
           ${z.zimmertyp ? `<div class="zimmer-card__typ">${esc(z.zimmertyp)} · für ${z.anzahl_personen} Personen${z.groesse_qm ? ' · '+z.groesse_qm+' m²' : ''}</div>` : ''}
@@ -319,8 +329,19 @@
       return `<div class="room-card"><div class="room-card__name">${esc(c.titel)}</div><div class="room-card__cap">${esc(c.untertitel||'')}</div></div>`;
     }
     if (tpl === 'bereich') {
+      // Mehrere Bilder aus c.bilder (newline-getrennt) oder Fallback auf c.bild_url
+      const bilderRaw = (c.bilder || c.bild_url || '').toString();
+      const urls = bilderRaw.split('\n').map(s => s.trim()).filter(Boolean);
+      let imgHtml = '';
+      if (urls.length === 1) {
+        imgHtml = `<div class="bereich-card__img" style="background-image:url('${esc(urls[0])}');"></div>`;
+      } else if (urls.length > 1) {
+        const cls = 'bereich-card__gallery bereich-card__gallery--' + Math.min(urls.length, 4);
+        imgHtml = `<div class="${cls}">${urls.slice(0,4).map(u =>
+          `<div class="bereich-card__gallery-item" style="background-image:url('${esc(u)}');"></div>`).join('')}</div>`;
+      }
       return `<article class="bereich-card">
-        ${c.bild_url ? `<div class="bereich-card__img" style="background-image:url('${esc(c.bild_url)}');"></div>` : ''}
+        ${imgHtml}
         <div class="bereich-card__body">
           ${c.kicker ? `<span class="pillar__kicker">${esc(c.kicker)}</span>` : ''}
           <h3>${esc(c.titel)}</h3>
