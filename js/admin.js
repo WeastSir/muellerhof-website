@@ -180,17 +180,40 @@ const BG_SLOTS_BY_PAGE = {
 };
 
 async function loadBilder() {
-  const page = $('#bilderPageFilter').value;
-  const slots = BG_SLOTS_BY_PAGE[page] || [];
+  console.log('[Bilder] loadBilder() called');
+  const filterSel = $('#bilderPageFilter');
   const container = $('#bilderContainer');
-  container.innerHTML = 'Lädt…';
-  const { data: sections } = await sb.from('cms_sections').select('*').eq('page_slug', page).eq('kind', 'image');
-  const byKey = {};
-  (sections || []).forEach(s => byKey[s.section_key] = s);
+  if (!container) { console.warn('[Bilder] container missing'); return; }
+  const page = filterSel ? filterSel.value : 'index';
+  const slots = BG_SLOTS_BY_PAGE[page] || [];
+  console.log('[Bilder] page:', page, 'slots:', slots.length);
+
+  // SOFORT die Slots rendern (mit Fallback-Bildern), DB-Werte werden später überschrieben
   if (!slots.length) {
     container.innerHTML = '<div class="info-box"><p>Keine Bild-Slots für diese Seite definiert.</p></div>';
     return;
   }
+  renderBilderSlots(container, page, slots, {});
+
+  // Dann DB abfragen und überschreiben
+  try {
+    const res = await sb.from('cms_sections').select('*').eq('page_slug', page).eq('kind', 'image');
+    if (res.error) throw res.error;
+    const byKey = {};
+    (res.data || []).forEach(s => byKey[s.section_key] = s);
+    renderBilderSlots(container, page, slots, byKey);
+  } catch (err) {
+    console.warn('[Bilder] DB-Fehler', err);
+    const banner = document.createElement('div');
+    banner.className = 'info-box';
+    banner.style.borderLeftColor = 'var(--c-danger)';
+    banner.style.marginBottom = '1rem';
+    banner.innerHTML = `<p><strong>Hinweis:</strong> ${escapeHtml(err.message || String(err))}. Slot-Vorschauen werden mit Fallback-Bildern angezeigt; Speichern braucht eine funktionierende DB.</p>`;
+    container.insertBefore(banner, container.firstChild);
+  }
+}
+
+function renderBilderSlots(container, page, slots, byKey) {
   container.innerHTML = slots.map(slot => {
     const cur = byKey[slot.key];
     const url = cur?.content || slot.fallback || '';
