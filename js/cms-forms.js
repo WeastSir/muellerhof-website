@@ -10,17 +10,41 @@
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   // Hilfs-Funktion: Feldwerte aus Formular lesen
+  function slugify(s) {
+    return s.toLowerCase()
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/[^\w]+/g, '_').replace(/^_|_$/g, '');
+  }
+  function findLabel(el) {
+    // 1. Input innerhalb von <label>
+    let lab = el.closest('label');
+    if (lab) return lab.textContent.trim();
+    // 2. Label als Geschwister im selben Parent (div)
+    const parent = el.parentNode;
+    if (parent) {
+      const sib = parent.querySelector('label');
+      if (sib) return sib.textContent.trim();
+    }
+    // 3. Direkt vorheriges Element ist ein Label
+    const prev = el.previousElementSibling;
+    if (prev && prev.tagName === 'LABEL') return prev.textContent.trim();
+    return null;
+  }
   function readFormData(form) {
     const data = {};
-    // Named inputs / textareas / selects
     [...form.querySelectorAll('input, textarea, select')].forEach(el => {
-      if (!el.name && !el.dataset.field) {
-        // Fallback: Label-Text als Schlüssel verwenden
-        const lab = el.closest('label')?.firstChild?.textContent?.trim();
-        if (lab) el.dataset.field = lab.replace(/[^\w]+/g, '_').toLowerCase();
+      let key = el.name || el.dataset.field;
+      if (!key) {
+        const lab = findLabel(el);
+        if (lab) {
+          key = slugify(lab);
+          el.dataset.field = key;  // cache
+        }
       }
-      const key = el.name || el.dataset.field;
-      if (!key) return;
+      if (!key) {
+        // Letzte Fallback: typ + index
+        key = el.type + '_' + Math.random().toString(36).slice(2,6);
+      }
       if (el.type === 'checkbox') data[key] = el.checked;
       else if (el.type === 'file') data[key] = el.files?.[0]?.name || null;
       else data[key] = el.value || null;
@@ -46,14 +70,15 @@
     setTimeout(() => msg.remove(), 8000);
   }
 
-  // Form-Typen → wichtige Felder-Mapping
+  // Form-Typen → wichtige Felder-Mapping (mit Umlaut-Konvertierung in slugs)
   const FIELD_MAP = {
-    // Standard-Felder die wir in cms_anfragen.name/email/telefon/nachricht direkt speichern
-    name:      ['name', 'vorname_name', 'vorname_und_name', 'vorname_amp_name'],
-    email:     ['email', 'e_mail'],
+    name:      ['name', 'vorname_name', 'vorname_und_name', 'vorname_amp_name', 'vorname_nachname'],
+    email:     ['email', 'e_mail', 'mail'],
     telefon:   ['telefon', 'phone', 'tel'],
-    betreff:   ['betreff', 'thema'],
-    nachricht: ['nachricht', 'anmerkungen', 'bemerkungen', 'message', 'anmerkungen_spezielle_wuensche'],
+    betreff:   ['betreff', 'thema', 'subject'],
+    nachricht: ['nachricht', 'anmerkungen', 'bemerkungen', 'message',
+                'anmerkungen_spezielle_wuensche', 'wuensche_anmerkungen',
+                'wuensche', 'kommentar'],
   };
 
   function extractStandardField(data, candidates) {

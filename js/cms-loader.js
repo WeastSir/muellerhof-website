@@ -51,7 +51,7 @@
     });
   }
 
-  // ---- 2. Events ----
+  // ---- 2. Events (kompakte Listen-Optik wie ursprünglich) ----
   async function loadEvents() {
     const container = document.querySelector('[data-cms-events]');
     if (!container) return;
@@ -63,18 +63,25 @@
       .order('datum');
     if (error) { console.warn('[CMS] events', error); return; }
     if (!data.length) { container.innerHTML = '<p style="text-align:center;color:var(--c-text-soft);font-style:italic;">Aktuell keine geplanten Events.</p>'; return; }
-    container.innerHTML = data.map(e => `
-      <article class="event-card">
-        ${e.bild_url ? `<div class="event-card__img" style="background-image:url('${esc(e.bild_url)}');"></div>` : ''}
-        <div class="event-card__body">
-          <div class="event-card__date">${esc(fmtDateLong(e.datum))}${e.zeit ? ' · ' + esc(e.zeit) : ''}</div>
-          ${e.kategorie ? `<span class="event-card__cat">${esc(e.kategorie)}</span>` : ''}
-          <h3>${esc(e.titel)}</h3>
-          ${e.ort ? `<p class="event-card__ort">${esc(e.ort)}</p>` : ''}
-          ${e.beschreibung ? `<p>${esc(e.beschreibung)}</p>` : ''}
-          ${e.link_url ? `<a href="${esc(e.link_url)}" class="btn btn--dark" target="_blank" rel="noopener">Mehr erfahren</a>` : ''}
+    const MONTHS = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+    const HIGHLIGHTS = new Set(['Festlich','Tradition','Anlass']);
+    container.innerHTML = '<ul class="event-list">' + data.map(e => {
+      const d = new Date(e.datum);
+      const day = String(d.getDate()).padStart(2, '0');
+      const month = MONTHS[d.getMonth()];
+      const highlight = HIGHLIGHTS.has(e.kategorie) ? ' event-list__item--highlight' : '';
+      const ortText = [e.ort, e.zeit].filter(Boolean).join(' · ');
+      return `<li class="event-list__item${highlight}">
+        <div class="event-list__date">
+          <span class="event-list__day">${day}</span>
+          <span class="event-list__month">${month}</span>
         </div>
-      </article>`).join('');
+        <div class="event-list__body">
+          <h3>${esc(e.titel)}</h3>
+          <span class="event-list__loc">${esc(ortText)}</span>
+        </div>
+      </li>`;
+    }).join('') + '</ul>';
   }
 
   // ---- 3. Öffnungszeiten ----

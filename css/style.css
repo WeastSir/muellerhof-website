@@ -738,7 +738,12 @@ section { padding: 8rem 3rem; }
   box-shadow: 0 4px 16px rgba(45,64,54,0.08);
   margin-bottom: 1.5rem;
   overflow: hidden;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
+/* Wenn kein Bild da ist: volle Breite für Text */
+.event-card:not(:has(.event-card__img)) { grid-template-columns: 1fr; }
 .event-card:nth-child(even) { background: var(--c-beige-light); }
 .event-card__img {
   background-size: cover;
