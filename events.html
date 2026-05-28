@@ -111,60 +111,10 @@
       <h2 style="font-style: italic; font-weight: 400;">Was läuft im Müllerhof?</h2>
       <p>Wir starten im August 2027 durch! Unsere besonderen Anlässe ab Eröffnung – Saison-Highlights, Themen-Dinner und Workshops.</p>
     </div>
-    <ul class="event-list">
-      <li class="event-list__item event-list__item--highlight">
-        <div class="event-list__date"><span class="event-list__day">01</span><span class="event-list__month">Aug</span></div>
-        <div class="event-list__body"><h3>1. August Brunch · Eröffnung</h3><span class="event-list__loc">Restaurant</span></div>
-      </li>
-      <li class="event-list__item">
-        <div class="event-list__date"><span class="event-list__day">13</span><span class="event-list__month">Aug</span></div>
-        <div class="event-list__body"><h3>Grill &amp; Chill</h3><span class="event-list__loc">Terrasse</span></div>
-      </li>
-      <li class="event-list__item">
-        <div class="event-list__date"><span class="event-list__day">27</span><span class="event-list__month">Aug</span></div>
-        <div class="event-list__body"><h3>Grill &amp; Chill</h3><span class="event-list__loc">Terrasse</span></div>
-      </li>
-      <li class="event-list__item">
-        <div class="event-list__date"><span class="event-list__day">15</span><span class="event-list__month">Sep</span></div>
-        <div class="event-list__body"><h3>Wildsaison startet · Wildkarte</h3><span class="event-list__loc">Restaurant · Sep–Okt</span></div>
-      </li>
-      <li class="event-list__item">
-        <div class="event-list__date"><span class="event-list__day">27</span><span class="event-list__month">Okt</span></div>
-        <div class="event-list__body"><h3>Kürbisschnitzen für Kids</h3><span class="event-list__loc">Restaurant</span></div>
-      </li>
-      <li class="event-list__item">
-        <div class="event-list__date"><span class="event-list__day">06</span><span class="event-list__month">Nov</span></div>
-        <div class="event-list__body"><h3>Candle Light Dinner</h3><span class="event-list__loc">Gewölbekeller</span></div>
-      </li>
-      <li class="event-list__item">
-        <div class="event-list__date"><span class="event-list__day">17</span><span class="event-list__month">Nov</span></div>
-        <div class="event-list__body"><h3>Kerzenziehen</h3><span class="event-list__loc">Gewölbekeller</span></div>
-      </li>
-      <li class="event-list__item">
-        <div class="event-list__date"><span class="event-list__day">24</span><span class="event-list__month">Nov</span></div>
-        <div class="event-list__body"><h3>Metzgete</h3><span class="event-list__loc">Aula</span></div>
-      </li>
-      <li class="event-list__item event-list__item--highlight">
-        <div class="event-list__date"><span class="event-list__day">06</span><span class="event-list__month">Dez</span></div>
-        <div class="event-list__body"><h3>Samichlaus zu Besuch</h3><span class="event-list__loc">Restaurant</span></div>
-      </li>
-      <li class="event-list__item">
-        <div class="event-list__date"><span class="event-list__day">08</span><span class="event-list__month">Dez</span></div>
-        <div class="event-list__body"><h3>Lebkuchenhaus basteln</h3><span class="event-list__loc">Restaurant</span></div>
-      </li>
-      <li class="event-list__item event-list__item--highlight">
-        <div class="event-list__date"><span class="event-list__day">24</span><span class="event-list__month">Dez</span></div>
-        <div class="event-list__body"><h3>Weihnachtsmenu</h3><span class="event-list__loc">Stübli</span></div>
-      </li>
-      <li class="event-list__item event-list__item--highlight">
-        <div class="event-list__date"><span class="event-list__day">25</span><span class="event-list__month">Dez</span></div>
-        <div class="event-list__body"><h3>Weihnachtsmenu</h3><span class="event-list__loc">Stübli</span></div>
-      </li>
-      <li class="event-list__item event-list__item--highlight">
-        <div class="event-list__date"><span class="event-list__day">31</span><span class="event-list__month">Dez</span></div>
-        <div class="event-list__body"><h3>New Year Dinner</h3><span class="event-list__loc">Stübli</span></div>
-      </li>
-    </ul>
+    <!-- Events werden automatisch aus dem CMS geladen (bearbeitbar via /admin.html) -->
+    <div data-cms-events>
+      <p style="text-align:center; color: var(--c-text-soft); font-style: italic;">Events werden geladen…</p>
+    </div>
     <p style="text-align: center; margin-top: 2.5rem; font-size: 0.9rem; color: var(--c-text-soft); font-style: italic;">Alle Daten 2027 · Reservation empfohlen via <a href="tel:+41628655380" style="color: var(--c-brown); font-weight: 700;">062 865 53 80</a> oder <a href="mailto:info@muellerhof.ch" style="color: var(--c-brown); font-weight: 700;">info@muellerhof.ch</a></p>
   </div>
 </section>
@@ -286,6 +236,8 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script src="js/cms-loader.js"></script>
 
 </body>
 </html>

@@ -31,8 +31,8 @@
   <div class="hero__overlay"></div>
   <div class="hero__content">
     <img src="images/logo-white.png" alt="Müllerhof – Restaurant · Hotel · Events" class="hero__logo">
-    <h1 class="hero__claim">Das Wohnzimmer<br>von Frick.</h1>
-    <p class="hero__tagline">Wo Begegnung zuhause ist.</p>
+    <h1 class="hero__claim" data-cms="index:hero_claim">Das Wohnzimmer<br>von Frick.</h1>
+    <p class="hero__tagline" data-cms="index:hero_tagline">Wo Begegnung zuhause ist.</p>
     <div class="hero__cta-group">
       <a href="restaurant.html#reservieren" class="btn btn--primary">Tisch reservieren</a>
       <a href="hotel.html#buchen" class="btn btn--ghost">Zimmer buchen</a>
@@ -53,9 +53,9 @@
 <section class="intro section__center">
   <div class="section__inner">
     <span class="kicker">Willkommen im Müllerhof</span>
-    <h2 class="intro__headline">Von&nbsp;Frick. Für&nbsp;Frick.</h2>
-    <p class="intro__lead">Der Müllerhof verbindet Gastronomie, Gemeinschaft und modernes Dorfleben zu einem Ort, an dem Menschen verschiedener Generationen zusammenkommen. Im Mittelpunkt stehen echte Begegnungen, der Austausch zwischen Jung und Alt – und das Gefühl von zuhause.</p>
-    <p class="intro__usp"><em>„Der Müllerhof bringt Generationen zusammen und macht Gemeinschaft in Frick erlebbar.“</em></p>
+    <h2 class="intro__headline" data-cms="index:intro_headline">Von&nbsp;Frick. Für&nbsp;Frick.</h2>
+    <p class="intro__lead" data-cms="index:intro_lead">Der Müllerhof verbindet Gastronomie, Gemeinschaft und modernes Dorfleben zu einem Ort, an dem Menschen verschiedener Generationen zusammenkommen. Im Mittelpunkt stehen echte Begegnungen, der Austausch zwischen Jung und Alt – und das Gefühl von zuhause.</p>
+    <p class="intro__usp"><em data-cms="index:intro_usp">„Der Müllerhof bringt Generationen zusammen und macht Gemeinschaft in Frick erlebbar.“</em></p>
   </div>
 </section>
 
@@ -206,6 +206,8 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script src="js/cms-loader.js"></script>
 
 </body>
 </html>

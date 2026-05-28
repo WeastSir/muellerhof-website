@@ -726,3 +726,173 @@ section { padding: 8rem 3rem; }
   .timeline__year { text-align: left; border-right: none; padding-right: 0; padding-bottom: 0.25rem; padding-top: 1.5rem; border-bottom: 1px solid var(--c-brown); margin-bottom: 0.5rem; }
 }
 
+/* ============================================================
+   CMS-INHALTE (dynamisch geladen via cms-loader.js)
+   ============================================================ */
+
+/* Events aus CMS */
+.event-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  background: var(--c-white);
+  box-shadow: 0 4px 16px rgba(45,64,54,0.08);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.event-card:nth-child(even) { background: var(--c-beige-light); }
+.event-card__img {
+  background-size: cover;
+  background-position: center;
+  min-height: 200px;
+}
+.event-card__body { padding: 2rem 2rem; }
+.event-card__date {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-brown);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.event-card__cat {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  background: var(--c-darkgreen);
+  color: var(--c-beige-light);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.event-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--c-darkgreen);
+  margin-bottom: 0.3rem;
+}
+.event-card__ort {
+  color: var(--c-text-soft);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+.event-card p { color: var(--c-text-soft); margin-bottom: 1rem; line-height: 1.6; }
+.event-card .btn { margin-top: 0.5rem; }
+
+/* News aus CMS */
+.news-card {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  background: var(--c-white);
+  box-shadow: 0 4px 16px rgba(45,64,54,0.08);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.news-card:not(:has(.news-card__img)) { grid-template-columns: 1fr; }
+.news-card__img {
+  background-size: cover;
+  background-position: center;
+  min-height: 160px;
+}
+.news-card__body { padding: 1.5rem 1.75rem; }
+.news-card__cat {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-brown);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.news-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--c-darkgreen);
+  margin-bottom: 0.5rem;
+}
+.news-card p { color: var(--c-text-soft); line-height: 1.6; }
+
+/* Öffnungszeiten aus CMS */
+.oz-group { margin-bottom: 2rem; }
+.oz-group h4 {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--c-darkgreen);
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--c-brown);
+}
+.oz-table { width: 100%; border-collapse: collapse; }
+.oz-table td {
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed rgba(103,74,45,0.2);
+  font-size: 0.95rem;
+  color: var(--c-text);
+}
+.oz-table td:last-child { text-align: right; color: var(--c-text-soft); }
+.oz-table .oz-hint { font-style: italic; font-size: 0.85rem; color: var(--c-brown); }
+
+/* Menü aus CMS (Speisekarte/Getränke/Wein) */
+.menu-section { margin-bottom: 3rem; }
+.menu-section h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.7rem;
+  color: var(--c-darkgreen);
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+.menu-section__desc {
+  text-align: center;
+  color: var(--c-text-soft);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+.menu-list { list-style: none; padding: 0; }
+.menu-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  border-bottom: 1px dashed rgba(103,74,45,0.2);
+  gap: 1.5rem;
+}
+.menu-list__name strong {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--c-darkgreen);
+}
+.menu-list__name em {
+  font-style: italic;
+  color: var(--c-brown);
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+.menu-list__desc {
+  color: var(--c-text-soft);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+.menu-list__herkunft {
+  color: var(--c-brown);
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 0.15rem;
+}
+.menu-list__price {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--c-darkgreen);
+  font-size: 1rem;
+  text-align: right;
+  min-width: 80px;
+}
+
+@media (max-width: 700px) {
+  .event-card { grid-template-columns: 1fr; }
+  .event-card__img { min-height: 180px; }
+  .news-card { grid-template-columns: 1fr; }
+}
+

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMS · Müllerhof Admin</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="css/admin.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+
+<!-- LOGIN -->
+<section id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <img src="images/logo.png" alt="Müllerhof" class="login-logo">
+    <h1>Müllerhof CMS</h1>
+    <p class="login-sub">Bitte mit Admin-Konto anmelden.</p>
+    <form id="loginForm">
+      <label>E-Mail<input type="email" id="loginEmail" autocomplete="username" required></label>
+      <label>Passwort<input type="password" id="loginPassword" autocomplete="current-password" required></label>
+      <button type="submit" class="btn-primary">Anmelden</button>
+      <p id="loginError" class="error-msg"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ADMIN APP -->
+<div id="adminApp" class="admin-app hidden">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <img src="images/logo.png" alt="Müllerhof">
+      <span>CMS</span>
+    </div>
+    <nav class="sidebar__nav">
+      <button class="nav-item active" data-view="overview">Übersicht</button>
+      <button class="nav-item" data-view="events">Events</button>
+      <button class="nav-item" data-view="sections">Seitentexte</button>
+      <button class="nav-item" data-view="menu">Speisekarte</button>
+      <button class="nav-item" data-view="oeffnung">Öffnungszeiten</button>
+      <button class="nav-item" data-view="news">News &amp; Aktuelles</button>
+      <button class="nav-item" data-view="medien">Medien</button>
+    </nav>
+    <div class="sidebar__bottom">
+      <a href="index.html" class="sidebar__back">← zur Webseite</a>
+      <button id="logoutBtn" class="sidebar__logout">Abmelden</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <header class="main__header">
+      <h2 id="viewTitle">Übersicht</h2>
+      <span id="userInfo" class="user-info"></span>
+    </header>
+
+    <!-- ÜBERSICHT -->
+    <section class="view" id="view-overview">
+      <div class="cards">
+        <div class="card" data-view-link="events">
+          <div class="card__num" id="countEvents">–</div>
+          <div class="card__label">Events</div>
+        </div>
+        <div class="card" data-view-link="sections">
+          <div class="card__num" id="countSections">–</div>
+          <div class="card__label">Seitentexte</div>
+        </div>
+        <div class="card" data-view-link="menu">
+          <div class="card__num" id="countMenu">–</div>
+          <div class="card__label">Menü-Positionen</div>
+        </div>
+        <div class="card" data-view-link="news">
+          <div class="card__num" id="countNews">–</div>
+          <div class="card__label">News</div>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>Willkommen im Müllerhof CMS</h3>
+        <p>Hier bearbeitest du alle Inhalte der Webseite: Events, Texte, Speisekarte, Öffnungszeiten und News. Änderungen sind sofort live.</p>
+        <p>Wähle links den Bereich, den du bearbeiten willst.</p>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="view hidden" id="view-events">
+      <div class="view__actions">
+        <button class="btn-primary" id="newEventBtn">+ Neues Event</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="eventsTable">
+          <thead><tr>
+            <th>Datum</th><th>Zeit</th><th>Titel</th><th>Kategorie</th><th>Aktiv</th><th></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SEITENTEXTE -->
+    <section class="view hidden" id="view-sections">
+      <div class="view__actions">
+        <label>Seite:
+          <select id="pageFilter">
+            <option value="">— alle —</option>
+            <option value="index">Startseite</option>
+            <option value="restaurant">Restaurant</option>
+            <option value="hotel">Hotel</option>
+            <option value="events">Events</option>
+            <option value="seminare">Seminare</option>
+            <option value="community">Community</option>
+            <option value="ueber-uns">Über uns</option>
+            <option value="karriere">Karriere</option>
+            <option value="kontakt">Kontakt</option>
+            <option value="kooperationen">Kooperationen</option>
+          </select>
+        </label>
+        <button class="btn-primary" id="newSectionBtn">+ Neuer Text-Block</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="sectionsTable">
+          <thead><tr>
+            <th>Seite</th><th>Schlüssel</th><th>Beschreibung</th><th>Inhalt</th><th></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="view hidden" id="view-menu">
+      <div class="view__actions">
+        <label>Typ:
+          <select id="menuTypeFilter">
+            <option value="speise">Speisen</option>
+            <option value="getraenk">Getränke</option>
+            <option value="wein">Weine</option>
+          </select>
+        </label>
+        <button class="btn-secondary" id="newMenuCatBtn">+ Kategorie</button>
+        <button class="btn-primary" id="newMenuItemBtn">+ Position</button>
+      </div>
+      <div id="menuContainer"></div>
+    </section>
+
+    <!-- ÖFFNUNGSZEITEN -->
+    <section class="view hidden" id="view-oeffnung">
+      <div class="view__actions">
+        <button class="btn-primary" id="newOzBtn">+ Eintrag</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="ozTable">
+          <thead><tr>
+            <th>Bereich</th><th>Tag(e)</th><th>Von</th><th>Bis</th><th>Hinweis</th><th>Aktiv</th><th></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="view hidden" id="view-news">
+      <div class="view__actions">
+        <button class="btn-primary" id="newNewsBtn">+ News-Eintrag</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="newsTable">
+          <thead><tr>
+            <th>Titel</th><th>Kategorie</th><th>Gültig ab</th><th>Gültig bis</th><th>Aktiv</th><th></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MEDIEN -->
+    <section class="view hidden" id="view-medien">
+      <div class="view__actions">
+        <label class="btn-primary">
+          + Bild hochladen
+          <input type="file" id="mediaUpload" accept="image/*" hidden>
+        </label>
+      </div>
+      <div id="mediaGrid" class="media-grid"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- MODAL für Editor-Formulare -->
+<div id="modal" class="modal hidden">
+  <div class="modal__backdrop"></div>
+  <div class="modal__panel">
+    <header class="modal__head">
+      <h3 id="modalTitle">Bearbeiten</h3>
+      <button class="modal__close" id="modalClose">×</button>
+    </header>
+    <div class="modal__body" id="modalBody"></div>
+    <footer class="modal__foot">
+      <button class="btn-ghost" id="modalCancel">Abbrechen</button>
+      <button class="btn-primary" id="modalSave">Speichern</button>
+    </footer>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
