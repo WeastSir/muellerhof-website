@@ -1,167 +1,161 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Community · Müllerhof</title>
-<meta name="description" content="Die Müllerhof-Community – Erlebnisse teilen, bewerten, gemeinsam erinnern.">
-<link rel="stylesheet" href="css/style.css">
+<meta content="Die Müllerhof-Community – Erlebnisse teilen, bewerten, gemeinsam erinnern." name="description"/>
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <nav class="nav transparent" id="nav">
-  <a href="index.html"><img src="images/logo.png" alt="Müllerhof" class="nav__logo"></a>
-  <button class="nav__toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
-  <ul class="nav__menu" id="navMenu">
-    <li><a href="index.html" class="nav__link">Home</a></li>
-    <li><a href="restaurant.html" class="nav__link">Restaurant</a></li>
-    <li><a href="hotel.html" class="nav__link">Hotel</a></li>
-    <li><a href="events.html" class="nav__link">Events</a></li>
-    <li><a href="seminare.html" class="nav__link">Seminare</a></li>
-    <li><a href="community.html" class="nav__link active">Community</a></li>
-    <li><a href="ueber-uns.html" class="nav__link">Über uns</a></li>
-    <li><a href="karriere.html" class="nav__link">Karriere</a></li>
-    <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
-    <li><a href="restaurant.html#reservieren" class="nav__link nav__cta">Reservieren</a></li>
-  </ul>
+<a href="index.html"><img alt="Müllerhof" class="nav__logo" src="images/logo.png"/></a>
+<button aria-label="Menü" class="nav__toggle" id="navToggle"><span></span><span></span><span></span></button>
+<ul class="nav__menu" id="navMenu">
+<li><a class="nav__link" href="index.html">Home</a></li>
+<li><a class="nav__link" href="restaurant.html">Restaurant</a></li>
+<li><a class="nav__link" href="hotel.html">Hotel</a></li>
+<li><a class="nav__link" href="events.html">Events</a></li>
+<li><a class="nav__link" href="seminare.html">Seminare</a></li>
+<li><a class="nav__link active" href="community.html">Community</a></li>
+<li><a class="nav__link" href="ueber-uns.html">Über uns</a></li>
+<li><a class="nav__link" href="karriere.html">Karriere</a></li>
+<li><a class="nav__link" href="kontakt.html">Kontakt</a></li>
+<li><a class="nav__link nav__cta" href="restaurant.html#reservieren">Reservieren</a></li>
+</ul>
 </nav>
-
 <section class="hero hero--short hero--photo">
-  <div class="hero__photo" style="background-image: url('images/wohnzimmer.png');"></div>
-  <div class="hero__overlay"></div>
-  <div class="hero__content">
-    <p class="hero__sub">Community</p>
-    <h1 class="hero__claim">Erlebnisse teilen.<br>Erinnerungen schaffen.</h1>
-    <p class="hero__tagline">Deine Müllerhof-Stories.</p>
-  </div>
+<div class="hero__photo" style="background-image: url('images/wohnzimmer.png');"></div>
+<div class="hero__overlay"></div>
+<div class="hero__content">
+<p class="hero__sub" data-cms="community:hero_sub">Community</p>
+<h1 class="hero__claim" data-cms="community:hero_claim">Erlebnisse teilen.<br/>Erinnerungen schaffen.</h1>
+<p class="hero__tagline" data-cms="community:hero_tagline">Deine Müllerhof-Stories.</p>
+</div>
 </section>
-
 <section class="intro section__center">
-  <div class="section__inner">
-    <span class="kicker">Müllerhof Community</span>
-    <h2 class="intro__headline">Erzähl uns von deinem Müllerhof-Moment.</h2>
-    <p class="intro__lead">Hier können unsere Gäste ihre Erlebnisse teilen: vom gemütlichen Sonntagsbrunch, vom Hochzeitstanz im Garten, vom Jass-Abend mit den Enkeln. Schreib einen kurzen Post, lade ein Foto hoch und gib uns Sterne – wir freuen uns auf deine Geschichte!</p>
-  </div>
+<div class="section__inner">
+<span class="kicker" data-cms="community:intro_kicker">Müllerhof Community</span>
+<h2 class="intro__headline" data-cms="community:intro_headline">Erzähl uns von deinem Müllerhof-Moment.</h2>
+<p class="intro__lead" data-cms="community:intro_lead">Hier können unsere Gäste ihre Erlebnisse teilen: vom gemütlichen Sonntagsbrunch, vom Hochzeitstanz im Garten, vom Jass-Abend mit den Enkeln. Schreib einen kurzen Post, lade ein Foto hoch und gib uns Sterne – wir freuen uns auf deine Geschichte!</p>
+</div>
 </section>
-
 <!-- POST FORMULAR -->
 <section class="intro" style="background: var(--c-sand);">
-  <div class="section__inner" style="max-width: 800px;">
-    <div class="section__header" style="text-align: center;">
-      <span class="kicker">Eigenen Post teilen</span>
-      <h2 style="font-style: italic; font-weight: 400;">Was war dein Müllerhof-Erlebnis?</h2>
-    </div>
-    <form class="form post-form" onsubmit="addPost(event)">
-      <div class="form__row">
-        <div><label>Vorname</label><input type="text" id="post-name" required maxlength="50"></div>
-        <div><label>Wo warst du?</label>
-          <select id="post-ort">
-            <option>Restaurant</option>
-            <option>Alte Höfli</option>
-            <option>Wohnzimmer</option>
-            <option>Stübli</option>
-            <option>Hotel</option>
-            <option>Event / Hochzeit / Geburtstag</option>
-            <option>Seminar</option>
-            <option>Garten / Terrasse</option>
-            <option>Sonntagsbrunch</option>
-            <option>Sonstiges</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <label>Sterne-Bewertung</label>
-        <div class="star-input" id="star-input">
-          <button type="button" data-value="1" aria-label="1 Stern">★</button>
-          <button type="button" data-value="2" aria-label="2 Sterne">★</button>
-          <button type="button" data-value="3" aria-label="3 Sterne">★</button>
-          <button type="button" data-value="4" aria-label="4 Sterne">★</button>
-          <button type="button" data-value="5" aria-label="5 Sterne">★</button>
-          <span class="star-input__value" id="star-value">5 von 5</span>
-        </div>
-        <input type="hidden" id="post-rating" value="5">
-      </div>
-      <div><label>Deine Geschichte</label><textarea id="post-text" required maxlength="500" placeholder="Erzähl uns kurz von deinem Erlebnis im Müllerhof..." rows="4"></textarea></div>
-      <div class="upload-block">
-        <label>Foto (optional)</label>
-        <div class="file-upload">
-          <input type="file" id="post-photo" accept="image/*" onchange="previewPhoto(this);">
-          <label for="post-photo" class="file-upload__button">Foto wählen</label>
-          <span id="photo-name" class="file-upload__name">Keine Datei gewählt</span>
-        </div>
-        <div id="photo-preview" style="margin-top: 1rem; display: none;">
-          <img id="photo-preview-img" src="" alt="Vorschau" style="max-width: 200px; max-height: 200px; border: 2px solid var(--c-brown);">
-          <button type="button" onclick="removePhoto()" style="background: none; border: none; color: var(--c-brown); cursor: pointer; margin-left: 1rem; text-decoration: underline;">Foto entfernen</button>
-        </div>
-      </div>
-      <button type="submit" class="btn btn--dark">Post veröffentlichen</button>
-    </form>
-  </div>
+<div class="section__inner" style="max-width: 800px;">
+<div class="section__header" style="text-align: center;">
+<span class="kicker" data-cms="community:intro_kicker_2">Eigenen Post teilen</span>
+<h2 data-cms="community:section_header_h2" style="font-style: italic; font-weight: 400;">Was war dein Müllerhof-Erlebnis?</h2>
+</div>
+<form class="form post-form" onsubmit="addPost(event)">
+<div class="form__row">
+<div><label>Vorname</label><input id="post-name" maxlength="50" required="" type="text"/></div>
+<div><label>Wo warst du?</label>
+<select id="post-ort">
+<option>Restaurant</option>
+<option>Alte Höfli</option>
+<option>Wohnzimmer</option>
+<option>Stübli</option>
+<option>Hotel</option>
+<option>Event / Hochzeit / Geburtstag</option>
+<option>Seminar</option>
+<option>Garten / Terrasse</option>
+<option>Sonntagsbrunch</option>
+<option>Sonstiges</option>
+</select>
+</div>
+</div>
+<div>
+<label>Sterne-Bewertung</label>
+<div class="star-input" id="star-input">
+<button aria-label="1 Stern" data-value="1" type="button">★</button>
+<button aria-label="2 Sterne" data-value="2" type="button">★</button>
+<button aria-label="3 Sterne" data-value="3" type="button">★</button>
+<button aria-label="4 Sterne" data-value="4" type="button">★</button>
+<button aria-label="5 Sterne" data-value="5" type="button">★</button>
+<span class="star-input__value" id="star-value">5 von 5</span>
+</div>
+<input id="post-rating" type="hidden" value="5"/>
+</div>
+<div><label>Deine Geschichte</label><textarea id="post-text" maxlength="500" placeholder="Erzähl uns kurz von deinem Erlebnis im Müllerhof..." required="" rows="4"></textarea></div>
+<div class="upload-block">
+<label>Foto (optional)</label>
+<div class="file-upload">
+<input accept="image/*" id="post-photo" onchange="previewPhoto(this);" type="file"/>
+<label class="file-upload__button" for="post-photo">Foto wählen</label>
+<span class="file-upload__name" id="photo-name">Keine Datei gewählt</span>
+</div>
+<div id="photo-preview" style="margin-top: 1rem; display: none;">
+<img alt="Vorschau" id="photo-preview-img" src="" style="max-width: 200px; max-height: 200px; border: 2px solid var(--c-brown);"/>
+<button onclick="removePhoto()" style="background: none; border: none; color: var(--c-brown); cursor: pointer; margin-left: 1rem; text-decoration: underline;" type="button">Foto entfernen</button>
+</div>
+</div>
+<button class="btn btn--dark" type="submit">Post veröffentlichen</button>
+</form>
+</div>
 </section>
-
 <!-- POSTS LISTE -->
 <section class="intro">
-  <div class="section__inner" style="max-width: 900px;">
-    <div class="section__header" style="text-align: center;">
-      <span class="kicker">Was die Community sagt</span>
-      <h2 style="font-style: italic; font-weight: 400;">Eindrücke aus dem Müllerhof.</h2>
-      <p>Geschichten unserer Gäste – sortiert nach Aktualität.</p>
-    </div>
-    <div id="posts-container" class="posts-list">
-      <!-- Posts werden via JS eingefügt -->
-    </div>
-    <p id="no-posts" style="text-align: center; color: var(--c-text-soft); font-style: italic; padding: 3rem 0; display: none;">Noch keine Posts. Sei die*der Erste! ☝</p>
-  </div>
+<div class="section__inner" style="max-width: 900px;">
+<div class="section__header" style="text-align: center;">
+<span class="kicker" data-cms="community:intro_kicker_3">Was die Community sagt</span>
+<h2 data-cms="community:section_header_h2_2" style="font-style: italic; font-weight: 400;">Eindrücke aus dem Müllerhof.</h2>
+<p data-cms="community:section_header_lead">Geschichten unserer Gäste – sortiert nach Aktualität.</p>
+</div>
+<div class="posts-list" id="posts-container">
+<!-- Posts werden via JS eingefügt -->
+</div>
+<p id="no-posts" style="text-align: center; color: var(--c-text-soft); font-style: italic; padding: 3rem 0; display: none;">Noch keine Posts. Sei die*der Erste! ☝</p>
+</div>
 </section>
-
 <footer class="footer">
-  <div class="footer__inner">
-    <div class="footer__logo">
-      <img src="images/logo.png" alt="Müllerhof">
-      <p class="footer__claim">Das Wohnzimmer von Frick. Restaurant, Hotel und Begegnungsort im Herzen des Fricktals.</p>
-      <a href="#" class="footer__social" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;flex-shrink:0;"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.86s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.69 3.69 0 01-1.38-.9 3.69 3.69 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.85 5.85 0 00-2.12 1.38A5.85 5.85 0 00.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.73 1.48 1.39 2.13a5.88 5.88 0 002.12 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 00-1.38-2.12A5.85 5.85 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-        <span>Instagram</span>
-        <span class="footer__social-note">(folgt)</span>
-      </a>
-    </div>
-    <div>
-      <h4>Kontakt</h4>
-      <ul>
-        <li>Schulstrasse 11</li>
-        <li>5070 Frick</li>
-        <li><a href="tel:+41628655380">062 865 53 80</a></li>
-        <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Entdecken</h4>
-      <ul>
-        <li><a href="restaurant.html">Restaurant</a></li>
-        <li><a href="speisekarte.html">Speisekarte</a></li>
-        <li><a href="hotel.html">Hotel</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="seminare.html">Seminare</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="karriere.html">Karriere</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Reservation</h4>
-      <ul>
-        <li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
-        <li><a href="hotel.html#buchen">Zimmer buchen</a></li>
-        <li><a href="events.html#anfrage">Dein Event</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <span>© 2026 Müllerhof · Frick</span>
-    <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
-  </div>
+<div class="footer__inner">
+<div class="footer__logo">
+<img alt="Müllerhof" src="images/logo.png"/>
+<p class="footer__claim">Das Wohnzimmer von Frick. Restaurant, Hotel und Begegnungsort im Herzen des Fricktals.</p>
+<a aria-label="Instagram" class="footer__social" href="#" rel="noopener" target="_blank">
+<svg height="22" style="width:22px;height:22px;flex-shrink:0;" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.86s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.69 3.69 0 01-1.38-.9 3.69 3.69 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.85 5.85 0 00-2.12 1.38A5.85 5.85 0 00.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.73 1.48 1.39 2.13a5.88 5.88 0 002.12 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 00-1.38-2.12A5.85 5.85 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"></path></svg>
+<span>Instagram</span>
+<span class="footer__social-note">(folgt)</span>
+</a>
+</div>
+<div>
+<h4>Kontakt</h4>
+<ul>
+<li>Schulstrasse 11</li>
+<li>5070 Frick</li>
+<li><a href="tel:+41628655380">062 865 53 80</a></li>
+<li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
+</ul>
+</div>
+<div>
+<h4>Entdecken</h4>
+<ul>
+<li><a href="restaurant.html">Restaurant</a></li>
+<li><a href="speisekarte.html">Speisekarte</a></li>
+<li><a href="hotel.html">Hotel</a></li>
+<li><a href="events.html">Events</a></li>
+<li><a href="seminare.html">Seminare</a></li>
+<li><a href="community.html">Community</a></li>
+<li><a href="karriere.html">Karriere</a></li>
+</ul>
+</div>
+<div>
+<h4>Reservation</h4>
+<ul>
+<li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
+<li><a href="hotel.html#buchen">Zimmer buchen</a></li>
+<li><a href="events.html#anfrage">Dein Event</a></li>
+<li><a href="kontakt.html">Kontakt</a></li>
+</ul>
+</div>
+</div>
+<div class="footer__bottom">
+<span>© 2026 Müllerhof · Frick</span>
+<span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
+</div>
 </footer>
-
 <!-- Supabase SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -417,6 +411,7 @@ if (!USE_SUPABASE && loadPostsLocal().length === 0) {
 renderPosts();
 </script>
 <script src="js/main.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script src="js/cms-loader.js"></script>
 </body>
 </html>

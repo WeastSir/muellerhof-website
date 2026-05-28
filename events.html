@@ -1,243 +1,232 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Events · Müllerhof</title>
-<meta name="description" content="Events im Müllerhof: Private Anlässe, Hochzeiten, Geburtstage, Workshops, Jass-Nachmittage und Sonntagsbrunches.">
-<link rel="stylesheet" href="css/style.css">
+<meta content="Events im Müllerhof: Private Anlässe, Hochzeiten, Geburtstage, Workshops, Jass-Nachmittage und Sonntagsbrunches." name="description"/>
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <nav class="nav transparent" id="nav">
-  <a href="index.html"><img src="images/logo.png" alt="Müllerhof" class="nav__logo"></a>
-  <button class="nav__toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
-  <ul class="nav__menu" id="navMenu">
-    <li><a href="index.html" class="nav__link">Home</a></li>
-    <li><a href="restaurant.html" class="nav__link">Restaurant</a></li>
-    <li><a href="hotel.html" class="nav__link">Hotel</a></li>
-    <li><a href="events.html" class="nav__link active">Events</a></li>
-    <li><a href="seminare.html" class="nav__link">Seminare</a></li>
-    <li><a href="community.html" class="nav__link">Community</a></li>
-    <li><a href="ueber-uns.html" class="nav__link">Über uns</a></li>
-    <li><a href="karriere.html" class="nav__link">Karriere</a></li>
-    <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
-    <li><a href="restaurant.html#reservieren" class="nav__link nav__cta">Reservieren</a></li>
-  </ul>
+<a href="index.html"><img alt="Müllerhof" class="nav__logo" src="images/logo.png"/></a>
+<button aria-label="Menü" class="nav__toggle" id="navToggle"><span></span><span></span><span></span></button>
+<ul class="nav__menu" id="navMenu">
+<li><a class="nav__link" href="index.html">Home</a></li>
+<li><a class="nav__link" href="restaurant.html">Restaurant</a></li>
+<li><a class="nav__link" href="hotel.html">Hotel</a></li>
+<li><a class="nav__link active" href="events.html">Events</a></li>
+<li><a class="nav__link" href="seminare.html">Seminare</a></li>
+<li><a class="nav__link" href="community.html">Community</a></li>
+<li><a class="nav__link" href="ueber-uns.html">Über uns</a></li>
+<li><a class="nav__link" href="karriere.html">Karriere</a></li>
+<li><a class="nav__link" href="kontakt.html">Kontakt</a></li>
+<li><a class="nav__link nav__cta" href="restaurant.html#reservieren">Reservieren</a></li>
+</ul>
 </nav>
-
 <section class="hero hero--short hero--photo">
-  <div class="hero__photo" style="background-image: url('images/aula-anlass.png');"></div>
-  <div class="hero__overlay"></div>
-  <div class="hero__content">
-    <p class="hero__sub">Events &amp; Veranstaltungen</p>
-    <h1 class="hero__claim">Anlässe<br>mit Wirkung.</h1>
-    <p class="hero__tagline">Vom Familienfest bis zur Hochzeit.</p>
-  </div>
+<div class="hero__photo" style="background-image: url('images/aula-anlass.png');"></div>
+<div class="hero__overlay"></div>
+<div class="hero__content">
+<p class="hero__sub" data-cms="events:hero_sub">Events &amp; Veranstaltungen</p>
+<h1 class="hero__claim" data-cms="events:hero_claim">Anlässe<br/>mit Wirkung.</h1>
+<p class="hero__tagline" data-cms="events:hero_tagline">Vom Familienfest bis zur Hochzeit.</p>
+</div>
 </section>
-
 <section class="intro section__center">
-  <div class="section__inner">
-    <span class="kicker">Events im Müllerhof</span>
-    <h2 class="intro__headline">Gemeinschaft erlebbar machen.</h2>
-    <p class="intro__lead">Auf Events legen wir grossen Wert: Sie fördern Verbundenheit und Gemeinschaft und tragen unsere Werte nach aussen. Veranstaltungen bringen Menschen zusammen und machen Gastfreundschaft, Authentizität und gelebte Gemeinschaft erlebbar. Workshops, Kurse und gemeinsame Aktivitäten schaffen Raum für Austausch zwischen den Generationen.</p>
-  </div>
+<div class="section__inner">
+<span class="kicker" data-cms="events:intro_kicker">Events im Müllerhof</span>
+<h2 class="intro__headline" data-cms="events:intro_headline">Gemeinschaft erlebbar machen.</h2>
+<p class="intro__lead" data-cms="events:intro_lead">Auf Events legen wir grossen Wert: Sie fördern Verbundenheit und Gemeinschaft und tragen unsere Werte nach aussen. Veranstaltungen bringen Menschen zusammen und machen Gastfreundschaft, Authentizität und gelebte Gemeinschaft erlebbar. Workshops, Kurse und gemeinsame Aktivitäten schaffen Raum für Austausch zwischen den Generationen.</p>
+</div>
 </section>
-
 <section class="bereiche">
-  <div class="section__header">
-    <span class="kicker">Eventkategorien</span>
-    <h2>Drei Arten von Anlässen.</h2>
-  </div>
-  <div class="bereiche__grid">
-    <article class="bereich-card">
-      <div class="bereich-card__img" style="background-image: url('images/aula-anlass.png');"></div>
-      <div class="bereich-card__body">
-        <span class="pillar__kicker">Private Anlässe</span>
-        <h3>Hochzeiten, Geburtstage, Familienfeste.</h3>
-        <p>Vom Gewölbekeller über das Stübli bis zur Terrasse – wir haben den passenden Raum für deinen Anlass. Auch Feiern nach kirchlichen Zeremonien sind herzlich willkommen.</p>
-        <a href="#anfrage" class="pillar__link">Dein Event anfragen →</a>
-      </div>
-    </article>
-    <article class="bereich-card">
-      <div class="bereich-card__img" style="background-image: url('images/wohnzimmer.png');"></div>
-      <div class="bereich-card__body">
-        <span class="pillar__kicker">Regelmässig</span>
-        <h3>Sonntagsbrunch, Jass, Workshops.</h3>
-        <p>Wöchentlicher Sonntagsbrunch, monatlicher Jass-Nachmittag und saisonale Angebote – für Familien, Freunde und alle Generationen.</p>
-        <a href="#programm" class="pillar__link">Aktuelles Programm →</a>
-      </div>
-    </article>
-    <article class="bereich-card">
-      <div class="bereich-card__img" style="background-image: url('images/gewoelbekeller.png');"></div>
-      <div class="bereich-card__body">
-        <span class="pillar__kicker">Saisonal</span>
-        <h3>Specials &amp; Workshops.</h3>
-        <p>Im Gewölbekeller gibt's spezielle Dining-Erlebnisse über das Jahr verteilt. Im alte Höfli finden Familien- und Kinderaktivitäten statt. Saisonale Kulinarik immer dabei.</p>
-        <a href="#programm" class="pillar__link">Specials ansehen →</a>
-      </div>
-    </article>
-  </div>
+<div class="section__header">
+<span class="kicker">Eventkategorien</span>
+<h2 data-cms="events:section_header_h2">Drei Arten von Anlässen.</h2>
+</div>
+<div class="bereiche__grid">
+<article class="bereich-card">
+<div class="bereich-card__img" style="background-image: url('images/aula-anlass.png');"></div>
+<div class="bereich-card__body">
+<span class="pillar__kicker">Private Anlässe</span>
+<h3 data-cms="events:bereich_card_title">Hochzeiten, Geburtstage, Familienfeste.</h3>
+<p data-cms="events:bereich_card_text">Vom Gewölbekeller über das Stübli bis zur Terrasse – wir haben den passenden Raum für deinen Anlass. Auch Feiern nach kirchlichen Zeremonien sind herzlich willkommen.</p>
+<a class="pillar__link" href="#anfrage">Dein Event anfragen →</a>
+</div>
+</article>
+<article class="bereich-card">
+<div class="bereich-card__img" style="background-image: url('images/wohnzimmer.png');"></div>
+<div class="bereich-card__body">
+<span class="pillar__kicker">Regelmässig</span>
+<h3 data-cms="events:bereich_card_title_2">Sonntagsbrunch, Jass, Workshops.</h3>
+<p data-cms="events:bereich_card_text_2">Wöchentlicher Sonntagsbrunch, monatlicher Jass-Nachmittag und saisonale Angebote – für Familien, Freunde und alle Generationen.</p>
+<a class="pillar__link" href="#programm">Aktuelles Programm →</a>
+</div>
+</article>
+<article class="bereich-card">
+<div class="bereich-card__img" style="background-image: url('images/gewoelbekeller.png');"></div>
+<div class="bereich-card__body">
+<span class="pillar__kicker">Saisonal</span>
+<h3 data-cms="events:bereich_card_title_3">Specials &amp; Workshops.</h3>
+<p data-cms="events:bereich_card_text_3">Im Gewölbekeller gibt's spezielle Dining-Erlebnisse über das Jahr verteilt. Im alte Höfli finden Familien- und Kinderaktivitäten statt. Saisonale Kulinarik immer dabei.</p>
+<a class="pillar__link" href="#programm">Specials ansehen →</a>
+</div>
+</article>
+</div>
 </section>
-
 <section class="section--dark" id="programm">
-  <div class="section__header">
-    <span class="kicker kicker--light">Regelmässig</span>
-    <h2 style="font-style: italic; font-weight: 400;">Jede Woche bei uns.</h2>
-  </div>
-  <div class="regular-grid">
-    <div class="regular-card">
-      <div class="regular-card__day">Mittwoch</div>
-      <div class="regular-card__name">Jass Nachmittag</div>
-      <div class="regular-card__note">1× pro Monat · Restaurant</div>
-    </div>
-    <div class="regular-card">
-      <div class="regular-card__day">Donnerstag</div>
-      <div class="regular-card__name">Heisser Stein Abend</div>
-      <div class="regular-card__note">Stübli · Sommer: Pouletflügeli à Discretion</div>
-    </div>
-    <div class="regular-card">
-      <div class="regular-card__day">Sonntag</div>
-      <div class="regular-card__name">Sonntagsbrunch</div>
-      <div class="regular-card__note">Jeden Sonntag · Restaurant</div>
-    </div>
-  </div>
+<div class="section__header">
+<span class="kicker kicker--light">Regelmässig</span>
+<h2 data-cms="events:section_header_h2_2" style="font-style: italic; font-weight: 400;">Jede Woche bei uns.</h2>
+</div>
+<div class="regular-grid">
+<div class="regular-card">
+<div class="regular-card__day">Mittwoch</div>
+<div class="regular-card__name">Jass Nachmittag</div>
+<div class="regular-card__note">1× pro Monat · Restaurant</div>
+</div>
+<div class="regular-card">
+<div class="regular-card__day">Donnerstag</div>
+<div class="regular-card__name">Heisser Stein Abend</div>
+<div class="regular-card__note">Stübli · Sommer: Pouletflügeli à Discretion</div>
+</div>
+<div class="regular-card">
+<div class="regular-card__day">Sonntag</div>
+<div class="regular-card__name">Sonntagsbrunch</div>
+<div class="regular-card__note">Jeden Sonntag · Restaurant</div>
+</div>
+</div>
 </section>
-
 <section class="intro">
-  <div class="section__inner section__inner--wide" style="max-width: 1100px;">
-    <div class="section__header" style="text-align: center;">
-      <span class="kicker">Specials ab August 2027</span>
-      <h2 style="font-style: italic; font-weight: 400;">Was läuft im Müllerhof?</h2>
-      <p>Wir starten im August 2027 durch! Unsere besonderen Anlässe ab Eröffnung – Saison-Highlights, Themen-Dinner und Workshops.</p>
-    </div>
-    <!-- Events werden automatisch aus dem CMS geladen (bearbeitbar via /admin.html) -->
-    <div data-cms-events>
-      <p style="text-align:center; color: var(--c-text-soft); font-style: italic;">Events werden geladen…</p>
-    </div>
-    <p style="text-align: center; margin-top: 2.5rem; font-size: 0.9rem; color: var(--c-text-soft); font-style: italic;">Alle Daten 2027 · Reservation empfohlen via <a href="tel:+41628655380" style="color: var(--c-brown); font-weight: 700;">062 865 53 80</a> oder <a href="mailto:info@muellerhof.ch" style="color: var(--c-brown); font-weight: 700;">info@muellerhof.ch</a></p>
-  </div>
+<div class="section__inner section__inner--wide" style="max-width: 1100px;">
+<div class="section__header" style="text-align: center;">
+<span class="kicker" data-cms="events:intro_kicker_2">Specials ab August 2027</span>
+<h2 data-cms="events:section_header_h2_3" style="font-style: italic; font-weight: 400;">Was läuft im Müllerhof?</h2>
+<p data-cms="events:section_header_lead">Wir starten im August 2027 durch! Unsere besonderen Anlässe ab Eröffnung – Saison-Highlights, Themen-Dinner und Workshops.</p>
+</div>
+<!-- Events werden automatisch aus dem CMS geladen (bearbeitbar via /admin.html) -->
+<div data-cms-events="">
+<p style="text-align:center; color: var(--c-text-soft); font-style: italic;">Events werden geladen…</p>
+</div>
+<p style="text-align: center; margin-top: 2.5rem; font-size: 0.9rem; color: var(--c-text-soft); font-style: italic;">Alle Daten 2027 · Reservation empfohlen via <a href="tel:+41628655380" style="color: var(--c-brown); font-weight: 700;">062 865 53 80</a> oder <a href="mailto:info@muellerhof.ch" style="color: var(--c-brown); font-weight: 700;">info@muellerhof.ch</a></p>
+</div>
 </section>
-
 <section class="split">
-  <div class="split__inner">
-    <div class="split__img split__img--photo" style="background-image: url('images/garten.png');"></div>
-    <div class="split__text">
-      <span class="kicker">Garten · Terrasse</span>
-      <h2 style="font-style: italic; font-weight: 400;">Feiern unter<br>freiem Himmel.</h2>
-      <p>Unser grosser Garten mit Rasenfläche ist die perfekte Bühne für deinen Anlass: Hochzeiten unter freiem Himmel, Sommer-Afterworks, Familienfeste oder Garten-Apéros – mit viel Platz, viel Grün und der ganzen Natur drumherum.</p>
-      <p>Auf Anfrage kombinieren wir Garten, Terrasse und Innenräume zu deinem perfekten Event-Setup.</p>
-      <a href="#anfrage" class="btn btn--dark">Garten-Event anfragen</a>
-    </div>
-  </div>
+<div class="split__inner">
+<div class="split__img split__img--photo" style="background-image: url('images/garten.png');"></div>
+<div class="split__text">
+<span class="kicker">Garten · Terrasse</span>
+<h2 data-cms="events:split_h2" style="font-style: italic; font-weight: 400;">Feiern unter<br/>freiem Himmel.</h2>
+<p data-cms="events:split_p">Unser grosser Garten mit Rasenfläche ist die perfekte Bühne für deinen Anlass: Hochzeiten unter freiem Himmel, Sommer-Afterworks, Familienfeste oder Garten-Apéros – mit viel Platz, viel Grün und der ganzen Natur drumherum.</p>
+<p data-cms="events:split_p_2">Auf Anfrage kombinieren wir Garten, Terrasse und Innenräume zu deinem perfekten Event-Setup.</p>
+<a class="btn btn--dark" href="#anfrage">Garten-Event anfragen</a>
+</div>
+</div>
 </section>
-
 <section class="intro" id="galerie">
-  <div class="section__inner">
-    <div class="section__header" style="text-align: center;">
-      <span class="kicker">Eventgalerie</span>
-      <h2 style="font-style: italic; font-weight: 400;">Bereits durchgeführte Anlässe.</h2>
-      <p>Ein Blick in unsere Eventgeschichte – von intimen Familienfesten bis zu grossen Feiern.</p>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-item" style="background-image: url('images/aula-anlass.png'); background-size: cover; background-position: center;"></div>
-      <div class="gallery-item" style="background-image: url('images/stuebli-anlass.png'); background-size: cover; background-position: center;"></div>
-      <div class="gallery-item" style="background-image: url('images/garten.png'); background-size: cover; background-position: center;"></div>
-      <div class="gallery-item" style="background-image: url('images/gewoelbekeller.png'); background-size: cover; background-position: center;"></div>
-      <div class="gallery-item" style="background-image: url('images/wohnzimmer.png'); background-size: cover; background-position: center;"></div>
-      <div class="gallery-item" style="background-image: url('images/alte-hoefli.png'); background-size: cover; background-position: center;"></div>
-    </div>
-    <div class="section__center" style="margin-top: 3rem;">
-      <a href="galerie.html" class="btn btn--outline">Komplette Galerie</a>
-    </div>
-  </div>
+<div class="section__inner">
+<div class="section__header" style="text-align: center;">
+<span class="kicker" data-cms="events:intro_kicker_3">Eventgalerie</span>
+<h2 data-cms="events:section_header_h2_4" style="font-style: italic; font-weight: 400;">Bereits durchgeführte Anlässe.</h2>
+<p data-cms="events:section_header_lead_2">Ein Blick in unsere Eventgeschichte – von intimen Familienfesten bis zu grossen Feiern.</p>
+</div>
+<div class="gallery-grid">
+<div class="gallery-item" style="background-image: url('images/aula-anlass.png'); background-size: cover; background-position: center;"></div>
+<div class="gallery-item" style="background-image: url('images/stuebli-anlass.png'); background-size: cover; background-position: center;"></div>
+<div class="gallery-item" style="background-image: url('images/garten.png'); background-size: cover; background-position: center;"></div>
+<div class="gallery-item" style="background-image: url('images/gewoelbekeller.png'); background-size: cover; background-position: center;"></div>
+<div class="gallery-item" style="background-image: url('images/wohnzimmer.png'); background-size: cover; background-position: center;"></div>
+<div class="gallery-item" style="background-image: url('images/alte-hoefli.png'); background-size: cover; background-position: center;"></div>
+</div>
+<div class="section__center" style="margin-top: 3rem;">
+<a class="btn btn--outline" href="galerie.html">Komplette Galerie</a>
+</div>
+</div>
 </section>
-
 <section class="section--sage section__center" id="anfrage">
-  <span class="kicker kicker--light">Dein Event</span>
-  <h2 style="font-size: clamp(2.25rem, 5vw, 4rem); font-style: italic; font-weight: 400; margin-bottom: 1.5rem;">Dein Event im Müllerhof.</h2>
-  <p style="max-width: 720px; margin: 0 auto 2.5rem;">Geburtstag? Hochzeit? Firmenanlass? Familienfeier? Erzähl uns, was du planst – wir machen dir ein passendes Angebot.</p>
-  <div style="max-width: 700px; margin: 0 auto; background: rgba(255,255,255,0.95); padding: 3rem 2rem;">
-    <form class="form" onsubmit="alert('Demo-Modus: Eventanfrage wurde NICHT versendet. Das Backend folgt vor Go-Live. Bitte aktuell telefonisch unter 062 865 53 80 oder per E-Mail an info@muellerhof.ch anfragen.'); return false;">
-      <div class="form__row">
-        <div><label>Vorname &amp; Name</label><input type="text" required></div>
-        <div><label>Telefon</label><input type="tel"></div>
-      </div>
-      <div class="form__row">
-        <div><label>E-Mail</label><input type="email" required></div>
-        <div><label>Wunschdatum</label><input type="date"></div>
-      </div>
-      <div class="form__row">
-        <div><label>Art des Anlasses</label>
-          <select>
-            <option>Hochzeit</option>
-            <option>Geburtstag</option>
-            <option>Familienfest</option>
-            <option>Firmenanlass</option>
-            <option>Apéro / Afterwork</option>
-            <option>Workshop</option>
-            <option>Sonstiges</option>
-          </select>
-        </div>
-        <div><label>Personenzahl</label><input type="number" min="1" max="200"></div>
-      </div>
-      <div><label>Wünsche &amp; Anmerkungen</label><textarea placeholder="Was schwebt dir vor?"></textarea></div>
-      <button type="submit" class="btn btn--dark">Anfrage senden</button>
-      <p style="font-size: 0.8rem; color: var(--c-brown); text-align: center; font-style: italic; padding: 1rem; background: rgba(103,74,45,0.08); border-left: 3px solid var(--c-brown); margin-top: 1rem;">⚠ Demo-Modus: Anfragen werden aktuell <strong>nicht</strong> versendet. Backend folgt vor Go-Live. Bitte telefonisch oder per E-Mail kontaktieren.</p>
-    </form>
-  </div>
+<span class="kicker kicker--light">Dein Event</span>
+<h2 style="font-size: clamp(2.25rem, 5vw, 4rem); font-style: italic; font-weight: 400; margin-bottom: 1.5rem;">Dein Event im Müllerhof.</h2>
+<p style="max-width: 720px; margin: 0 auto 2.5rem;">Geburtstag? Hochzeit? Firmenanlass? Familienfeier? Erzähl uns, was du planst – wir machen dir ein passendes Angebot.</p>
+<div style="max-width: 700px; margin: 0 auto; background: rgba(255,255,255,0.95); padding: 3rem 2rem;">
+<form class="form" onsubmit="alert('Demo-Modus: Eventanfrage wurde NICHT versendet. Das Backend folgt vor Go-Live. Bitte aktuell telefonisch unter 062 865 53 80 oder per E-Mail an info@muellerhof.ch anfragen.'); return false;">
+<div class="form__row">
+<div><label>Vorname &amp; Name</label><input required="" type="text"/></div>
+<div><label>Telefon</label><input type="tel"/></div>
+</div>
+<div class="form__row">
+<div><label>E-Mail</label><input required="" type="email"/></div>
+<div><label>Wunschdatum</label><input type="date"/></div>
+</div>
+<div class="form__row">
+<div><label>Art des Anlasses</label>
+<select>
+<option>Hochzeit</option>
+<option>Geburtstag</option>
+<option>Familienfest</option>
+<option>Firmenanlass</option>
+<option>Apéro / Afterwork</option>
+<option>Workshop</option>
+<option>Sonstiges</option>
+</select>
+</div>
+<div><label>Personenzahl</label><input max="200" min="1" type="number"/></div>
+</div>
+<div><label>Wünsche &amp; Anmerkungen</label><textarea placeholder="Was schwebt dir vor?"></textarea></div>
+<button class="btn btn--dark" type="submit">Anfrage senden</button>
+<p style="font-size: 0.8rem; color: var(--c-brown); text-align: center; font-style: italic; padding: 1rem; background: rgba(103,74,45,0.08); border-left: 3px solid var(--c-brown); margin-top: 1rem;">⚠ Demo-Modus: Anfragen werden aktuell <strong>nicht</strong> versendet. Backend folgt vor Go-Live. Bitte telefonisch oder per E-Mail kontaktieren.</p>
+</form>
+</div>
 </section>
-
 <footer class="footer">
-  <div class="footer__inner">
-    <div class="footer__logo">
-      <img src="images/logo.png" alt="Müllerhof">
-      <p class="footer__claim">Das Wohnzimmer von Frick. Restaurant, Hotel und Begegnungsort im Herzen des Fricktals.</p>
-      <a href="#" class="footer__social" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;flex-shrink:0;"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.86s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.69 3.69 0 01-1.38-.9 3.69 3.69 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.85 5.85 0 00-2.12 1.38A5.85 5.85 0 00.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.73 1.48 1.39 2.13a5.88 5.88 0 002.12 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 00-1.38-2.12A5.85 5.85 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-        <span>Instagram</span>
-        <span class="footer__social-note">(folgt)</span>
-      </a>
-    </div>
-    <div>
-      <h4>Kontakt</h4>
-      <ul>
-        <li>Schulstrasse 11</li>
-        <li>5070 Frick</li>
-        <li><a href="tel:+41628655380">062 865 53 80</a></li>
-        <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Entdecken</h4>
-      <ul>
-        <li><a href="restaurant.html">Restaurant</a></li>
-        <li><a href="speisekarte.html">Speisekarte</a></li>
-        <li><a href="hotel.html">Hotel</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="seminare.html">Seminare</a></li>
-        <li><a href="karriere.html">Karriere</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Reservation</h4>
-      <ul>
-        <li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
-        <li><a href="hotel.html#buchen">Zimmer buchen</a></li>
-        <li><a href="events.html#anfrage">Dein Event</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <span>© 2026 Müllerhof · Frick</span>
-    <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
-  </div>
+<div class="footer__inner">
+<div class="footer__logo">
+<img alt="Müllerhof" src="images/logo.png"/>
+<p class="footer__claim">Das Wohnzimmer von Frick. Restaurant, Hotel und Begegnungsort im Herzen des Fricktals.</p>
+<a aria-label="Instagram" class="footer__social" href="#" rel="noopener" target="_blank">
+<svg height="22" style="width:22px;height:22px;flex-shrink:0;" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.86s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.69 3.69 0 01-1.38-.9 3.69 3.69 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.85 5.85 0 00-2.12 1.38A5.85 5.85 0 00.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.73 1.48 1.39 2.13a5.88 5.88 0 002.12 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 00-1.38-2.12A5.85 5.85 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"></path></svg>
+<span>Instagram</span>
+<span class="footer__social-note">(folgt)</span>
+</a>
+</div>
+<div>
+<h4>Kontakt</h4>
+<ul>
+<li>Schulstrasse 11</li>
+<li>5070 Frick</li>
+<li><a href="tel:+41628655380">062 865 53 80</a></li>
+<li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
+</ul>
+</div>
+<div>
+<h4>Entdecken</h4>
+<ul>
+<li><a href="restaurant.html">Restaurant</a></li>
+<li><a href="speisekarte.html">Speisekarte</a></li>
+<li><a href="hotel.html">Hotel</a></li>
+<li><a href="events.html">Events</a></li>
+<li><a href="seminare.html">Seminare</a></li>
+<li><a href="karriere.html">Karriere</a></li>
+</ul>
+</div>
+<div>
+<h4>Reservation</h4>
+<ul>
+<li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
+<li><a href="hotel.html#buchen">Zimmer buchen</a></li>
+<li><a href="events.html#anfrage">Dein Event</a></li>
+<li><a href="kontakt.html">Kontakt</a></li>
+</ul>
+</div>
+</div>
+<div class="footer__bottom">
+<span>© 2026 Müllerhof · Frick</span>
+<span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
+</div>
 </footer>
-
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
 <script src="js/cms-loader.js"></script>
-
 </body>
 </html>

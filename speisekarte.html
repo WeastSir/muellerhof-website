@@ -1,268 +1,243 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Speisekarte · Müllerhof</title>
-<link rel="stylesheet" href="css/style.css">
+<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <nav class="nav transparent" id="nav">
-  <a href="index.html"><img src="images/logo.png" alt="Müllerhof" class="nav__logo"></a>
-  <button class="nav__toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
-  <ul class="nav__menu" id="navMenu">
-    <li><a href="index.html" class="nav__link">Home</a></li>
-    <li><a href="restaurant.html" class="nav__link active">Restaurant</a></li>
-    <li><a href="hotel.html" class="nav__link">Hotel</a></li>
-    <li><a href="events.html" class="nav__link">Events</a></li>
-    <li><a href="galerie.html" class="nav__link">Galerie</a></li>
-    <li><a href="ueber-uns.html" class="nav__link">Über uns</a></li>
-    <li><a href="kontakt.html" class="nav__link">Kontakt</a></li>
-    <li><a href="restaurant.html#reservieren" class="nav__link nav__cta">Reservieren</a></li>
-  </ul>
+<a href="index.html"><img alt="Müllerhof" class="nav__logo" src="images/logo.png"/></a>
+<button aria-label="Menü" class="nav__toggle" id="navToggle"><span></span><span></span><span></span></button>
+<ul class="nav__menu" id="navMenu">
+<li><a class="nav__link" href="index.html">Home</a></li>
+<li><a class="nav__link active" href="restaurant.html">Restaurant</a></li>
+<li><a class="nav__link" href="hotel.html">Hotel</a></li>
+<li><a class="nav__link" href="events.html">Events</a></li>
+<li><a class="nav__link" href="galerie.html">Galerie</a></li>
+<li><a class="nav__link" href="ueber-uns.html">Über uns</a></li>
+<li><a class="nav__link" href="kontakt.html">Kontakt</a></li>
+<li><a class="nav__link nav__cta" href="restaurant.html#reservieren">Reservieren</a></li>
+</ul>
 </nav>
-
 <div class="flyer-wrap">
-  <div class="flyer-back"><a href="restaurant.html">← Zurück zum Restaurant</a></div>
-
-  <div class="chapter-nav">
-    <button class="chapter-link active" data-page="1">Hofklassiker</button>
-    <button class="chapter-link" data-page="2">Vorspeisen</button>
-    <button class="chapter-link" data-page="3">Hauptgänge</button>
-    <button class="chapter-link" data-page="4">Dessert</button>
-    <button class="chapter-link" data-page="5">Lounge</button>
-    <button class="chapter-link" data-page="6">Frühstück</button>
-    <button class="chapter-link" data-page="7">Znüni</button>
-  </div>
-
-  <div class="flyer">
-
-    <!-- 1: HOFKLASSIKER -->
-    <div class="page active" data-page="1">
-      <div class="page__kicker">Müllerhof Speisekarte</div>
-      <h1 class="page__title">Hofklassiker</h1>
-      <div class="page__subtitle">Die Lieblinge des Hauses</div>
-      <div class="page__divider"></div>
-      <div class="flyer-section">
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kalbs Cordon Bleu</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Gefüllt mit Schinken und Käse, serviert mit Gemüsebouquet und knusprigen Pommes frites</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Schweinsbratwurst mit Rösti</span><span class="flyer-dish__price">CHF 24.50</span></div><div class="flyer-dish__desc">Feine Schweizer Schweinsbratwurst, dazu hausgemachte Butterrösti und Zwiebelsauce</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hofburger mit Pommes</span><span class="flyer-dish__price">CHF 25.50</span></div><div class="flyer-dish__desc">Rindfleisch-Patty, Käse, Zwiebeln, Cornichons und BBQ-Sauce im Brioche-Bun, dazu Pommes frites</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fitnessteller Poulet</span><span class="flyer-dish__price">CHF 24.50</span></div><div class="flyer-dish__desc">Gegrillte Pouletbruststreifen auf gemischtem Salat und leichter Hausvinaigrette</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Älplermagronen</span><span class="flyer-dish__price">CHF 21.50</span></div><div class="flyer-dish__desc">Traditionelle Teigwaren mit Kartoffeln, Rahm und Käse, serviert mit Röstzwiebeln und Apfelmus</div></div>
-      </div>
-    </div>
-
-    <!-- 2: VORSPEISEN -->
-    <div class="page" data-page="2">
-      <div class="page__kicker">Stübli</div>
-      <h1 class="page__title">Vorspeisen</h1>
-      <div class="page__subtitle">Zum Start</div>
-      <div class="page__divider"></div>
-
-      <div class="flyer-section">
-        <h3>Vegetarisch</h3>
-        <p class="sub">— Vegi —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hofgartensalat</span><span class="flyer-dish__price">CHF 11.50</span></div><div class="flyer-dish__desc">Bunter Blattsalat mit saisonalem Gemüse und Hausdressing</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Geräuchertes Karottencarpaccio mit Ziegenkäse</span><span class="flyer-dish__price">CHF 17.50</span></div><div class="flyer-dish__desc">Dünn geschnittene, geräucherte Karotten mit mariniertem Ziegenkäse und frischen Kräutern</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hofgartenpastete mit Pickles</span><span class="flyer-dish__price">CHF 16.50</span></div><div class="flyer-dish__desc">Hausgemachte Gemüsepastete mit Cornichons und Gemüse-Pickles</div></div>
-      </div>
-
-      <div class="flyer-section">
-        <h3>Klassisch</h3>
-        <p class="sub">— Mit Fleisch &amp; Fisch —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Weissweinsuppe</span><span class="flyer-dish__price">CHF 13.50</span></div><div class="flyer-dish__desc">Feine Weissweinschaumsuppe auf Basis von Geflügel- oder Kalbsfond, mit Croutons</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Dani&#x2019;s Wurst-Käsesalat</span><span class="flyer-dish__price">CHF 18.50</span></div><div class="flyer-dish__desc">Hauskreation mit Wurst, Käse, Zwiebeln und Essiggurken auf Blattsalat</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Markbein</span><span class="flyer-dish__price">CHF 15.50</span></div><div class="flyer-dish__desc">Im Ofen gebratenes Markbein mit Kräutern, dazu Toastbrot und Meersalz</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kalbfleischpastete mit Pickles</span><span class="flyer-dish__price">CHF 18.50</span></div><div class="flyer-dish__desc">Feine Kalbfleischpastete mit hausgemachten Gemüse-Pickles und Cornichons</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Tartar am Tisch mit Belperknolle und Brioche</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Rindstatar (Schweiz), am Tisch zubereitet, verfeinert mit Belperknolle, serviert mit Brioche und Butter</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Geräucherte Forelle</span><span class="flyer-dish__price">CHF 21.50</span></div><div class="flyer-dish__desc">Hausgeräucherte Forelle mit Kräutersalat und Meerrettichschaum</div></div>
-      </div>
-    </div>
-
-    <!-- 3: HAUPTGÄNGE -->
-    <div class="page" data-page="3">
-      <div class="page__kicker">Stübli</div>
-      <h1 class="page__title">Hauptgänge</h1>
-      <div class="page__subtitle">Aus Küche &amp; Pfanne</div>
-      <div class="page__divider"></div>
-
-      <div class="flyer-section">
-        <h3>Vegetarisch</h3>
-        <p class="sub">— Vegi —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">BBQ Aubergine mit Chimichurri</span><span class="flyer-dish__price">CHF 29.50</span></div><div class="flyer-dish__desc">Im Ofen geschmorte Aubergine mit BBQ-Glasur, Chimichurri und Kartoffelbeilage</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Trüffelravioli mit Käseschaum und Nussbutter</span><span class="flyer-dish__price">CHF 34.50</span></div><div class="flyer-dish__desc">Gefüllte Ravioli mit Trüffel, serviert im Käseschaum und brauner Nussbutter, dazu etwas Kresse</div></div>
-      </div>
-
-      <div class="flyer-section">
-        <h3>Mit Fleisch &amp; Fisch</h3>
-        <p class="sub">— Klassisch —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kalbs Cordon Bleu mit Gemüsebouquet und Pommes frites</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Kalbs-Cordon-Bleu, gefüllt mit Schinken und Käse, dazu Gemüsebouquet und knusprige Pommes frites</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Tartar am Tisch mit Belperknolle und Brioche</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Rindstatar (Schweiz), am Tisch zubereitet, mit Belperknolle, Brioche / Pommes Frites</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kalbs-Läberli mit Rösti</span><span class="flyer-dish__price">CHF 34.50</span></div><div class="flyer-dish__desc">Zarte Kalbsleber an Madeirasauce, serviert mit knuspriger Butterrösti</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fricker Bierbraten mit Kartoffelstock und Bohnen</span><span class="flyer-dish__price">CHF 33.50</span></div><div class="flyer-dish__desc">Im Bier geschmorter Schweinsbraten mit cremigem Kartoffelstock und Bohnen</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Filet Stroganoff mit hausgemachten Chorizo-Spätzli</span><span class="flyer-dish__price">CHF 42.50</span></div><div class="flyer-dish__desc">Rindsfiletstreifen Stroganoff mit Champignons und Peperoni, dazu hausgemachte Chorizo-Spätzli</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Rhein-Zander auf Rauchheu mit Reis und jungem Spinat</span><span class="flyer-dish__price">CHF 39.50</span></div><div class="flyer-dish__desc">Auf Rauchheu gegarter Zander mit Butterreis und jungem Blattspinat</div></div>
-      </div>
-    </div>
-
-    <!-- 4: DESSERT -->
-    <div class="page" data-page="4">
-      <div class="page__kicker">Süsses Finale</div>
-      <h1 class="page__title">Dessert &amp; Käse</h1>
-      <div class="page__subtitle">Zum Abschluss</div>
-      <div class="page__divider"></div>
-
-      <div class="flyer-section">
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fricktaler Rahmkirschtorte</span><span class="flyer-dish__price">CHF 11.50</span></div><div class="flyer-dish__desc">Hausgemachte Rahmkirschtorte aus der Region</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Apfelstrudel</span><span class="flyer-dish__price">CHF 10.50</span></div><div class="flyer-dish__desc">Warmer Apfelstrudel mit Vanillesauce</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Gebrannte Creme</span><span class="flyer-dish__price">CHF 11.50</span></div><div class="flyer-dish__desc">Klassische gebrannte Vanillecreme</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Schokoladenmousse am Tisch</span><span class="flyer-dish__price">CHF 12.50</span></div><div class="flyer-dish__desc">Locker geschlagenes Schokoladenmousse, am Tisch angerichtet</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Käseauswahl von Jumi</span><span class="flyer-dish__price">CHF 15.50</span></div><div class="flyer-dish__desc">Auswahl regionaler Käse mit Brot und Früchtekompott</div></div>
-      </div>
-    </div>
-
-    <!-- 5: LOUNGE -->
-    <div class="page" data-page="5">
-      <div class="page__kicker">Snacking Menü</div>
-      <h1 class="page__title">Lounge</h1>
-      <div class="page__subtitle">Kleine Gerichte</div>
-      <div class="page__divider"></div>
-
-      <div class="flyer-section">
-        <h3>Vegetarisch</h3>
-        <p class="sub">— Vegi —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hausgemachter Käsekuchen</span><span class="flyer-dish__price">CHF 8.50</span></div><div class="flyer-dish__desc">Cremiger Käsekuchen aus unserer Patisserie, mit knusprigem Mürbeteig</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hof Fries</span><span class="flyer-dish__price">CHF 9.50</span></div><div class="flyer-dish__desc">Knusprige Pommes frites mit Hausdips</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Knoblibrot</span><span class="flyer-dish__price">CHF 8.50</span></div><div class="flyer-dish__desc">Im Ofen gebackenes Knoblauchbrot mit Kräuterbutter</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Käsplättli mit Birnenbrot</span><span class="flyer-dish__price">CHF 19.50</span></div><div class="flyer-dish__desc">Auswahl regionaler Käse mit Birnenbrot, Nüssen und Trauben</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hausgemachte Pickles vom Garten</span><span class="flyer-dish__price">CHF 8.50</span></div><div class="flyer-dish__desc">Eingelegtes Gemüse aus dem eigenen Garten, würzig und knackig</div></div>
-      </div>
-
-      <div class="flyer-section">
-        <h3>Mit Fleisch &amp; Fisch</h3>
-        <p class="sub">— Klassisch —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fleischkäse mit Bürli</span><span class="flyer-dish__price">CHF 15.50</span></div><div class="flyer-dish__desc">Scheibe warmen Fleischkäses mit knusprigem Bürli und Senf</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fischknusperli mit Tartarsauce</span><span class="flyer-dish__price">CHF 18.50</span></div><div class="flyer-dish__desc">Knusprig gebackene Fischknusperli mit Tartarsauce und Zitronenschnitz</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fleischplättli mit Sauerteigbrot</span><span class="flyer-dish__price">CHF 21.50</span></div><div class="flyer-dish__desc">Auswahl von Trockenfleisch und Wurst mit Sauerteigbrot und Essiggurken</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Gemischtes Plättli</span><span class="flyer-dish__price">CHF 24.50</span></div><div class="flyer-dish__desc">Käse- und Fleischauswahl mit Brot, Birnenbrot, Nüssen und Pickles</div></div>
-      </div>
-    </div>
-
-    <!-- 6: FRÜHSTÜCK -->
-    <div class="page" data-page="6" id="fruehstueck">
-      <div class="page__kicker">Frühstück &amp; Brunch</div>
-      <h1 class="page__title">Frühstück</h1>
-      <div class="page__subtitle">CHF 20 · Brunch CHF 40</div>
-      <div class="page__divider"></div>
-
-      <div class="flyer-section">
-        <h3>Im Pauschalpreis inbegriffen</h3>
-        <p class="sub">— Buffet-Angebot —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Brote &amp; Gebäcke</span></div><div class="flyer-dish__desc">Schweizer Zopf, Vollkornbrote, Ruchbrot · Gipfeli und Buttergipfeli · Brötchen (Körner, Weizen, Dinkel)</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Aufstriche &amp; Beläge</span></div><div class="flyer-dish__desc">Butter · Schweizer Konfitüren (Aprikose, Heidelbeere, Hagebutte) · Honig aus der Region</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Käse-Auswahl</span></div><div class="flyer-dish__desc">Emmentaler, Gruyère, Appenzeller · Bergkäse aus lokaler Produktion · Frischkäse</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fleisch &amp; Wurstwaren</span></div><div class="flyer-dish__desc">Bündnerfleisch · Schweizer Rohschinken · Salami aus der Region</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Müesli-Station</span></div><div class="flyer-dish__desc">Birchermüesli klassisch · Verschiedene Mischungen · Joghurt und Milch</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Früchte</span></div><div class="flyer-dish__desc">Saisonales Schweizer Obst · Frischer Obstsalat · Trockenfrüchte</div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Ein Eiergericht à la carte (inbegriffen)</span></div><div class="flyer-dish__desc">Rührei mit Kräutern · Spiegelei · Gekochtes Ei · Omelette natur</div></div>
-      </div>
-
-      <div class="flyer-section">
-        <h3>À la carte</h3>
-        <p class="sub">— Gegen Aufpreis —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Spezialitäten</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Eggs Benedict · Omelette mit Füllungen (Käse, Schinken, Gemüse) · Rührei mit Räucherlachs oder Trüffel</div></div>
-      </div>
-    </div>
-
-    <!-- 7: ZNÜNI -->
-    <div class="page" data-page="7" id="znueni">
-      <div class="page__kicker">Für zwischendurch</div>
-      <h1 class="page__title">Znüni</h1>
-      <div class="page__subtitle">Kleine Pause</div>
-      <div class="page__divider"></div>
-
-      <div class="flyer-section">
-        <h3>Sandwiches &amp; Brote</h3>
-        <p class="sub">— Herzhaft —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Schnitzelbrot</span><span class="flyer-dish__price">CHF 9.50</span></div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Schinkensandwich</span><span class="flyer-dish__price">CHF 7.00</span></div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Käsesandwich</span><span class="flyer-dish__price">CHF 6.50</span></div></div>
-      </div>
-
-      <div class="flyer-section">
-        <h3>Süssgebäck</h3>
-        <p class="sub">— Patisserie —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Cremeschnitte</span><span class="flyer-dish__price">CHF 4.50</span></div></div>
-      </div>
-
-      <div class="flyer-section">
-        <h3>Kioskartikel</h3>
-        <p class="sub">— Riegel —</p>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Mars / Snickers / Twix</span><span class="flyer-dish__price">CHF 2.00</span></div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kinder Riegel</span><span class="flyer-dish__price">CHF 1.00</span></div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kägi fret</span><span class="flyer-dish__price">CHF 2.00</span></div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Balisto</span><span class="flyer-dish__price">CHF 1.80</span></div></div>
-        <div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kit Kat</span><span class="flyer-dish__price">CHF 2.00</span></div></div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="flyer-nav">
-    <button class="flyer-btn" id="flyerPrev">← Zurück</button>
-    <div class="flyer-indicator" id="flyerIndicator"><strong>1</strong> / 7</div>
-    <button class="flyer-btn" id="flyerNext">Weiter →</button>
-  </div>
+<div class="flyer-back"><a href="restaurant.html">← Zurück zum Restaurant</a></div>
+<div class="chapter-nav">
+<button class="chapter-link active" data-page="1">Hofklassiker</button>
+<button class="chapter-link" data-page="2">Vorspeisen</button>
+<button class="chapter-link" data-page="3">Hauptgänge</button>
+<button class="chapter-link" data-page="4">Dessert</button>
+<button class="chapter-link" data-page="5">Lounge</button>
+<button class="chapter-link" data-page="6">Frühstück</button>
+<button class="chapter-link" data-page="7">Znüni</button>
 </div>
-
+<div class="flyer">
+<!-- 1: HOFKLASSIKER -->
+<div class="page active" data-page="1">
+<div class="page__kicker">Müllerhof Speisekarte</div>
+<h1 class="page__title">Hofklassiker</h1>
+<div class="page__subtitle">Die Lieblinge des Hauses</div>
+<div class="page__divider"></div>
+<div class="flyer-section">
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kalbs Cordon Bleu</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Gefüllt mit Schinken und Käse, serviert mit Gemüsebouquet und knusprigen Pommes frites</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Schweinsbratwurst mit Rösti</span><span class="flyer-dish__price">CHF 24.50</span></div><div class="flyer-dish__desc">Feine Schweizer Schweinsbratwurst, dazu hausgemachte Butterrösti und Zwiebelsauce</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hofburger mit Pommes</span><span class="flyer-dish__price">CHF 25.50</span></div><div class="flyer-dish__desc">Rindfleisch-Patty, Käse, Zwiebeln, Cornichons und BBQ-Sauce im Brioche-Bun, dazu Pommes frites</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fitnessteller Poulet</span><span class="flyer-dish__price">CHF 24.50</span></div><div class="flyer-dish__desc">Gegrillte Pouletbruststreifen auf gemischtem Salat und leichter Hausvinaigrette</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Älplermagronen</span><span class="flyer-dish__price">CHF 21.50</span></div><div class="flyer-dish__desc">Traditionelle Teigwaren mit Kartoffeln, Rahm und Käse, serviert mit Röstzwiebeln und Apfelmus</div></div>
+</div>
+</div>
+<!-- 2: VORSPEISEN -->
+<div class="page" data-page="2">
+<div class="page__kicker">Stübli</div>
+<h1 class="page__title">Vorspeisen</h1>
+<div class="page__subtitle">Zum Start</div>
+<div class="page__divider"></div>
+<div class="flyer-section">
+<h3>Vegetarisch</h3>
+<p class="sub">— Vegi —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hofgartensalat</span><span class="flyer-dish__price">CHF 11.50</span></div><div class="flyer-dish__desc">Bunter Blattsalat mit saisonalem Gemüse und Hausdressing</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Geräuchertes Karottencarpaccio mit Ziegenkäse</span><span class="flyer-dish__price">CHF 17.50</span></div><div class="flyer-dish__desc">Dünn geschnittene, geräucherte Karotten mit mariniertem Ziegenkäse und frischen Kräutern</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hofgartenpastete mit Pickles</span><span class="flyer-dish__price">CHF 16.50</span></div><div class="flyer-dish__desc">Hausgemachte Gemüsepastete mit Cornichons und Gemüse-Pickles</div></div>
+</div>
+<div class="flyer-section">
+<h3>Klassisch</h3>
+<p class="sub">— Mit Fleisch &amp; Fisch —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Weissweinsuppe</span><span class="flyer-dish__price">CHF 13.50</span></div><div class="flyer-dish__desc">Feine Weissweinschaumsuppe auf Basis von Geflügel- oder Kalbsfond, mit Croutons</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Dani’s Wurst-Käsesalat</span><span class="flyer-dish__price">CHF 18.50</span></div><div class="flyer-dish__desc">Hauskreation mit Wurst, Käse, Zwiebeln und Essiggurken auf Blattsalat</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Markbein</span><span class="flyer-dish__price">CHF 15.50</span></div><div class="flyer-dish__desc">Im Ofen gebratenes Markbein mit Kräutern, dazu Toastbrot und Meersalz</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kalbfleischpastete mit Pickles</span><span class="flyer-dish__price">CHF 18.50</span></div><div class="flyer-dish__desc">Feine Kalbfleischpastete mit hausgemachten Gemüse-Pickles und Cornichons</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Tartar am Tisch mit Belperknolle und Brioche</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Rindstatar (Schweiz), am Tisch zubereitet, verfeinert mit Belperknolle, serviert mit Brioche und Butter</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Geräucherte Forelle</span><span class="flyer-dish__price">CHF 21.50</span></div><div class="flyer-dish__desc">Hausgeräucherte Forelle mit Kräutersalat und Meerrettichschaum</div></div>
+</div>
+</div>
+<!-- 3: HAUPTGÄNGE -->
+<div class="page" data-page="3">
+<div class="page__kicker">Stübli</div>
+<h1 class="page__title">Hauptgänge</h1>
+<div class="page__subtitle">Aus Küche &amp; Pfanne</div>
+<div class="page__divider"></div>
+<div class="flyer-section">
+<h3>Vegetarisch</h3>
+<p class="sub">— Vegi —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">BBQ Aubergine mit Chimichurri</span><span class="flyer-dish__price">CHF 29.50</span></div><div class="flyer-dish__desc">Im Ofen geschmorte Aubergine mit BBQ-Glasur, Chimichurri und Kartoffelbeilage</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Trüffelravioli mit Käseschaum und Nussbutter</span><span class="flyer-dish__price">CHF 34.50</span></div><div class="flyer-dish__desc">Gefüllte Ravioli mit Trüffel, serviert im Käseschaum und brauner Nussbutter, dazu etwas Kresse</div></div>
+</div>
+<div class="flyer-section">
+<h3>Mit Fleisch &amp; Fisch</h3>
+<p class="sub">— Klassisch —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kalbs Cordon Bleu mit Gemüsebouquet und Pommes frites</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Kalbs-Cordon-Bleu, gefüllt mit Schinken und Käse, dazu Gemüsebouquet und knusprige Pommes frites</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Tartar am Tisch mit Belperknolle und Brioche</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Rindstatar (Schweiz), am Tisch zubereitet, mit Belperknolle, Brioche / Pommes Frites</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kalbs-Läberli mit Rösti</span><span class="flyer-dish__price">CHF 34.50</span></div><div class="flyer-dish__desc">Zarte Kalbsleber an Madeirasauce, serviert mit knuspriger Butterrösti</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fricker Bierbraten mit Kartoffelstock und Bohnen</span><span class="flyer-dish__price">CHF 33.50</span></div><div class="flyer-dish__desc">Im Bier geschmorter Schweinsbraten mit cremigem Kartoffelstock und Bohnen</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Filet Stroganoff mit hausgemachten Chorizo-Spätzli</span><span class="flyer-dish__price">CHF 42.50</span></div><div class="flyer-dish__desc">Rindsfiletstreifen Stroganoff mit Champignons und Peperoni, dazu hausgemachte Chorizo-Spätzli</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Rhein-Zander auf Rauchheu mit Reis und jungem Spinat</span><span class="flyer-dish__price">CHF 39.50</span></div><div class="flyer-dish__desc">Auf Rauchheu gegarter Zander mit Butterreis und jungem Blattspinat</div></div>
+</div>
+</div>
+<!-- 4: DESSERT -->
+<div class="page" data-page="4">
+<div class="page__kicker">Süsses Finale</div>
+<h1 class="page__title">Dessert &amp; Käse</h1>
+<div class="page__subtitle">Zum Abschluss</div>
+<div class="page__divider"></div>
+<div class="flyer-section">
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fricktaler Rahmkirschtorte</span><span class="flyer-dish__price">CHF 11.50</span></div><div class="flyer-dish__desc">Hausgemachte Rahmkirschtorte aus der Region</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Apfelstrudel</span><span class="flyer-dish__price">CHF 10.50</span></div><div class="flyer-dish__desc">Warmer Apfelstrudel mit Vanillesauce</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Gebrannte Creme</span><span class="flyer-dish__price">CHF 11.50</span></div><div class="flyer-dish__desc">Klassische gebrannte Vanillecreme</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Schokoladenmousse am Tisch</span><span class="flyer-dish__price">CHF 12.50</span></div><div class="flyer-dish__desc">Locker geschlagenes Schokoladenmousse, am Tisch angerichtet</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Käseauswahl von Jumi</span><span class="flyer-dish__price">CHF 15.50</span></div><div class="flyer-dish__desc">Auswahl regionaler Käse mit Brot und Früchtekompott</div></div>
+</div>
+</div>
+<!-- 5: LOUNGE -->
+<div class="page" data-page="5">
+<div class="page__kicker">Snacking Menü</div>
+<h1 class="page__title">Lounge</h1>
+<div class="page__subtitle">Kleine Gerichte</div>
+<div class="page__divider"></div>
+<div class="flyer-section">
+<h3>Vegetarisch</h3>
+<p class="sub">— Vegi —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hausgemachter Käsekuchen</span><span class="flyer-dish__price">CHF 8.50</span></div><div class="flyer-dish__desc">Cremiger Käsekuchen aus unserer Patisserie, mit knusprigem Mürbeteig</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hof Fries</span><span class="flyer-dish__price">CHF 9.50</span></div><div class="flyer-dish__desc">Knusprige Pommes frites mit Hausdips</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Knoblibrot</span><span class="flyer-dish__price">CHF 8.50</span></div><div class="flyer-dish__desc">Im Ofen gebackenes Knoblauchbrot mit Kräuterbutter</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Käsplättli mit Birnenbrot</span><span class="flyer-dish__price">CHF 19.50</span></div><div class="flyer-dish__desc">Auswahl regionaler Käse mit Birnenbrot, Nüssen und Trauben</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Hausgemachte Pickles vom Garten</span><span class="flyer-dish__price">CHF 8.50</span></div><div class="flyer-dish__desc">Eingelegtes Gemüse aus dem eigenen Garten, würzig und knackig</div></div>
+</div>
+<div class="flyer-section">
+<h3>Mit Fleisch &amp; Fisch</h3>
+<p class="sub">— Klassisch —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fleischkäse mit Bürli</span><span class="flyer-dish__price">CHF 15.50</span></div><div class="flyer-dish__desc">Scheibe warmen Fleischkäses mit knusprigem Bürli und Senf</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fischknusperli mit Tartarsauce</span><span class="flyer-dish__price">CHF 18.50</span></div><div class="flyer-dish__desc">Knusprig gebackene Fischknusperli mit Tartarsauce und Zitronenschnitz</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fleischplättli mit Sauerteigbrot</span><span class="flyer-dish__price">CHF 21.50</span></div><div class="flyer-dish__desc">Auswahl von Trockenfleisch und Wurst mit Sauerteigbrot und Essiggurken</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Gemischtes Plättli</span><span class="flyer-dish__price">CHF 24.50</span></div><div class="flyer-dish__desc">Käse- und Fleischauswahl mit Brot, Birnenbrot, Nüssen und Pickles</div></div>
+</div>
+</div>
+<!-- 6: FRÜHSTÜCK -->
+<div class="page" data-page="6" id="fruehstueck">
+<div class="page__kicker">Frühstück &amp; Brunch</div>
+<h1 class="page__title">Frühstück</h1>
+<div class="page__subtitle">CHF 20 · Brunch CHF 40</div>
+<div class="page__divider"></div>
+<div class="flyer-section">
+<h3>Im Pauschalpreis inbegriffen</h3>
+<p class="sub">— Buffet-Angebot —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Brote &amp; Gebäcke</span></div><div class="flyer-dish__desc">Schweizer Zopf, Vollkornbrote, Ruchbrot · Gipfeli und Buttergipfeli · Brötchen (Körner, Weizen, Dinkel)</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Aufstriche &amp; Beläge</span></div><div class="flyer-dish__desc">Butter · Schweizer Konfitüren (Aprikose, Heidelbeere, Hagebutte) · Honig aus der Region</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Käse-Auswahl</span></div><div class="flyer-dish__desc">Emmentaler, Gruyère, Appenzeller · Bergkäse aus lokaler Produktion · Frischkäse</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Fleisch &amp; Wurstwaren</span></div><div class="flyer-dish__desc">Bündnerfleisch · Schweizer Rohschinken · Salami aus der Region</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Müesli-Station</span></div><div class="flyer-dish__desc">Birchermüesli klassisch · Verschiedene Mischungen · Joghurt und Milch</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Früchte</span></div><div class="flyer-dish__desc">Saisonales Schweizer Obst · Frischer Obstsalat · Trockenfrüchte</div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Ein Eiergericht à la carte (inbegriffen)</span></div><div class="flyer-dish__desc">Rührei mit Kräutern · Spiegelei · Gekochtes Ei · Omelette natur</div></div>
+</div>
+<div class="flyer-section">
+<h3>À la carte</h3>
+<p class="sub">— Gegen Aufpreis —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Spezialitäten</span><span class="flyer-dish__price">auf Anfrage</span></div><div class="flyer-dish__desc">Eggs Benedict · Omelette mit Füllungen (Käse, Schinken, Gemüse) · Rührei mit Räucherlachs oder Trüffel</div></div>
+</div>
+</div>
+<!-- 7: ZNÜNI -->
+<div class="page" data-page="7" id="znueni">
+<div class="page__kicker">Für zwischendurch</div>
+<h1 class="page__title">Znüni</h1>
+<div class="page__subtitle">Kleine Pause</div>
+<div class="page__divider"></div>
+<div class="flyer-section">
+<h3>Sandwiches &amp; Brote</h3>
+<p class="sub">— Herzhaft —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Schnitzelbrot</span><span class="flyer-dish__price">CHF 9.50</span></div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Schinkensandwich</span><span class="flyer-dish__price">CHF 7.00</span></div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Käsesandwich</span><span class="flyer-dish__price">CHF 6.50</span></div></div>
+</div>
+<div class="flyer-section">
+<h3>Süssgebäck</h3>
+<p class="sub">— Patisserie —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Cremeschnitte</span><span class="flyer-dish__price">CHF 4.50</span></div></div>
+</div>
+<div class="flyer-section">
+<h3>Kioskartikel</h3>
+<p class="sub">— Riegel —</p>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Mars / Snickers / Twix</span><span class="flyer-dish__price">CHF 2.00</span></div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kinder Riegel</span><span class="flyer-dish__price">CHF 1.00</span></div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kägi fret</span><span class="flyer-dish__price">CHF 2.00</span></div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Balisto</span><span class="flyer-dish__price">CHF 1.80</span></div></div>
+<div class="flyer-dish"><div class="flyer-dish__head"><span class="flyer-dish__name">Kit Kat</span><span class="flyer-dish__price">CHF 2.00</span></div></div>
+</div>
+</div>
+</div>
+<div class="flyer-nav">
+<button class="flyer-btn" id="flyerPrev">← Zurück</button>
+<div class="flyer-indicator" id="flyerIndicator"><strong>1</strong> / 7</div>
+<button class="flyer-btn" id="flyerNext">Weiter →</button>
+</div>
+</div>
 <footer class="footer">
-  <div class="footer__inner">
-    <div class="footer__logo">
-      <img src="images/logo.png" alt="Müllerhof">
-      <p class="footer__claim">Wo Begegnung zuhause ist. Restaurant, Hotel und Eventlocation im Herzen von Frick.</p>
-      <a href="#" class="footer__social" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;flex-shrink:0;"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.86s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.69 3.69 0 01-1.38-.9 3.69 3.69 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.85 5.85 0 00-2.12 1.38A5.85 5.85 0 00.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.73 1.48 1.39 2.13a5.88 5.88 0 002.12 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 00-1.38-2.12A5.85 5.85 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
-        <span>Instagram</span>
-        <span class="footer__social-note">(folgt)</span>
-      </a>
-    </div>
-    <div>
-      <h4>Kontakt</h4>
-      <ul>
-        <li>Schulstrasse 11</li>
-        <li>5070 Frick</li>
-        <li><a href="tel:+41628655380">062 865 53 80</a></li>
-        <li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Entdecken</h4>
-      <ul>
-        <li><a href="restaurant.html">Restaurant</a></li>
-        <li><a href="speisekarte.html">Speisekarte</a></li>
-        <li><a href="hotel.html">Hotel</a></li>
-        <li><a href="events.html">Events &amp; Seminare</a></li>
-        <li><a href="galerie.html">Galerie</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Reservation</h4>
-      <ul>
-        <li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
-        <li><a href="hotel.html#buchen">Zimmer buchen</a></li>
-        <li><a href="events.html#anfrage">Bankettanfrage</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <span>© 2026 Müllerhof · Frick</span>
-    <span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
-  </div>
+<div class="footer__inner">
+<div class="footer__logo">
+<img alt="Müllerhof" src="images/logo.png"/>
+<p class="footer__claim">Wo Begegnung zuhause ist. Restaurant, Hotel und Eventlocation im Herzen von Frick.</p>
+<a aria-label="Instagram" class="footer__social" href="#" rel="noopener" target="_blank">
+<svg height="22" style="width:22px;height:22px;flex-shrink:0;" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.86s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.69 3.69 0 01-1.38-.9 3.69 3.69 0 01-.9-1.38c-.16-.42-.36-1.05-.41-2.22C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.85 5.85 0 00-2.12 1.38A5.85 5.85 0 00.63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.73 1.48 1.39 2.13a5.88 5.88 0 002.12 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 00-1.38-2.12A5.85 5.85 0 0019.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zm0 10.16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"></path></svg>
+<span>Instagram</span>
+<span class="footer__social-note">(folgt)</span>
+</a>
+</div>
+<div>
+<h4>Kontakt</h4>
+<ul>
+<li>Schulstrasse 11</li>
+<li>5070 Frick</li>
+<li><a href="tel:+41628655380">062 865 53 80</a></li>
+<li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
+</ul>
+</div>
+<div>
+<h4>Entdecken</h4>
+<ul>
+<li><a href="restaurant.html">Restaurant</a></li>
+<li><a href="speisekarte.html">Speisekarte</a></li>
+<li><a href="hotel.html">Hotel</a></li>
+<li><a href="events.html">Events &amp; Seminare</a></li>
+<li><a href="galerie.html">Galerie</a></li>
+</ul>
+</div>
+<div>
+<h4>Reservation</h4>
+<ul>
+<li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
+<li><a href="hotel.html#buchen">Zimmer buchen</a></li>
+<li><a href="events.html#anfrage">Bankettanfrage</a></li>
+<li><a href="kontakt.html">Kontakt</a></li>
+</ul>
+</div>
+</div>
+<div class="footer__bottom">
+<span>© 2026 Müllerhof · Frick</span>
+<span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
+</div>
 </footer>
-
 <script src="js/main.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script src="js/cms-loader.js"></script>
 </body>
 </html>
