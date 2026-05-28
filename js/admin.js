@@ -102,6 +102,9 @@ function switchView(view, opts = {}) {
   if (opts.typ && view === 'anfragen') {
     const sel = $('#anfragenTypFilter'); if (sel) sel.value = opts.typ;
   }
+  if (opts.page && view === 'bilder') {
+    const sel = $('#bilderPageFilter'); if (sel) sel.value = opts.page;
+  }
 
   if (view === 'events')    loadEvents();
   if (view === 'sections')  loadSections();
@@ -118,7 +121,151 @@ function switchView(view, opts = {}) {
   if (view === 'landingpages') loadLandingpages();
   if (view === 'community') loadCommunity();
   if (view === 'cards')     loadCards();
+  if (view === 'bilder')    loadBilder();
 }
+
+/* =============================================================
+   BILDER ÄNDERN – Hero/Split/Bereich-BG-Slots pro Seite
+   ============================================================= */
+const BG_SLOTS_BY_PAGE = {
+  'index': [
+    { key:'hero_bg',          label:'Hero-Hintergrund (Wohnzimmer-Foto oben)',  fallback:'images/wohnzimmer.png' },
+    { key:'split_bg',         label:'Story-Split (Garten)',                    fallback:'images/garten.png' },
+    { key:'split_bg_2',       label:'Generationen-Split (Aula)',               fallback:'images/aula-anlass.png' },
+    { key:'split_bg_3',       label:'Karriere-Teaser (Stübli-Anlass)',         fallback:'images/stuebli-anlass.png' },
+    { key:'bereich_card_bg',  label:'Bereich-Card 1 (Alte Höfli)',             fallback:'images/alte-hoefli.png' },
+    { key:'bereich_card_bg_2',label:'Bereich-Card 2 (Wohnzimmer)',             fallback:'images/wohnzimmer.png' },
+    { key:'bereich_card_bg_3',label:'Bereich-Card 3 (Stübli)',                 fallback:'images/stuebli.png' },
+  ],
+  'restaurant': [
+    { key:'hero_bg', label:'Hero-Hintergrund', fallback:'images/alte-hoefli.png' },
+    { key:'split_bg', label:'Split-Hintergrund', fallback:'images/stuebli.png' },
+  ],
+  'hotel': [
+    { key:'hero_bg', label:'Hero-Hintergrund', fallback:'images/stuebli.png' },
+  ],
+  'events': [
+    { key:'hero_bg',          label:'Hero-Hintergrund',           fallback:'images/aula-anlass.png' },
+    { key:'split_bg',         label:'Garten-Split',                fallback:'images/garten.png' },
+    { key:'bereich_card_bg',  label:'Bereich 1 (Private Anlässe)', fallback:'images/aula-anlass.png' },
+    { key:'bereich_card_bg_2',label:'Bereich 2 (Regelmässig)',     fallback:'images/wohnzimmer.png' },
+    { key:'bereich_card_bg_3',label:'Bereich 3 (Saisonal)',        fallback:'images/gewoelbekeller.png' },
+  ],
+  'seminare': [
+    { key:'hero_bg', label:'Hero-Hintergrund', fallback:'images/aula-seminar.png' },
+    { key:'split_bg', label:'Split-Hintergrund', fallback:'images/aula-seminar.png' },
+  ],
+  'community': [
+    { key:'hero_bg', label:'Hero-Hintergrund', fallback:'images/wohnzimmer.png' },
+  ],
+  'ueber-uns': [
+    { key:'hero_bg',    label:'Hero-Hintergrund',          fallback:'images/alte-hoefli.png' },
+    { key:'split_bg',   label:'Split 1 (Gemeinschaft)',    fallback:'images/stuebli.png' },
+    { key:'split_bg_2', label:'Split 2 (Von Frick)',        fallback:'images/wohnzimmer.png' },
+    { key:'split_bg_3', label:'Split 3 (Lage)',            fallback:'images/garten.png' },
+  ],
+  'karriere': [
+    { key:'hero_bg', label:'Hero-Hintergrund', fallback:'images/stuebli-anlass.png' },
+    { key:'split_bg', label:'Split-Hintergrund', fallback:'images/garten.png' },
+  ],
+  'kontakt': [
+    { key:'hero_bg', label:'Hero-Hintergrund', fallback:'images/wohnzimmer.png' },
+  ],
+  'kooperationen': [
+    { key:'hero_bg', label:'Hero-Hintergrund', fallback:'images/aula-anlass.png' },
+  ],
+  'galerie': [
+    { key:'hero_bg', label:'Hero-Hintergrund', fallback:'images/aula-anlass.png' },
+  ],
+};
+
+async function loadBilder() {
+  const page = $('#bilderPageFilter').value;
+  const slots = BG_SLOTS_BY_PAGE[page] || [];
+  const container = $('#bilderContainer');
+  container.innerHTML = 'Lädt…';
+  const { data: sections } = await sb.from('cms_sections').select('*').eq('page_slug', page).eq('kind', 'image');
+  const byKey = {};
+  (sections || []).forEach(s => byKey[s.section_key] = s);
+  if (!slots.length) {
+    container.innerHTML = '<div class="info-box"><p>Keine Bild-Slots für diese Seite definiert.</p></div>';
+    return;
+  }
+  container.innerHTML = slots.map(slot => {
+    const cur = byKey[slot.key];
+    const url = cur?.content || slot.fallback || '';
+    return `
+      <div class="menu-cat" data-slot="${slot.key}">
+        <div class="menu-cat__head">
+          <h3>${escapeHtml(slot.label)}</h3>
+        </div>
+        <div style="padding:1.25rem;display:grid;grid-template-columns:160px 1fr;gap:1.25rem;align-items:start;">
+          <div style="width:160px;height:120px;background-image:url('${escapeAttr(url)}');background-size:cover;background-position:center;border-radius:4px;border:1px solid var(--c-line);"></div>
+          <div>
+            <label style="font-size:0.75rem;font-weight:600;color:var(--c-text-soft);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:0.3rem;">Aktuelle Bild-URL</label>
+            <input type="text" value="${escapeAttr(url)}" data-bilder-url="${slot.key}" style="width:100%;padding:0.5rem 0.7rem;border:1px solid var(--c-line);border-radius:4px;margin-bottom:0.5rem;">
+            <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+              <label class="btn-primary" style="cursor:pointer;">
+                📷 Neues Bild hochladen
+                <input type="file" accept="image/*" hidden data-bilder-upload="${slot.key}">
+              </label>
+              <button class="btn-secondary" data-bilder-save="${slot.key}">Speichern</button>
+              <span class="img-drop__hint" data-bilder-hint="${slot.key}"></span>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  // Listener für Save + Upload
+  container.querySelectorAll('[data-bilder-save]').forEach(btn => {
+    btn.addEventListener('click', () => saveBildSlot(page, btn.dataset.bilderSave));
+  });
+  container.querySelectorAll('[data-bilder-upload]').forEach(input => {
+    input.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const slot = input.dataset.bilderUpload;
+      const hint = container.querySelector(`[data-bilder-hint="${slot}"]`);
+      if (hint) { hint.textContent = 'Lade hoch…'; hint.style.color = 'var(--c-accent)'; }
+      try {
+        const ext = file.name.split('.').pop();
+        const name = `${Date.now()}-${Math.round(Math.random()*1e6)}.${ext}`;
+        const { error: upErr } = await sb.storage.from(STORAGE_BUCKET).upload(name, file);
+        if (upErr) throw upErr;
+        const { data: pub } = sb.storage.from(STORAGE_BUCKET).getPublicUrl(name);
+        await sb.from('cms_medien').insert({ filename: file.name, url: pub.publicUrl, alt: file.name });
+        const urlInput = container.querySelector(`[data-bilder-url="${slot}"]`);
+        if (urlInput) urlInput.value = pub.publicUrl;
+        await saveBildSlot(page, slot);
+      } catch (err) {
+        if (hint) { hint.textContent = 'Fehler: '+err.message; hint.style.color = 'var(--c-danger)'; }
+      }
+    });
+  });
+}
+
+async function saveBildSlot(page, key) {
+  const urlInput = $(`[data-bilder-url="${key}"]`);
+  const hint = $(`[data-bilder-hint="${key}"]`);
+  if (!urlInput) return;
+  const slot = (BG_SLOTS_BY_PAGE[page]||[]).find(s => s.key === key);
+  const url = urlInput.value;
+  // upsert in cms_sections (page_slug, section_key, kind='image', content=url)
+  const { data: existing } = await sb.from('cms_sections')
+    .select('id').eq('page_slug', page).eq('section_key', key).maybeSingle();
+  let res;
+  if (existing) res = await sb.from('cms_sections').update({ content: url, kind: 'image', label: slot?.label||key }).eq('id', existing.id);
+  else res = await sb.from('cms_sections').insert({ page_slug: page, section_key: key, kind: 'image', label: slot?.label||key, content: url });
+  if (res.error) {
+    if (hint) { hint.textContent = 'Fehler: '+res.error.message; hint.style.color='var(--c-danger)'; }
+    return;
+  }
+  if (hint) { hint.textContent = '✓ Gespeichert · live auf der Webseite'; hint.style.color='var(--c-success)'; }
+  setTimeout(loadBilder, 1500);
+}
+
+$('#bilderPageFilter') && $('#bilderPageFilter').addEventListener('change', loadBilder);
 
 /* =============================================================
    GENERISCHE SORTIERUNG: macht eine <tbody> draggable.
@@ -194,6 +341,7 @@ $$('.nav-item').forEach(b => b.addEventListener('click', () => {
     filter: b.dataset.filter,
     list: b.dataset.list,
     typ: b.dataset.typ,
+    page: b.dataset.page,
   });
 }));
 
