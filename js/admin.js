@@ -1912,5 +1912,203 @@ window.deleteCard = async (id) => {
   toast('Gelöscht', 'success'); loadCardsList();
 };
 
+/* =============================================================
+   LANDINGPAGES / SPECIALS  (war verloren – wieder eingefügt)
+   ============================================================= */
+const BLOCK_TYPES = [
+  { typ: 'hero',     name: '🎯 Hero (Titelbild)',     felder: ['titel','untertitel','bild_url'] },
+  { typ: 'text',     name: '📝 Text-Block',             felder: ['ueberschrift','text'] },
+  { typ: 'bild_text',name: '🖼 Bild + Text',           felder: ['bild_url','ueberschrift','text'] },
+  { typ: 'cta',      name: '🔘 Aktion (Button)',       felder: ['ueberschrift','text','button_text','button_url'] },
+  { typ: 'galerie',  name: '📸 Bildergalerie',          felder: ['ueberschrift','bilder'] },
+  { typ: 'video',    name: '🎥 Video (YouTube etc.)',  felder: ['ueberschrift','video_url'] },
+  { typ: 'spacer',   name: '↕ Abstand / Trennung',     felder: [] },
+];
+
+async function loadLandingpages() {
+  const tbody = $('#landingpagesTable tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '<tr><td colspan="6">Lädt…</td></tr>';
+  const { data, error } = await sb.from('cms_landingpages').select('*').order('sort_order');
+  if (error) {
+    tbody.innerHTML = `<tr><td colspan="6" style="color:var(--c-danger)">Fehler: ${escapeHtml(error.message)}<br><small>Wahrscheinlich fehlt die Tabelle. Führe <code>sql/cms_FINAL.sql</code> in Supabase aus.</small></td></tr>`;
+    return;
+  }
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="6">Noch keine Specials angelegt. Klick "+ Neue Landingpage".</td></tr>'; return; }
+  tbody.innerHTML = data.map(lp => {
+    const blockCount = Array.isArray(lp.bloecke) ? lp.bloecke.length : 0;
+    const gueltig = (lp.gueltig_ab ? fmtDate(lp.gueltig_ab) : '–') + ' bis ' + (lp.gueltig_bis ? fmtDate(lp.gueltig_bis) : '–');
+    return `
+    <tr>
+      <td><strong>${escapeHtml(lp.titel)}</strong></td>
+      <td><code>${escapeHtml(lp.slug)}</code> <a href="landingpage.html?slug=${escapeAttr(lp.slug)}" target="_blank" rel="noopener" title="Vorschau">↗</a></td>
+      <td>${blockCount} Block${blockCount===1?'':'e'}</td>
+      <td style="font-size:0.85rem">${gueltig === '– bis –' ? 'unbegrenzt' : gueltig}</td>
+      <td>${lp.aktiv ? '<span class="badge badge--ok">Aktiv</span>' : '<span class="badge badge--off">Inaktiv</span>'}</td>
+      <td class="actions">
+        <button onclick="editLandingpage(${lp.id})">Blöcke bearbeiten</button>
+        <button onclick="editLandingpageMeta(${lp.id})">Einstellungen</button>
+        <button class="danger" onclick="deleteLandingpage(${lp.id})">Löschen</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function landingpageMetaForm(lp = {}) {
+  return `<div class="form-grid">
+    <div><label>Titel der Seite *</label><input type="text" name="titel" value="${escapeAttr(lp.titel||'')}" required></div>
+    <div><label>URL-Slug * <span style="font-weight:400;color:var(--c-text-soft);">(z.B. "sommerfest-2027")</span></label>
+      <input type="text" name="slug" value="${escapeAttr(lp.slug||'')}" pattern="[a-z0-9-]+" required placeholder="sommerfest-2027"></div>
+    <div><label>Kurzbeschreibung (für SEO)</label><textarea name="beschreibung" rows="2">${escapeHtml(lp.beschreibung||'')}</textarea></div>
+    <div class="form-row">
+      <div><label>Gültig ab (optional)</label><input type="date" name="gueltig_ab" value="${lp.gueltig_ab||''}"></div>
+      <div><label>Gültig bis (optional)</label><input type="date" name="gueltig_bis" value="${lp.gueltig_bis||''}"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Sortierung</label><input type="number" name="sort_order" value="${lp.sort_order ?? 0}"></div>
+      <div style="display:flex;align-items:end;"><label class="form-check"><input type="checkbox" name="aktiv" ${lp.aktiv !== false ? 'checked' : ''}> Aktiv</label></div>
+    </div>
+  </div>`;
+}
+
+const _newLpBtn = $('#newLandingpageBtn');
+if (_newLpBtn) _newLpBtn.addEventListener('click', () => {
+  openModal('Neue Landingpage', landingpageMetaForm(), async () => {
+    const f = readForm();
+    if (!f.titel || !f.slug) throw new Error('Titel und Slug sind Pflicht.');
+    f.slug = f.slug.toLowerCase().replace(/[^a-z0-9-]+/g, '-');
+    f.bloecke = [];
+    const { error } = await sb.from('cms_landingpages').insert(f);
+    if (error) throw error;
+    toast('Landingpage erstellt', 'success'); loadLandingpages();
+  });
+});
+
+window.editLandingpageMeta = async (id) => {
+  const { data, error } = await sb.from('cms_landingpages').select('*').eq('id', id).single();
+  if (error) return toast(error.message, 'error');
+  openModal('Einstellungen – ' + data.titel, landingpageMetaForm(data), async () => {
+    const f = readForm();
+    f.slug = (f.slug||'').toLowerCase().replace(/[^a-z0-9-]+/g, '-');
+    const { error } = await sb.from('cms_landingpages').update(f).eq('id', id);
+    if (error) throw error;
+    toast('Aktualisiert', 'success'); loadLandingpages();
+  });
+};
+
+window.deleteLandingpage = async (id) => {
+  if (!confirm('Landingpage und alle Blöcke löschen?')) return;
+  const { error } = await sb.from('cms_landingpages').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success'); loadLandingpages();
+};
+
+let _blocks = [];
+let _lpId = null;
+window.editLandingpage = async (id) => {
+  const { data, error } = await sb.from('cms_landingpages').select('*').eq('id', id).single();
+  if (error) return toast(error.message, 'error');
+  _lpId = id;
+  _blocks = Array.isArray(data.bloecke) ? [...data.bloecke] : [];
+  renderBlockEditor(data);
+};
+
+function renderBlockEditor(lp) {
+  const addOptions = BLOCK_TYPES.map(b => `<option value="${b.typ}">${b.name}</option>`).join('');
+  const body = `
+    <div class="form-grid">
+      <div style="background:var(--c-beige);padding:0.75rem 1rem;border-radius:4px;font-size:0.85rem;">
+        <strong>${escapeHtml(lp.titel)}</strong> · URL: <code>landingpage.html?slug=${escapeHtml(lp.slug)}</code>
+        <a href="landingpage.html?slug=${escapeAttr(lp.slug)}" target="_blank" rel="noopener" style="float:right;color:var(--c-darkgreen)">Vorschau ↗</a>
+      </div>
+      <div>
+        <label>Neuen Block hinzufügen</label>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <select id="addBlockTyp" style="flex:1;padding:0.5rem 0.7rem;border:1px solid var(--c-line);border-radius:4px;">${addOptions}</select>
+          <button class="btn-primary" id="addBlockBtn">+ Hinzufügen</button>
+        </div>
+      </div>
+      <div><label>Blöcke (Drag&Drop sortieren)</label><div id="blockList"></div></div>
+    </div>`;
+  openModal('Block-Editor – ' + lp.titel, body, async () => {
+    const { error } = await sb.from('cms_landingpages').update({ bloecke: _blocks, updated_at: new Date().toISOString() }).eq('id', _lpId);
+    if (error) throw error;
+    toast('Blöcke gespeichert', 'success'); loadLandingpages();
+  });
+  setTimeout(() => {
+    document.getElementById('addBlockBtn').addEventListener('click', () => {
+      const typ = document.getElementById('addBlockTyp').value;
+      const def = BLOCK_TYPES.find(b => b.typ === typ);
+      const block = { typ };
+      def.felder.forEach(f => block[f] = '');
+      _blocks.push(block);
+      renderBlockList();
+    });
+    renderBlockList();
+  }, 50);
+}
+
+function renderBlockList() {
+  const list = document.getElementById('blockList');
+  if (!list) return;
+  if (!_blocks.length) {
+    list.innerHTML = '<p style="color:var(--c-text-soft);font-style:italic;text-align:center;padding:2rem;">Noch keine Blöcke. Wähle oben einen Typ und klicke "Hinzufügen".</p>';
+    return;
+  }
+  list.innerHTML = _blocks.map((b, i) => {
+    const def = BLOCK_TYPES.find(d => d.typ === b.typ) || { name: b.typ, felder: [] };
+    const fieldsHtml = def.felder.map(f => {
+      const isLong = f === 'text' || f === 'bilder';
+      const label = { titel:'Titel', untertitel:'Untertitel', bild_url:'Bild-URL', ueberschrift:'Überschrift',
+                      text:'Text', button_text:'Button-Text', button_url:'Button-URL',
+                      bilder:'Bild-URLs (eine pro Zeile)', video_url:'Video-URL' }[f] || f;
+      const val = b[f] || '';
+      return isLong
+        ? `<div><label style="font-size:0.7rem">${label}</label><textarea data-block="${i}" data-field="${f}" rows="3" style="width:100%;padding:0.4rem;border:1px solid var(--c-line);border-radius:3px;font-family:inherit">${escapeHtml(val)}</textarea></div>`
+        : `<div><label style="font-size:0.7rem">${label}</label><input type="text" data-block="${i}" data-field="${f}" value="${escapeAttr(val)}" style="width:100%;padding:0.4rem;border:1px solid var(--c-line);border-radius:3px"></div>`;
+    }).join('');
+    return `
+      <div class="block-card" data-idx="${i}" style="background:var(--c-surface);border:1px solid var(--c-line);border-radius:6px;padding:0.85rem 1rem;margin-bottom:0.5rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+          <strong style="color:var(--c-darkgreen);cursor:grab;" class="block-drag">⋮⋮ ${escapeHtml(def.name)}</strong>
+          <div>
+            <button class="btn-ghost" onclick="moveBlock(${i},-1)" title="Hoch">↑</button>
+            <button class="btn-ghost" onclick="moveBlock(${i},1)" title="Runter">↓</button>
+            <button class="btn-ghost" onclick="removeBlock(${i})" style="color:var(--c-danger)" title="Löschen">×</button>
+          </div>
+        </div>
+        <div style="display:grid;gap:0.5rem;">${fieldsHtml}</div>
+      </div>`;
+  }).join('');
+  list.querySelectorAll('[data-block]').forEach(el => {
+    el.addEventListener('input', () => {
+      _blocks[Number(el.dataset.block)][el.dataset.field] = el.value;
+    });
+  });
+  if (window.Sortable) {
+    window.Sortable.create(list, {
+      animation: 180, handle: '.block-drag', ghostClass: 'drag-ghost',
+      onEnd: (e) => {
+        const moved = _blocks.splice(e.oldIndex, 1)[0];
+        _blocks.splice(e.newIndex, 0, moved);
+        renderBlockList();
+      }
+    });
+  }
+}
+
+window.moveBlock = (i, dir) => {
+  const ni = i + dir;
+  if (ni < 0 || ni >= _blocks.length) return;
+  const moved = _blocks.splice(i, 1)[0];
+  _blocks.splice(ni, 0, moved);
+  renderBlockList();
+};
+window.removeBlock = (i) => {
+  if (!confirm('Block entfernen?')) return;
+  _blocks.splice(i, 1);
+  renderBlockList();
+};
+
 /* GO */
 init();
