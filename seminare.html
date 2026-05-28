@@ -26,7 +26,7 @@
 </ul>
 </nav>
 <section class="hero hero--short hero--photo">
-<div class="hero__photo" style="background-image: url('images/aula-seminar.png');"></div>
+<div class="hero__photo" data-cms-bg="seminare:hero_bg" style="background-image: url('images/aula-seminar.png');"></div>
 <div class="hero__overlay"></div>
 <div class="hero__content">
 <p class="hero__sub" data-cms="seminare:hero_sub">Seminare &amp; Workshops</p>
@@ -43,7 +43,7 @@
 </section>
 <section class="split">
 <div class="split__inner">
-<div class="split__img split__img--photo" style="background-image: url('images/aula-seminar.png');"></div>
+<div class="split__img split__img--photo" data-cms-bg="seminare:split_bg" style="background-image: url('images/aula-seminar.png');"></div>
 <div class="split__text">
 <span class="kicker">Ausstattung</span>
 <h2 data-cms="seminare:split_h2" style="font-style: italic; font-weight: 400;">Alles, was dein Seminar braucht.</h2>
@@ -74,7 +74,7 @@
 <h2 class="intro__headline" data-cms="seminare:intro_headline_2">Dein Seminar im Müllerhof.</h2>
 <p class="intro__lead" data-cms="seminare:intro_lead_2">Anfrage senden, Angebot erhalten, Workshop durchführen – wir machen's einfach.</p>
 <div style="max-width: 700px; margin: 2rem auto 0; background: var(--c-white); padding: 3rem 2rem; box-shadow: 0 20px 40px rgba(45,64,54,0.1); text-align: left;">
-<form class="form" onsubmit="alert('Demo-Modus: Seminaranfrage wurde NICHT versendet. Das Backend folgt vor Go-Live. Bitte aktuell telefonisch unter 062 865 53 80 oder per E-Mail an info@muellerhof.ch anfragen.'); return false;">
+<form class="form" data-cms-form="seminar">
 <div class="form__row">
 <div><label>Vorname &amp; Name</label><input required="" type="text"/></div>
 <div><label>Firma (optional)</label><input type="text"/></div>
@@ -108,7 +108,7 @@
 </div>
 <div><label>Anmerkungen / spezielle Wünsche</label><textarea></textarea></div>
 <button class="btn btn--dark" type="submit">Anfrage senden</button>
-<p style="font-size: 0.8rem; color: var(--c-brown); text-align: center; font-style: italic; padding: 1rem; background: rgba(103,74,45,0.08); border-left: 3px solid var(--c-brown); margin-top: 1rem;">⚠ Demo-Modus: Anfragen werden aktuell <strong>nicht</strong> versendet. Backend folgt vor Go-Live. Bitte telefonisch oder per E-Mail kontaktieren.</p>
+
 </form>
 </div>
 </div>
@@ -162,5 +162,6 @@
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
 <script src="js/cms-loader.js"></script>
+<script src="js/cms-forms.js"></script>
 </body>
 </html>

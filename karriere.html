@@ -26,7 +26,7 @@
 </ul>
 </nav>
 <section class="hero hero--short hero--photo">
-<div class="hero__photo" style="background-image: url('images/stuebli-anlass.png');"></div>
+<div class="hero__photo" data-cms-bg="karriere:hero_bg" style="background-image: url('images/stuebli-anlass.png');"></div>
 <div class="hero__overlay"></div>
 <div class="hero__content">
 <p class="hero__sub" data-cms="karriere:hero_sub">Karriere</p>
@@ -65,20 +65,16 @@
 <h2 data-cms="karriere:section_header_h2_2" style="font-style: italic; font-weight: 400;">Wir suchen.</h2>
 <p data-cms="karriere:section_header_lead">Aktuelle Positionen im Müllerhof. Du findest deine Stelle nicht? Bewirb dich blind – wir freuen uns auf dich.</p>
 </div>
-<div class="stellen-grid" style="max-width: 600px;">
-<article class="stelle-card" style="border-top-color: var(--c-darkgreen);">
-<span class="stelle-card__kicker" style="color: var(--c-darkgreen);">Offene Bewerbung</span>
-<h3>Blindbewerbung</h3>
-<div class="stelle-card__pensum">Beliebiges Pensum</div>
-<p>Du möchtest ein Teil vom Müllerhof werden? Schicke uns deine Bewerbung – wir freuen uns, dich kennenzulernen.</p>
-<a class="btn btn--outline" href="#bewerbung">Jetzt bewerben</a>
-</article>
+<!-- Stellen werden aus dem CMS geladen (bearbeitbar via /admin.html → Offene Stellen) -->
+<div data-cms-stellen style="max-width: 850px; margin: 0 auto;">
+  <p style="text-align:center;color:var(--c-text-soft);font-style:italic;">Stellen werden geladen…</p>
 </div>
+<p style="text-align:center; margin-top: 2rem; color: var(--c-text-soft); font-size: 0.95rem;">Keine passende Stelle dabei? <a href="#bewerbung" style="color: var(--c-brown); font-weight: 700;">Bewirb dich blind</a> – wir freuen uns!</p>
 </div>
 </section>
 <section class="split">
 <div class="split__inner">
-<div class="split__img split__img--photo" style="background-image: url('images/garten.png');"></div>
+<div class="split__img split__img--photo" data-cms-bg="karriere:split_bg" style="background-image: url('images/garten.png');"></div>
 <div class="split__text">
 <span class="kicker">Bereit, mitzugestalten?</span>
 <h2 data-cms="karriere:split_h2" style="font-style: italic; font-weight: 400;">Wir freuen uns auf deine Bewerbung!</h2>
@@ -95,7 +91,7 @@
 <h2 data-cms="karriere:section_header_h2_3" style="font-style: italic; font-weight: 400;">Bewirb dich direkt.</h2>
 <p data-cms="karriere:section_header_lead_2">Sende uns deine Bewerbung. Oder kontaktiere Torsten Stobbe direkt unter <a href="mailto:info@muellerhof.ch" style="color: var(--c-brown); font-weight: 700;">info@muellerhof.ch</a>.</p>
 </div>
-<form class="form" onsubmit="alert('Demo-Modus: Bewerbung wurde NICHT versendet. Das Backend folgt vor Go-Live. Bitte aktuell per E-Mail an info@muellerhof.ch bewerben.'); return false;">
+<form class="form" data-cms-form="karriere">
 <div class="form__row">
 <div><label>Vorname</label><input required="" type="text"/></div>
 <div><label>Name</label><input required="" type="text"/></div>
@@ -149,7 +145,7 @@
 </div>
 </div>
 <button class="btn btn--dark" type="submit">Bewerbung senden</button>
-<p style="font-size: 0.8rem; color: var(--c-brown); text-align: center; font-style: italic; padding: 1rem; background: rgba(103,74,45,0.08); border-left: 3px solid var(--c-brown);">⚠ Demo-Modus: Diese Bewerbung wird aktuell <strong>nicht</strong> versendet. Das Backend für E-Mail-Versand und Datei-Upload folgt vor Go-Live.</p>
+
 </form>
 </div>
 </section>
@@ -202,5 +198,6 @@
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
 <script src="js/cms-loader.js"></script>
+<script src="js/cms-forms.js"></script>
 </body>
 </html>

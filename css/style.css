@@ -896,3 +896,54 @@ section { padding: 8rem 3rem; }
   .news-card { grid-template-columns: 1fr; }
 }
 
+/* Team-Cards */
+.team-card {
+  background: var(--c-white);
+  box-shadow: 0 4px 16px rgba(45,64,54,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.team-card__img { aspect-ratio: 1/1; background-size: cover; background-position: center; background-color: var(--c-sand); }
+.team-card__img--placeholder { background: linear-gradient(135deg, var(--c-sand) 0%, var(--c-beige-light) 100%); }
+.team-card__body { padding: 1.5rem 1.5rem 1.75rem; }
+.team-card h3 { font-family: var(--font-display); color: var(--c-darkgreen); font-size: 1.25rem; margin-bottom: 0.25rem; }
+.team-card__pos { color: var(--c-brown); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.75rem; }
+.team-card p { color: var(--c-text-soft); line-height: 1.55; font-size: 0.95rem; margin-bottom: 0.75rem; }
+.team-card__mail { color: var(--c-darkgreen); font-size: 0.85rem; text-decoration: none; border-bottom: 1px solid var(--c-darkgreen); }
+
+/* Stellen-Cards */
+.stelle-card { background: var(--c-white); box-shadow: 0 4px 16px rgba(45,64,54,0.08); padding: 2rem 2.25rem; margin-bottom: 1.5rem; }
+.stelle-card__head h3 { font-family: var(--font-display); color: var(--c-darkgreen); font-size: 1.7rem; margin-bottom: 0.5rem; }
+.stelle-card__meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.stelle-card__meta span { background: var(--c-beige-light); padding: 0.25rem 0.75rem; font-size: 0.8rem; color: var(--c-brown); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.stelle-card__sect { margin-bottom: 1rem; }
+.stelle-card__sect strong { display: block; color: var(--c-darkgreen); margin-bottom: 0.25rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.stelle-card__sect p { color: var(--c-text-soft); line-height: 1.6; }
+.stelle-card__foot { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--c-line, #e0dcd3); }
+
+/* Zimmer-Cards */
+.zimmer-card { background: var(--c-white); box-shadow: 0 4px 16px rgba(45,64,54,0.08); margin-bottom: 1.5rem; display: grid; grid-template-columns: 280px 1fr; overflow: hidden; }
+.zimmer-card__img { background-size: cover; background-position: center; min-height: 220px; }
+.zimmer-card__body { padding: 1.75rem 2rem; }
+.zimmer-card h3 { font-family: var(--font-display); color: var(--c-darkgreen); font-size: 1.5rem; margin-bottom: 0.25rem; }
+.zimmer-card__typ { color: var(--c-brown); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.85rem; }
+.zimmer-card p { color: var(--c-text-soft); line-height: 1.6; margin-bottom: 1rem; }
+.zimmer-card__aus { font-size: 0.85rem; color: var(--c-text-soft); padding: 0.75rem 1rem; background: var(--c-beige-light); margin-bottom: 1rem; }
+.zimmer-card__preis { color: var(--c-darkgreen); font-weight: 700; font-size: 1.05rem; }
+
+/* Partner-Cards */
+.partner-card { background: var(--c-white); padding: 2rem 2.25rem; margin-bottom: 1.5rem; box-shadow: 0 4px 16px rgba(45,64,54,0.08); display: grid; grid-template-columns: 160px 1fr; gap: 2rem; align-items: center; }
+.partner-card:not(:has(.partner-card__logo)) { grid-template-columns: 1fr; }
+.partner-card--highlight { border-left: 4px solid var(--c-brown); }
+.partner-card__logo { max-width: 160px; max-height: 100px; object-fit: contain; }
+.partner-card__cat { color: var(--c-brown); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+.partner-card h3 { font-family: var(--font-display); color: var(--c-darkgreen); font-size: 1.4rem; margin: 0.3rem 0 0.75rem; }
+.partner-card p { color: var(--c-text-soft); line-height: 1.6; margin-bottom: 1rem; }
+
+@media (max-width: 700px) {
+  .zimmer-card { grid-template-columns: 1fr; }
+  .partner-card { grid-template-columns: 1fr; gap: 1rem; }
+  .partner-card__logo { max-width: 120px; }
+}
+

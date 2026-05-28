@@ -68,12 +68,18 @@ $('#logoutBtn').addEventListener('click', async () => {
    ============================================================= */
 const viewTitles = {
   overview:   'Übersicht',
+  anfragen:   'Anfragen-Eingang',
   events:     'Events verwalten',
   sections:   'Seiten-Texte verwalten',
   menu:       'Speisekarte verwalten',
   oeffnung:   'Öffnungszeiten verwalten',
   news:       'News & Aktuelles',
   karten:     'Karten & PDFs zuweisen',
+  zimmer:     'Hotel-Zimmer verwalten',
+  team:       'Team / Mitarbeitende',
+  stellen:    'Offene Stellen',
+  partner:    'Kooperationen / Partner',
+  community:  'Community-Posts moderieren',
   medien:     'Medien-Bibliothek',
 };
 
@@ -83,13 +89,19 @@ function switchView(view) {
   $('#view-' + view).classList.remove('hidden');
   $('#viewTitle').textContent = viewTitles[view] || '';
 
-  if (view === 'events')   loadEvents();
-  if (view === 'sections') loadSections();
-  if (view === 'menu')     loadMenu();
-  if (view === 'oeffnung') loadOz();
-  if (view === 'news')     loadNews();
-  if (view === 'karten')   loadKarten();
-  if (view === 'medien')   loadMedia();
+  if (view === 'events')    loadEvents();
+  if (view === 'sections')  loadSections();
+  if (view === 'menu')      loadMenu();
+  if (view === 'oeffnung')  loadOz();
+  if (view === 'news')      loadNews();
+  if (view === 'karten')    loadKarten();
+  if (view === 'medien')    loadMedia();
+  if (view === 'anfragen')  loadAnfragen();
+  if (view === 'zimmer')    loadZimmer();
+  if (view === 'team')      loadTeam();
+  if (view === 'stellen')   loadStellen();
+  if (view === 'partner')   loadPartner();
+  if (view === 'community') loadCommunity();
 }
 
 $$('.nav-item').forEach(b => b.addEventListener('click', () => switchView(b.dataset.view)));
@@ -100,15 +112,24 @@ $$('[data-view-link]').forEach(c => c.addEventListener('click', () => switchView
    ============================================================= */
 async function loadCounts() {
   const tables = [
-    ['cms_events',   '#countEvents'],
-    ['cms_sections', '#countSections'],
+    ['cms_events',     '#countEvents'],
+    ['cms_sections',   '#countSections'],
     ['cms_menu_items', '#countMenu'],
-    ['cms_news',     '#countNews'],
+    ['cms_zimmer',     '#countZimmer'],
+    ['cms_team',       '#countTeam'],
+    ['cms_stellen',    '#countStellen'],
+    ['posts',          '#countCommunity'],
   ];
   for (const [tbl, sel] of tables) {
+    const el = $(sel);
+    if (!el) continue;
     const { count } = await sb.from(tbl).select('id', { count: 'exact', head: true });
-    $(sel).textContent = count ?? '–';
+    el.textContent = count ?? '–';
   }
+  // Anfragen NUR neue
+  const { count: nAnfr } = await sb.from('cms_anfragen')
+    .select('id', { count: 'exact', head: true }).eq('status', 'neu');
+  if ($('#countAnfragen')) $('#countAnfragen').textContent = nAnfr ?? '–';
 }
 
 /* =============================================================
@@ -762,6 +783,410 @@ function escapeHtml(s) {
   }[c]));
 }
 function escapeAttr(s) { return escapeHtml(s); }
+
+/* =============================================================
+   ANFRAGEN (Eingangsbox)
+   ============================================================= */
+const TYP_LABELS = {
+  reservation:'Reservation', event:'Event', hotel:'Hotel',
+  seminar:'Seminar', bankett:'Bankett', kontakt:'Kontakt', karriere:'Bewerbung'
+};
+const STATUS_BADGES = {
+  neu:'<span class="badge badge--info">Neu</span>',
+  gelesen:'<span class="badge badge--off">Gelesen</span>',
+  bearbeitet:'<span class="badge badge--info">In Arbeit</span>',
+  erledigt:'<span class="badge badge--ok">Erledigt</span>',
+};
+
+async function loadAnfragen() {
+  const tbody = $('#anfragenTable tbody');
+  tbody.innerHTML = '<tr><td colspan="6">Lädt…</td></tr>';
+  let q = sb.from('cms_anfragen').select('*').order('created_at', { ascending: false });
+  const typ = $('#anfragenTypFilter').value;
+  const status = $('#anfragenStatusFilter').value;
+  if (typ) q = q.eq('typ', typ);
+  if (status) q = q.eq('status', status);
+  const { data, error } = await q;
+  if (error) { tbody.innerHTML = `<tr><td colspan="6">Fehler: ${error.message}</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="6">Keine Anfragen in dieser Auswahl.</td></tr>'; return; }
+  tbody.innerHTML = data.map(a => `
+    <tr>
+      <td>${fmtDate(a.created_at)}<div style="font-size:0.8rem;color:var(--c-text-soft)">${new Date(a.created_at).toLocaleTimeString('de-CH',{hour:'2-digit',minute:'2-digit'})}</div></td>
+      <td><strong>${escapeHtml(TYP_LABELS[a.typ] || a.typ)}</strong></td>
+      <td>${escapeHtml(a.name || '')}</td>
+      <td style="font-size:0.85rem">${a.email ? `<a href="mailto:${escapeAttr(a.email)}">${escapeHtml(a.email)}</a><br>` : ''}${a.telefon ? `<a href="tel:${escapeAttr(a.telefon)}">${escapeHtml(a.telefon)}</a>` : ''}</td>
+      <td>${STATUS_BADGES[a.status] || a.status}</td>
+      <td class="actions">
+        <button onclick="viewAnfrage(${a.id})">Öffnen</button>
+        <button class="danger" onclick="deleteAnfrage(${a.id})">Löschen</button>
+      </td>
+    </tr>`).join('');
+}
+
+$('#anfragenTypFilter').addEventListener('change', loadAnfragen);
+$('#anfragenStatusFilter').addEventListener('change', loadAnfragen);
+
+window.viewAnfrage = async (id) => {
+  const { data, error } = await sb.from('cms_anfragen').select('*').eq('id', id).single();
+  if (error) return toast(error.message, 'error');
+  // Status auf gelesen, falls noch neu
+  if (data.status === 'neu') {
+    await sb.from('cms_anfragen').update({ status: 'gelesen' }).eq('id', id);
+    loadCounts();
+  }
+  const daten = data.daten || {};
+  const datenRows = Object.entries(daten).map(([k,v]) =>
+    `<tr><td style="padding:0.3rem 0.5rem;color:var(--c-text-soft);font-size:0.85rem">${escapeHtml(k)}</td><td style="padding:0.3rem 0.5rem">${escapeHtml(String(v ?? ''))}</td></tr>`
+  ).join('');
+  openModal(`Anfrage #${data.id} – ${TYP_LABELS[data.typ] || data.typ}`, `
+    <div class="form-grid">
+      <div class="form-row">
+        <div><label>Eingang</label><div style="padding:0.55rem 0">${escapeHtml(new Date(data.created_at).toLocaleString('de-CH'))}</div></div>
+        <div><label>Status</label>
+          <select name="status">
+            <option value="neu" ${data.status==='neu'?'selected':''}>Neu</option>
+            <option value="gelesen" ${data.status==='gelesen'?'selected':''}>Gelesen</option>
+            <option value="bearbeitet" ${data.status==='bearbeitet'?'selected':''}>In Bearbeitung</option>
+            <option value="erledigt" ${data.status==='erledigt'?'selected':''}>Erledigt</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div><label>Name</label><input type="text" name="name" value="${escapeAttr(data.name||'')}"></div>
+        <div><label>E-Mail</label><input type="text" name="email" value="${escapeAttr(data.email||'')}"></div>
+      </div>
+      <div class="form-row">
+        <div><label>Telefon</label><input type="text" name="telefon" value="${escapeAttr(data.telefon||'')}"></div>
+        <div><label>Betreff</label><input type="text" name="betreff" value="${escapeAttr(data.betreff||'')}"></div>
+      </div>
+      <div><label>Nachricht</label><textarea name="nachricht" rows="3">${escapeHtml(data.nachricht||'')}</textarea></div>
+      ${datenRows ? `<div><label>Alle Formularfelder</label><table style="width:100%;border-collapse:collapse">${datenRows}</table></div>` : ''}
+      <div><label>Interne Notiz</label><textarea name="notiz" rows="2" placeholder="z.B. Tisch reserviert, Bestätigung gesendet…">${escapeHtml(data.notiz||'')}</textarea></div>
+    </div>`,
+    async () => {
+      const f = readForm();
+      const { error } = await sb.from('cms_anfragen').update(f).eq('id', id);
+      if (error) throw error;
+      toast('Aktualisiert', 'success');
+      loadAnfragen(); loadCounts();
+    }
+  );
+};
+
+window.deleteAnfrage = async (id) => {
+  if (!confirm('Anfrage wirklich löschen?')) return;
+  const { error } = await sb.from('cms_anfragen').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success'); loadAnfragen(); loadCounts();
+};
+
+/* =============================================================
+   HOTEL-ZIMMER
+   ============================================================= */
+async function loadZimmer() {
+  const tbody = $('#zimmerTable tbody');
+  tbody.innerHTML = '<tr><td colspan="6">Lädt…</td></tr>';
+  const { data, error } = await sb.from('cms_zimmer').select('*').order('sort_order');
+  if (error) { tbody.innerHTML = `<tr><td colspan="6">Fehler: ${error.message}</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="6">Noch keine Zimmer.</td></tr>'; return; }
+  tbody.innerHTML = data.map(z => `
+    <tr>
+      <td><strong>${escapeHtml(z.name)}</strong></td>
+      <td>${escapeHtml(z.zimmertyp || '')}</td>
+      <td>${z.anzahl_personen || ''}</td>
+      <td>${z.preis_ab ? 'CHF ' + Number(z.preis_ab).toFixed(2) : ''}</td>
+      <td>${z.aktiv ? '<span class="badge badge--ok">Aktiv</span>' : '<span class="badge badge--off">Inaktiv</span>'}</td>
+      <td class="actions">
+        <button onclick="editZimmer(${z.id})">Bearbeiten</button>
+        <button class="danger" onclick="deleteZimmer(${z.id})">Löschen</button>
+      </td>
+    </tr>`).join('');
+}
+
+function zimmerFormHtml(z = {}) {
+  return `<div class="form-grid">
+    <div class="form-row">
+      <div><label>Name *</label><input type="text" name="name" value="${escapeAttr(z.name||'')}" required></div>
+      <div><label>Zimmertyp</label><input type="text" name="zimmertyp" value="${escapeAttr(z.zimmertyp||'')}" placeholder="Doppelzimmer, Suite…"></div>
+    </div>
+    <div class="form-row cols-3">
+      <div><label>Personen</label><input type="number" name="anzahl_personen" value="${z.anzahl_personen ?? 2}"></div>
+      <div><label>Grösse (m²)</label><input type="number" name="groesse_qm" value="${z.groesse_qm ?? ''}"></div>
+      <div><label>Preis ab (CHF)</label><input type="number" step="1" name="preis_ab" value="${z.preis_ab ?? ''}"></div>
+    </div>
+    <div><label>Beschreibung</label><textarea name="beschreibung" rows="3">${escapeHtml(z.beschreibung||'')}</textarea></div>
+    <div><label>Ausstattung</label><textarea name="ausstattung" rows="2" placeholder="Doppelbett, eigenes Bad, WLAN, Föhn…">${escapeHtml(z.ausstattung||'')}</textarea></div>
+    <div><label>Bild-URL</label><input type="text" name="bild_url" value="${escapeAttr(z.bild_url||'')}" placeholder="https://… oder images/…"></div>
+    <div class="form-row">
+      <div><label>Sortierung</label><input type="number" name="sort_order" value="${z.sort_order ?? 0}"></div>
+      <div style="display:flex;align-items:end;gap:1rem;">
+        <label class="form-check"><input type="checkbox" name="buchbar" ${z.buchbar !== false ? 'checked' : ''}> Buchbar</label>
+        <label class="form-check"><input type="checkbox" name="aktiv" ${z.aktiv !== false ? 'checked' : ''}> Aktiv</label>
+      </div>
+    </div>
+  </div>`;
+}
+
+$('#newZimmerBtn').addEventListener('click', () => {
+  openModal('Neues Zimmer', zimmerFormHtml(), async () => {
+    const f = readForm();
+    if (!f.name) throw new Error('Name ist Pflicht.');
+    const { error } = await sb.from('cms_zimmer').insert(f);
+    if (error) throw error;
+    toast('Zimmer gespeichert', 'success'); loadZimmer(); loadCounts();
+  });
+});
+
+window.editZimmer = async (id) => {
+  const { data, error } = await sb.from('cms_zimmer').select('*').eq('id', id).single();
+  if (error) return toast(error.message, 'error');
+  openModal('Zimmer bearbeiten', zimmerFormHtml(data), async () => {
+    const f = readForm();
+    const { error } = await sb.from('cms_zimmer').update(f).eq('id', id);
+    if (error) throw error;
+    toast('Aktualisiert', 'success'); loadZimmer();
+  });
+};
+
+window.deleteZimmer = async (id) => {
+  if (!confirm('Zimmer wirklich löschen?')) return;
+  const { error } = await sb.from('cms_zimmer').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success'); loadZimmer(); loadCounts();
+};
+
+/* =============================================================
+   TEAM / MITARBEITENDE
+   ============================================================= */
+async function loadTeam() {
+  const tbody = $('#teamTable tbody');
+  tbody.innerHTML = '<tr><td colspan="5">Lädt…</td></tr>';
+  const { data, error } = await sb.from('cms_team').select('*').order('sort_order');
+  if (error) { tbody.innerHTML = `<tr><td colspan="5">Fehler: ${error.message}</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="5">Noch keine Team-Mitglieder.</td></tr>'; return; }
+  tbody.innerHTML = data.map(t => `
+    <tr>
+      <td><strong>${escapeHtml(t.name)}</strong></td>
+      <td>${escapeHtml(t.position || '')}</td>
+      <td>${escapeHtml(t.bereich || '')}</td>
+      <td>${t.aktiv ? '<span class="badge badge--ok">Aktiv</span>' : '<span class="badge badge--off">Inaktiv</span>'}</td>
+      <td class="actions">
+        <button onclick="editTeam(${t.id})">Bearbeiten</button>
+        <button class="danger" onclick="deleteTeam(${t.id})">Löschen</button>
+      </td>
+    </tr>`).join('');
+}
+
+function teamFormHtml(t = {}) {
+  return `<div class="form-grid">
+    <div><label>Name *</label><input type="text" name="name" value="${escapeAttr(t.name||'')}" required></div>
+    <div class="form-row">
+      <div><label>Position</label><input type="text" name="position" value="${escapeAttr(t.position||'')}" placeholder="Betriebsleiter, Service…"></div>
+      <div><label>Bereich</label><input type="text" name="bereich" value="${escapeAttr(t.bereich||'')}" placeholder="Service, Küche, Hotel…"></div>
+    </div>
+    <div><label>Bio / kurze Beschreibung</label><textarea name="bio" rows="3">${escapeHtml(t.bio||'')}</textarea></div>
+    <div class="form-row">
+      <div><label>E-Mail (optional)</label><input type="email" name="email" value="${escapeAttr(t.email||'')}"></div>
+      <div><label>Bild-URL</label><input type="text" name="bild_url" value="${escapeAttr(t.bild_url||'')}"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Sortierung</label><input type="number" name="sort_order" value="${t.sort_order ?? 0}"></div>
+      <div style="display:flex;align-items:end;"><label class="form-check"><input type="checkbox" name="aktiv" ${t.aktiv !== false ? 'checked' : ''}> Aktiv</label></div>
+    </div>
+  </div>`;
+}
+
+$('#newTeamBtn').addEventListener('click', () => {
+  openModal('Neue Person', teamFormHtml(), async () => {
+    const f = readForm(); if (!f.name) throw new Error('Name ist Pflicht.');
+    const { error } = await sb.from('cms_team').insert(f);
+    if (error) throw error;
+    toast('Gespeichert', 'success'); loadTeam(); loadCounts();
+  });
+});
+window.editTeam = async (id) => {
+  const { data, error } = await sb.from('cms_team').select('*').eq('id', id).single();
+  if (error) return toast(error.message, 'error');
+  openModal('Person bearbeiten', teamFormHtml(data), async () => {
+    const f = readForm();
+    const { error } = await sb.from('cms_team').update(f).eq('id', id);
+    if (error) throw error;
+    toast('Aktualisiert', 'success'); loadTeam();
+  });
+};
+window.deleteTeam = async (id) => {
+  if (!confirm('Eintrag löschen?')) return;
+  const { error } = await sb.from('cms_team').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success'); loadTeam(); loadCounts();
+};
+
+/* =============================================================
+   OFFENE STELLEN
+   ============================================================= */
+async function loadStellen() {
+  const tbody = $('#stellenTable tbody');
+  tbody.innerHTML = '<tr><td colspan="6">Lädt…</td></tr>';
+  const { data, error } = await sb.from('cms_stellen').select('*').order('sort_order');
+  if (error) { tbody.innerHTML = `<tr><td colspan="6">Fehler: ${error.message}</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="6">Noch keine Stellen.</td></tr>'; return; }
+  tbody.innerHTML = data.map(s => `
+    <tr>
+      <td><strong>${escapeHtml(s.titel)}</strong></td>
+      <td>${escapeHtml(s.pensum||'')}</td>
+      <td>${escapeHtml(s.bereich||'')}</td>
+      <td>${escapeHtml(s.eintritt||'')}</td>
+      <td>${s.aktiv ? '<span class="badge badge--ok">Aktiv</span>' : '<span class="badge badge--off">Inaktiv</span>'}</td>
+      <td class="actions">
+        <button onclick="editStelle(${s.id})">Bearbeiten</button>
+        <button class="danger" onclick="deleteStelle(${s.id})">Löschen</button>
+      </td>
+    </tr>`).join('');
+}
+
+function stelleFormHtml(s = {}) {
+  return `<div class="form-grid">
+    <div><label>Titel *</label><input type="text" name="titel" value="${escapeAttr(s.titel||'')}" required></div>
+    <div class="form-row cols-3">
+      <div><label>Pensum</label><input type="text" name="pensum" value="${escapeAttr(s.pensum||'')}" placeholder="80–100%"></div>
+      <div><label>Bereich</label><input type="text" name="bereich" value="${escapeAttr(s.bereich||'')}" placeholder="Service, Küche…"></div>
+      <div><label>Eintritt</label><input type="text" name="eintritt" value="${escapeAttr(s.eintritt||'')}" placeholder="ab sofort"></div>
+    </div>
+    <div><label>Beschreibung</label><textarea name="beschreibung" rows="4">${escapeHtml(s.beschreibung||'')}</textarea></div>
+    <div><label>Anforderungen</label><textarea name="anforderungen" rows="3">${escapeHtml(s.anforderungen||'')}</textarea></div>
+    <div class="form-row">
+      <div><label>Ansprechperson</label><input type="text" name="ansprechperson" value="${escapeAttr(s.ansprechperson||'')}"></div>
+      <div><label>Ansprech-E-Mail</label><input type="email" name="ansprech_email" value="${escapeAttr(s.ansprech_email||'')}"></div>
+    </div>
+    <div><label>PDF-URL (Stelleninserat)</label><input type="text" name="pdf_url" value="${escapeAttr(s.pdf_url||'')}"></div>
+    <div class="form-row">
+      <div><label>Sortierung</label><input type="number" name="sort_order" value="${s.sort_order ?? 0}"></div>
+      <div style="display:flex;align-items:end;"><label class="form-check"><input type="checkbox" name="aktiv" ${s.aktiv !== false ? 'checked' : ''}> Aktiv</label></div>
+    </div>
+  </div>`;
+}
+
+$('#newStelleBtn').addEventListener('click', () => {
+  openModal('Neue Stelle', stelleFormHtml(), async () => {
+    const f = readForm(); if (!f.titel) throw new Error('Titel ist Pflicht.');
+    const { error } = await sb.from('cms_stellen').insert(f);
+    if (error) throw error;
+    toast('Gespeichert', 'success'); loadStellen(); loadCounts();
+  });
+});
+window.editStelle = async (id) => {
+  const { data, error } = await sb.from('cms_stellen').select('*').eq('id', id).single();
+  if (error) return toast(error.message, 'error');
+  openModal('Stelle bearbeiten', stelleFormHtml(data), async () => {
+    const f = readForm();
+    const { error } = await sb.from('cms_stellen').update(f).eq('id', id);
+    if (error) throw error;
+    toast('Aktualisiert', 'success'); loadStellen();
+  });
+};
+window.deleteStelle = async (id) => {
+  if (!confirm('Stelle löschen?')) return;
+  const { error } = await sb.from('cms_stellen').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success'); loadStellen(); loadCounts();
+};
+
+/* =============================================================
+   PARTNER / KOOPERATIONEN
+   ============================================================= */
+async function loadPartner() {
+  const tbody = $('#partnerTable tbody');
+  tbody.innerHTML = '<tr><td colspan="6">Lädt…</td></tr>';
+  const { data, error } = await sb.from('cms_partner').select('*').order('sort_order');
+  if (error) { tbody.innerHTML = `<tr><td colspan="6">Fehler: ${error.message}</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="6">Noch keine Partner.</td></tr>'; return; }
+  tbody.innerHTML = data.map(p => `
+    <tr>
+      <td><strong>${escapeHtml(p.name)}</strong></td>
+      <td>${escapeHtml(p.kategorie || '')}</td>
+      <td>${p.website_url ? `<a href="${escapeAttr(p.website_url)}" target="_blank" rel="noopener">↗</a>` : ''}</td>
+      <td>${p.highlight ? '⭐' : ''}</td>
+      <td>${p.aktiv ? '<span class="badge badge--ok">Aktiv</span>' : '<span class="badge badge--off">Inaktiv</span>'}</td>
+      <td class="actions">
+        <button onclick="editPartner(${p.id})">Bearbeiten</button>
+        <button class="danger" onclick="deletePartner(${p.id})">Löschen</button>
+      </td>
+    </tr>`).join('');
+}
+
+function partnerFormHtml(p = {}) {
+  return `<div class="form-grid">
+    <div><label>Name *</label><input type="text" name="name" value="${escapeAttr(p.name||'')}" required></div>
+    <div><label>Kategorie</label><input type="text" name="kategorie" value="${escapeAttr(p.kategorie||'')}" placeholder="Verein, Lieferant, Institution"></div>
+    <div><label>Beschreibung</label><textarea name="beschreibung" rows="3">${escapeHtml(p.beschreibung||'')}</textarea></div>
+    <div class="form-row">
+      <div><label>Logo-URL</label><input type="text" name="logo_url" value="${escapeAttr(p.logo_url||'')}"></div>
+      <div><label>Bild-URL</label><input type="text" name="bild_url" value="${escapeAttr(p.bild_url||'')}"></div>
+    </div>
+    <div><label>Website-URL</label><input type="text" name="website_url" value="${escapeAttr(p.website_url||'')}" placeholder="https://…"></div>
+    <div class="form-row">
+      <div><label>Sortierung</label><input type="number" name="sort_order" value="${p.sort_order ?? 0}"></div>
+      <div style="display:flex;align-items:end;gap:1rem;">
+        <label class="form-check"><input type="checkbox" name="highlight" ${p.highlight ? 'checked' : ''}> Highlight</label>
+        <label class="form-check"><input type="checkbox" name="aktiv" ${p.aktiv !== false ? 'checked' : ''}> Aktiv</label>
+      </div>
+    </div>
+  </div>`;
+}
+
+$('#newPartnerBtn').addEventListener('click', () => {
+  openModal('Neuer Partner', partnerFormHtml(), async () => {
+    const f = readForm(); if (!f.name) throw new Error('Name ist Pflicht.');
+    const { error } = await sb.from('cms_partner').insert(f);
+    if (error) throw error;
+    toast('Gespeichert', 'success'); loadPartner();
+  });
+});
+window.editPartner = async (id) => {
+  const { data, error } = await sb.from('cms_partner').select('*').eq('id', id).single();
+  if (error) return toast(error.message, 'error');
+  openModal('Partner bearbeiten', partnerFormHtml(data), async () => {
+    const f = readForm();
+    const { error } = await sb.from('cms_partner').update(f).eq('id', id);
+    if (error) throw error;
+    toast('Aktualisiert', 'success'); loadPartner();
+  });
+};
+window.deletePartner = async (id) => {
+  if (!confirm('Partner löschen?')) return;
+  const { error } = await sb.from('cms_partner').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success'); loadPartner();
+};
+
+/* =============================================================
+   COMMUNITY-MODERATION (löscht von `posts`-Tabelle)
+   ============================================================= */
+async function loadCommunity() {
+  const tbody = $('#communityTable tbody');
+  tbody.innerHTML = '<tr><td colspan="6">Lädt…</td></tr>';
+  const { data, error } = await sb.from('posts').select('*').order('created_at', { ascending: false });
+  if (error) { tbody.innerHTML = `<tr><td colspan="6">Fehler oder Tabelle "posts" nicht gefunden: ${error.message}</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="6">Noch keine Posts.</td></tr>'; return; }
+  tbody.innerHTML = data.map(p => `
+    <tr>
+      <td>${fmtDate(p.created_at)}<div style="font-size:0.8rem;color:var(--c-text-soft)">${new Date(p.created_at).toLocaleTimeString('de-CH',{hour:'2-digit',minute:'2-digit'})}</div></td>
+      <td><strong>${escapeHtml(p.name || 'Anonym')}</strong></td>
+      <td>${p.rating ? '★'.repeat(p.rating) + '☆'.repeat(5-p.rating) : ''}</td>
+      <td><div class="truncate">${escapeHtml(p.text || '')}</div></td>
+      <td>${p.photo_url ? `<a href="${escapeAttr(p.photo_url)}" target="_blank"><img src="${escapeAttr(p.photo_url)}" style="height:40px;width:40px;object-fit:cover;border-radius:4px"></a>` : ''}</td>
+      <td class="actions">
+        <button class="danger" onclick="deletePost(${p.id})">Löschen</button>
+      </td>
+    </tr>`).join('');
+}
+
+window.deletePost = async (id) => {
+  if (!confirm('Post wirklich löschen? Kann nicht rückgängig gemacht werden.')) return;
+  const { error } = await sb.from('posts').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success'); loadCommunity(); loadCounts();
+};
 
 /* GO */
 init();

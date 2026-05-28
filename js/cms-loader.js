@@ -165,6 +165,109 @@
     }
   }
 
+  // ---- HINTERGRUND-BILDER (kind='image' Sections) ----
+  // <div class="hero__photo" data-cms-bg="index:hero_bg" style="background-image: url(images/...)"></div>
+  async function loadBgImages() {
+    const els = [...document.querySelectorAll('[data-cms-bg]')];
+    if (!els.length) return;
+    const keys = [...new Set(els.map(e => e.dataset.cmsBg))];
+    const pages = [...new Set(keys.map(k => k.split(':')[0]))];
+    const { data, error } = await sb.from('cms_sections').select('*').in('page_slug', pages);
+    if (error) return console.warn('[CMS] bg-images', error);
+    const lookup = {};
+    data.forEach(s => lookup[`${s.page_slug}:${s.section_key}`] = s);
+    els.forEach(el => {
+      const s = lookup[el.dataset.cmsBg];
+      if (!s || !s.content) return;
+      el.style.backgroundImage = `url('${s.content}')`;
+    });
+  }
+
+  // ---- TEAM ----
+  async function loadTeam() {
+    const container = document.querySelector('[data-cms-team]');
+    if (!container) return;
+    const { data, error } = await sb.from('cms_team').select('*').eq('aktiv', true).order('sort_order');
+    if (error) { console.warn('[CMS] team', error); return; }
+    if (!data.length) { container.innerHTML = ''; return; }
+    container.innerHTML = data.map(t => `
+      <article class="team-card">
+        ${t.bild_url ? `<div class="team-card__img" style="background-image:url('${esc(t.bild_url)}');"></div>` : '<div class="team-card__img team-card__img--placeholder"></div>'}
+        <div class="team-card__body">
+          <h3>${esc(t.name)}</h3>
+          ${t.position ? `<div class="team-card__pos">${esc(t.position)}</div>` : ''}
+          ${t.bio ? `<p>${esc(t.bio)}</p>` : ''}
+          ${t.email ? `<a href="mailto:${esc(t.email)}" class="team-card__mail">${esc(t.email)}</a>` : ''}
+        </div>
+      </article>`).join('');
+  }
+
+  // ---- STELLEN ----
+  async function loadStellen() {
+    const container = document.querySelector('[data-cms-stellen]');
+    if (!container) return;
+    const { data, error } = await sb.from('cms_stellen').select('*').eq('aktiv', true).order('sort_order');
+    if (error) { console.warn('[CMS] stellen', error); return; }
+    if (!data.length) { container.innerHTML = '<p style="text-align:center;color:var(--c-text-soft);font-style:italic;">Aktuell keine offenen Stellen ausgeschrieben.</p>'; return; }
+    container.innerHTML = data.map(s => `
+      <article class="stelle-card">
+        <header class="stelle-card__head">
+          <h3>${esc(s.titel)}</h3>
+          <div class="stelle-card__meta">
+            ${s.pensum ? `<span>${esc(s.pensum)}</span>` : ''}
+            ${s.bereich ? `<span>${esc(s.bereich)}</span>` : ''}
+            ${s.eintritt ? `<span>Eintritt: ${esc(s.eintritt)}</span>` : ''}
+          </div>
+        </header>
+        ${s.beschreibung ? `<div class="stelle-card__sect"><strong>Deine Aufgaben</strong><p>${esc(s.beschreibung)}</p></div>` : ''}
+        ${s.anforderungen ? `<div class="stelle-card__sect"><strong>Was du mitbringst</strong><p>${esc(s.anforderungen)}</p></div>` : ''}
+        <footer class="stelle-card__foot">
+          ${s.ansprechperson ? `<div>Ansprechperson: <strong>${esc(s.ansprechperson)}</strong></div>` : ''}
+          ${s.ansprech_email ? `<a href="mailto:${esc(s.ansprech_email)}?subject=Bewerbung ${esc(s.titel)}" class="btn btn--dark">Bewerben</a>` : ''}
+          ${s.pdf_url ? `<a href="${esc(s.pdf_url)}" target="_blank" rel="noopener" class="btn btn--outline">Inserat PDF ↗</a>` : ''}
+        </footer>
+      </article>`).join('');
+  }
+
+  // ---- ZIMMER ----
+  async function loadZimmer() {
+    const container = document.querySelector('[data-cms-zimmer]');
+    if (!container) return;
+    const { data, error } = await sb.from('cms_zimmer').select('*').eq('aktiv', true).order('sort_order');
+    if (error) { console.warn('[CMS] zimmer', error); return; }
+    if (!data.length) { container.innerHTML = ''; return; }
+    container.innerHTML = data.map(z => `
+      <article class="zimmer-card">
+        ${z.bild_url ? `<div class="zimmer-card__img" style="background-image:url('${esc(z.bild_url)}');"></div>` : ''}
+        <div class="zimmer-card__body">
+          <h3>${esc(z.name)}</h3>
+          ${z.zimmertyp ? `<div class="zimmer-card__typ">${esc(z.zimmertyp)} · für ${z.anzahl_personen} Personen${z.groesse_qm ? ' · '+z.groesse_qm+' m²' : ''}</div>` : ''}
+          ${z.beschreibung ? `<p>${esc(z.beschreibung)}</p>` : ''}
+          ${z.ausstattung ? `<div class="zimmer-card__aus"><strong>Ausstattung</strong><br>${esc(z.ausstattung)}</div>` : ''}
+          ${z.preis_ab ? `<div class="zimmer-card__preis">ab CHF ${Number(z.preis_ab).toFixed(0)}.– / Nacht</div>` : ''}
+        </div>
+      </article>`).join('');
+  }
+
+  // ---- PARTNER ----
+  async function loadPartner() {
+    const container = document.querySelector('[data-cms-partner]');
+    if (!container) return;
+    const { data, error } = await sb.from('cms_partner').select('*').eq('aktiv', true).order('sort_order');
+    if (error) { console.warn('[CMS] partner', error); return; }
+    if (!data.length) { container.innerHTML = ''; return; }
+    container.innerHTML = data.map(p => `
+      <article class="partner-card ${p.highlight ? 'partner-card--highlight' : ''}">
+        ${p.logo_url ? `<img src="${esc(p.logo_url)}" alt="${esc(p.name)}" class="partner-card__logo">` : ''}
+        <div class="partner-card__body">
+          ${p.kategorie ? `<span class="partner-card__cat">${esc(p.kategorie)}</span>` : ''}
+          <h3>${esc(p.name)}</h3>
+          ${p.beschreibung ? `<p>${esc(p.beschreibung)}</p>` : ''}
+          ${p.website_url ? `<a href="${esc(p.website_url)}" target="_blank" rel="noopener" class="btn btn--dark">${esc(p.website_url.replace(/^https?:\/\//,'').replace(/\/$/,''))} ↗</a>` : ''}
+        </div>
+      </article>`).join('');
+  }
+
   // ---- 6. PDF-Slots (Karten) ----
   // Beispiel im HTML:  <a data-cms-pdf="speisekarte" href="pdfs/Speisekarte_alteHoefli.pdf">Karte ansehen</a>
   // Die URL wird automatisch durch die im CMS hinterlegte PDF-URL ersetzt.
@@ -187,6 +290,9 @@
   }
 
   // Run all
-  Promise.all([loadSections(), loadEvents(), loadOz(), loadNews(), loadMenu(), loadKartenPdfs()])
-    .catch(err => console.warn('[CMS] error', err));
+  Promise.all([
+    loadSections(), loadEvents(), loadOz(), loadNews(), loadMenu(),
+    loadKartenPdfs(), loadBgImages(), loadTeam(), loadStellen(),
+    loadZimmer(), loadPartner()
+  ]).catch(err => console.warn('[CMS] error', err));
 })();

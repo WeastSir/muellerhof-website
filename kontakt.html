@@ -26,7 +26,7 @@
 </ul>
 </nav>
 <section class="hero hero--short hero--photo">
-<div class="hero__photo" style="background-image: url('images/wohnzimmer.png');"></div>
+<div class="hero__photo" data-cms-bg="kontakt:hero_bg" style="background-image: url('images/wohnzimmer.png');"></div>
 <div class="hero__overlay"></div>
 <div class="hero__content">
 <p class="hero__sub" data-cms="kontakt:hero_sub">Kontakt</p>
@@ -79,7 +79,7 @@
 <h2 class="intro__headline" data-cms="kontakt:intro_headline">Allgemeine Anfrage.</h2>
 <p class="intro__lead" data-cms="kontakt:intro_lead">Du hast eine Frage, einen Vorschlag oder möchtest einfach Hallo sagen?</p>
 <div style="max-width: 700px; margin: 2rem auto 0; background: var(--c-white); padding: 3rem 2rem; box-shadow: 0 20px 40px rgba(45,64,54,0.1); text-align: left;">
-<form class="form" onsubmit="alert('Demo-Modus: Nachricht wurde NICHT versendet. Das Backend folgt vor Go-Live. Bitte aktuell telefonisch unter 062 865 53 80 oder per E-Mail an info@muellerhof.ch melden.'); return false;">
+<form class="form" data-cms-form="kontakt">
 <div class="form__row">
 <div><label>Vorname &amp; Name</label><input required="" type="text"/></div>
 <div><label>E-Mail</label><input required="" type="email"/></div>
@@ -87,7 +87,7 @@
 <div><label>Betreff</label><input type="text"/></div>
 <div><label>Nachricht</label><textarea required=""></textarea></div>
 <button class="btn btn--dark" type="submit">Nachricht senden</button>
-<p style="font-size: 0.8rem; color: var(--c-brown); text-align: center; font-style: italic; padding: 1rem; background: rgba(103,74,45,0.08); border-left: 3px solid var(--c-brown); margin-top: 1rem;">⚠ Demo-Modus: Anfragen werden aktuell <strong>nicht</strong> versendet. Backend folgt vor Go-Live. Bitte telefonisch oder per E-Mail kontaktieren.</p>
+
 </form>
 </div>
 </div>
@@ -141,5 +141,6 @@
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
 <script src="js/cms-loader.js"></script>
+<script src="js/cms-forms.js"></script>
 </body>
 </html>

@@ -37,12 +37,18 @@
     </div>
     <nav class="sidebar__nav">
       <button class="nav-item active" data-view="overview">Übersicht</button>
+      <button class="nav-item" data-view="anfragen">📥 Anfragen</button>
       <button class="nav-item" data-view="events">Events</button>
       <button class="nav-item" data-view="sections">Seitentexte</button>
       <button class="nav-item" data-view="menu">Speisekarte</button>
       <button class="nav-item" data-view="oeffnung">Öffnungszeiten</button>
       <button class="nav-item" data-view="news">News &amp; Aktuelles</button>
       <button class="nav-item" data-view="karten">Karten &amp; PDFs</button>
+      <button class="nav-item" data-view="zimmer">Hotel-Zimmer</button>
+      <button class="nav-item" data-view="team">Team / Mitarbeitende</button>
+      <button class="nav-item" data-view="stellen">Offene Stellen</button>
+      <button class="nav-item" data-view="partner">Kooperationen / Partner</button>
+      <button class="nav-item" data-view="community">💬 Community-Posts</button>
       <button class="nav-item" data-view="medien">Medien (Bilder/PDFs)</button>
     </nav>
     <div class="sidebar__bottom">
@@ -61,6 +67,10 @@
     <!-- ÜBERSICHT -->
     <section class="view" id="view-overview">
       <div class="cards">
+        <div class="card" data-view-link="anfragen" style="border-left:4px solid var(--c-accent);">
+          <div class="card__num" id="countAnfragen">–</div>
+          <div class="card__label">Neue Anfragen</div>
+        </div>
         <div class="card" data-view-link="events">
           <div class="card__num" id="countEvents">–</div>
           <div class="card__label">Events</div>
@@ -73,9 +83,21 @@
           <div class="card__num" id="countMenu">–</div>
           <div class="card__label">Menü-Positionen</div>
         </div>
-        <div class="card" data-view-link="news">
-          <div class="card__num" id="countNews">–</div>
-          <div class="card__label">News</div>
+        <div class="card" data-view-link="zimmer">
+          <div class="card__num" id="countZimmer">–</div>
+          <div class="card__label">Hotel-Zimmer</div>
+        </div>
+        <div class="card" data-view-link="team">
+          <div class="card__num" id="countTeam">–</div>
+          <div class="card__label">Team</div>
+        </div>
+        <div class="card" data-view-link="stellen">
+          <div class="card__num" id="countStellen">–</div>
+          <div class="card__label">Offene Stellen</div>
+        </div>
+        <div class="card" data-view-link="community">
+          <div class="card__num" id="countCommunity">–</div>
+          <div class="card__label">Community-Posts</div>
         </div>
       </div>
       <div class="info-box">
@@ -170,6 +192,117 @@
         <table class="data-table" id="newsTable">
           <thead><tr>
             <th>Titel</th><th>Kategorie</th><th>Gültig ab</th><th>Gültig bis</th><th>Aktiv</th><th class="col-actions">Aktionen</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ANFRAGEN (Reservierungen, Eventanfragen etc.) -->
+    <section class="view hidden" id="view-anfragen">
+      <div class="view__actions">
+        <label>Typ:
+          <select id="anfragenTypFilter">
+            <option value="">— alle —</option>
+            <option value="reservation">Reservierungen</option>
+            <option value="event">Eventanfragen</option>
+            <option value="hotel">Hotel-Buchungen</option>
+            <option value="seminar">Seminar-Anfragen</option>
+            <option value="bankett">Bankett-Anfragen</option>
+            <option value="kontakt">Kontakt-Nachrichten</option>
+            <option value="karriere">Bewerbungen</option>
+          </select>
+        </label>
+        <label>Status:
+          <select id="anfragenStatusFilter">
+            <option value="neu">Neu (offen)</option>
+            <option value="">Alle</option>
+            <option value="gelesen">Gelesen</option>
+            <option value="bearbeitet">In Bearbeitung</option>
+            <option value="erledigt">Erledigt</option>
+          </select>
+        </label>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="anfragenTable">
+          <thead><tr>
+            <th>Eingang</th><th>Typ</th><th>Von</th><th>Kontakt</th><th>Status</th><th class="col-actions">Aktionen</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- HOTEL-ZIMMER -->
+    <section class="view hidden" id="view-zimmer">
+      <div class="view__actions">
+        <button class="btn-primary" id="newZimmerBtn">+ Neues Zimmer</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="zimmerTable">
+          <thead><tr>
+            <th>Name</th><th>Typ</th><th>Personen</th><th>Preis ab</th><th>Aktiv</th><th class="col-actions">Aktionen</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="view hidden" id="view-team">
+      <div class="view__actions">
+        <button class="btn-primary" id="newTeamBtn">+ Neue Person</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="teamTable">
+          <thead><tr>
+            <th>Name</th><th>Position</th><th>Bereich</th><th>Aktiv</th><th class="col-actions">Aktionen</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- STELLEN -->
+    <section class="view hidden" id="view-stellen">
+      <div class="view__actions">
+        <button class="btn-primary" id="newStelleBtn">+ Neue Stelle</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="stellenTable">
+          <thead><tr>
+            <th>Titel</th><th>Pensum</th><th>Bereich</th><th>Eintritt</th><th>Aktiv</th><th class="col-actions">Aktionen</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PARTNER -->
+    <section class="view hidden" id="view-partner">
+      <div class="view__actions">
+        <button class="btn-primary" id="newPartnerBtn">+ Neuer Partner</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="partnerTable">
+          <thead><tr>
+            <th>Name</th><th>Kategorie</th><th>Website</th><th>Highlight</th><th>Aktiv</th><th class="col-actions">Aktionen</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- COMMUNITY MODERATION -->
+    <section class="view hidden" id="view-community">
+      <div class="info-box" style="margin-bottom:1.5rem;">
+        <h3>Community-Posts moderieren</h3>
+        <p>Hier siehst du alle eingegangenen Community-Posts. Du kannst Posts löschen die nicht der Hausordnung entsprechen.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="communityTable">
+          <thead><tr>
+            <th>Eingang</th><th>Name</th><th>Stern</th><th>Text</th><th>Foto</th><th class="col-actions">Aktionen</th>
           </tr></thead>
           <tbody></tbody>
         </table>

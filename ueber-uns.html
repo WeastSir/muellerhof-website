@@ -25,7 +25,7 @@
 </ul>
 </nav>
 <section class="hero hero--short hero--photo">
-<div class="hero__photo" style="background-image: url('images/alte-hoefli.png');"></div>
+<div class="hero__photo" data-cms-bg="ueber-uns:hero_bg" style="background-image: url('images/alte-hoefli.png');"></div>
 <div class="hero__overlay"></div>
 <div class="hero__content">
 <p class="hero__sub" data-cms="ueber-uns:hero_sub">Über uns</p>
@@ -42,7 +42,7 @@
 </section>
 <section class="split">
 <div class="split__inner">
-<div class="split__img split__img--photo" style="background-image: url('images/stuebli.png');"></div>
+<div class="split__img split__img--photo" data-cms-bg="ueber-uns:split_bg" style="background-image: url('images/stuebli.png');"></div>
 <div class="split__text">
 <h2 data-cms="ueber-uns:split_h2" style="font-style: italic; font-weight: 400;">Gemeinschaft wieder selbstverständlich machen.</h2>
 <p data-cms="ueber-uns:split_p">Familien, Freundesgruppen, Seniorinnen und Senioren, junge Erwachsene sowie Unternehmen aus Frick und der Region – sie alle sollen hier einen Ort finden, an dem sie zusammenkommen, verweilen und gemeinsame Erlebnisse teilen können.</p>
@@ -52,7 +52,7 @@
 </section>
 <section class="split split--reverse">
 <div class="split__inner">
-<div class="split__img split__img--photo" style="background-image: url('images/wohnzimmer.png');"></div>
+<div class="split__img split__img--photo" data-cms-bg="ueber-uns:split_bg_2" style="background-image: url('images/wohnzimmer.png');"></div>
 <div class="split__text">
 <h2 data-cms="ueber-uns:split_h2_2" style="font-style: italic; font-weight: 400;">Von Frick. Für Frick.</h2>
 <p data-cms="ueber-uns:split_p_3">Der Müllerhof verbindet Menschen, Generationen und Geschichten und schafft Raum für Begegnung, Austausch und gemeinsame Erlebnisse.</p>
@@ -90,7 +90,7 @@
 </section>
 <section class="split">
 <div class="split__inner">
-<div class="split__img split__img--photo" style="background-image: url('images/garten.png');"></div>
+<div class="split__img split__img--photo" data-cms-bg="ueber-uns:split_bg_3" style="background-image: url('images/garten.png');"></div>
 <div class="split__text">
 <span class="kicker">Lage &amp; Standort</span>
 <h2 data-cms="ueber-uns:split_h2_3" style="font-style: italic; font-weight: 400;">Mittendrin im Fricktal.</h2>
@@ -104,27 +104,9 @@
 <span class="kicker kicker--light">Unser Team</span>
 <h2 style="font-style: italic; font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem;">Die Menschen hinter dem Müllerhof.</h2>
 <p style="max-width: 720px; margin: 0 auto 4rem;">Ein Team aus erfahrenen Profis und jungen Talenten – verschiedene Generationen, eine gemeinsame Leidenschaft für Gastfreundschaft.</p>
-<div class="team-grid">
-<div class="team-card">
-<div class="team-card__img">TS</div>
-<div class="team-card__name">Torsten Stobbe</div>
-<div class="team-card__role">Betriebsleiter</div>
-</div>
-<div class="team-card">
-<div class="team-card__img">?</div>
-<div class="team-card__name">[ Name ]</div>
-<div class="team-card__role">Küchenchef</div>
-</div>
-<div class="team-card">
-<div class="team-card__img">?</div>
-<div class="team-card__name">[ Name ]</div>
-<div class="team-card__role">Service</div>
-</div>
-<div class="team-card">
-<div class="team-card__img">?</div>
-<div class="team-card__name">[ Name ]</div>
-<div class="team-card__role">Hotel</div>
-</div>
+<!-- Team wird aus dem CMS geladen (bearbeitbar via /admin.html → Team) -->
+<div data-cms-team style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:1100px;margin:0 auto;">
+  <p style="text-align:center;color:var(--c-text-soft);font-style:italic;grid-column:1/-1;">Team wird geladen…</p>
 </div>
 <div style="margin-top: 4rem;">
 <a class="btn btn--primary" href="karriere.html">Werde Teil des Teams</a>
