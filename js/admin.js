@@ -73,6 +73,7 @@ const viewTitles = {
   menu:       'Speisekarte verwalten',
   oeffnung:   'Öffnungszeiten verwalten',
   news:       'News & Aktuelles',
+  karten:     'Karten & PDFs zuweisen',
   medien:     'Medien-Bibliothek',
 };
 
@@ -87,6 +88,7 @@ function switchView(view) {
   if (view === 'menu')     loadMenu();
   if (view === 'oeffnung') loadOz();
   if (view === 'news')     loadNews();
+  if (view === 'karten')   loadKarten();
   if (view === 'medien')   loadMedia();
 }
 
@@ -613,23 +615,118 @@ window.deleteNews = async (id) => {
 };
 
 /* =============================================================
-   MEDIEN (Bilder hochladen)
+   KARTEN & PDFs (Zuweisung Speisekarte / Getränke / Wein / Bankett etc.)
+   Speichert PDF-URL in cms_sections mit kind='pdf'.
+   ============================================================= */
+const KARTEN_SLOTS = [
+  { key: 'speisekarte',        label: 'Aktuelle Speisekarte',        beschreibung: 'Hauptkarte im Restaurant – wird auf der Seite "Speisekarte" angezeigt.' },
+  { key: 'getraenkekarte',     label: 'Getränkekarte',                beschreibung: 'Wird neben der Speisekarte angeboten.' },
+  { key: 'weinkarte',          label: 'Weinkarte',                    beschreibung: 'Eigene Weinkarte als PDF.' },
+  { key: 'mittagskarte',       label: 'Mittagskarte / Tagesangebot',  beschreibung: 'Aktuelle Mittagskarte (wöchentlich).' },
+  { key: 'bankettdokumentation', label: 'Bankettdokumentation',       beschreibung: 'Wird auf der Events-Seite verlinkt.' },
+  { key: 'seminardokumentation', label: 'Seminardokumentation',       beschreibung: 'Wird auf der Seminare-Seite verlinkt.' },
+  { key: 'hotelpauschalen',    label: 'Hotelpauschalen-PDF',          beschreibung: 'Wird auf der Hotel-Seite verlinkt.' },
+];
+
+async function loadKarten() {
+  const container = $('#kartenContainer');
+  container.innerHTML = 'Lädt…';
+  // Alle PDF-Sections holen + alle hochgeladenen PDFs
+  const [{ data: secs }, { data: media }] = await Promise.all([
+    sb.from('cms_sections').select('*').eq('page_slug', 'karten'),
+    sb.from('cms_medien').select('*').order('uploaded_at', { ascending: false }),
+  ]);
+  const pdfs = (media || []).filter(m => /\.pdf$/i.test(m.filename));
+  const secMap = {};
+  (secs || []).forEach(s => secMap[s.section_key] = s);
+
+  container.innerHTML = KARTEN_SLOTS.map(slot => {
+    const cur = secMap[slot.key];
+    const currentUrl = cur?.content || '';
+    return `
+      <div class="menu-cat">
+        <div class="menu-cat__head">
+          <div>
+            <h3>${escapeHtml(slot.label)}</h3>
+            <div style="font-size:0.8rem;color:var(--c-text-soft);margin-top:0.2rem;">${escapeHtml(slot.beschreibung)}</div>
+          </div>
+        </div>
+        <div style="padding:1rem 1.25rem;">
+          <label style="font-size:0.75rem;font-weight:600;color:var(--c-text-soft);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:0.3rem;">PDF auswählen</label>
+          <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+            <select class="karten-select" data-slot="${slot.key}" style="flex:1;min-width:240px;padding:0.5rem 0.7rem;border:1px solid var(--c-line);border-radius:4px;">
+              <option value="">— kein PDF zugewiesen —</option>
+              ${pdfs.map(p => `<option value="${escapeAttr(p.url)}" ${p.url === currentUrl ? 'selected' : ''}>${escapeHtml(p.filename)}</option>`).join('')}
+            </select>
+            <button class="btn-primary" onclick="saveKarte('${slot.key}', '${escapeAttr(slot.label)}')">Speichern</button>
+            ${currentUrl ? `<a href="${escapeAttr(currentUrl)}" target="_blank" rel="noopener" class="btn-secondary">Vorschau ↗</a>` : ''}
+          </div>
+          ${currentUrl ? `<div style="margin-top:0.5rem;font-size:0.8rem;color:var(--c-text-soft);">Aktuell: <code>${escapeHtml(currentUrl.split('/').slice(-1)[0])}</code></div>` : ''}
+        </div>
+      </div>`;
+  }).join('') + (pdfs.length === 0 ? '<div class="info-box" style="margin-top:1rem;"><p><strong>Noch keine PDFs hochgeladen.</strong> Gehe links zu <strong>Medien</strong> und lade dort deine PDFs (z.B. Speisekarte) hoch.</p></div>' : '');
+}
+
+window.saveKarte = async (slotKey, slotLabel) => {
+  const sel = document.querySelector(`.karten-select[data-slot="${slotKey}"]`);
+  const url = sel.value;
+  // Existiert die Section schon?
+  const { data: existing } = await sb.from('cms_sections')
+    .select('id').eq('page_slug', 'karten').eq('section_key', slotKey).maybeSingle();
+  let result;
+  if (existing) {
+    result = await sb.from('cms_sections').update({ content: url, kind: 'pdf', label: slotLabel })
+      .eq('id', existing.id);
+  } else {
+    result = await sb.from('cms_sections').insert({
+      page_slug: 'karten', section_key: slotKey, kind: 'pdf', label: slotLabel, content: url
+    });
+  }
+  if (result.error) return toast('Fehler: ' + result.error.message, 'error');
+  toast('Gespeichert · auf der Webseite sofort live', 'success');
+  loadKarten();
+};
+
+/* =============================================================
+   MEDIEN (Bilder + PDFs hochladen)
    ============================================================= */
 async function loadMedia() {
   const grid = $('#mediaGrid');
   grid.innerHTML = 'Lädt…';
   const { data, error } = await sb.from('cms_medien').select('*').order('uploaded_at', { ascending: false });
   if (error) { grid.innerHTML = 'Fehler: ' + error.message; return; }
-  if (!data.length) { grid.innerHTML = '<div class="info-box"><p>Noch keine Medien hochgeladen.</p></div>'; return; }
-  grid.innerHTML = data.map(m => `
+  if (!data.length) { grid.innerHTML = '<div class="info-box"><p>Noch keine Medien hochgeladen. Klicke oben auf <strong>+ Datei hochladen</strong>.</p></div>'; return; }
+  grid.innerHTML = data.map(m => {
+    const isPdf = /\.pdf$/i.test(m.filename);
+    return `
     <div class="media-tile">
-      <img src="${escapeAttr(m.url)}" alt="${escapeAttr(m.alt || m.filename)}">
+      ${isPdf
+        ? `<a href="${escapeAttr(m.url)}" target="_blank" rel="noopener" class="media-tile__pdf">
+             <div class="media-tile__pdficon">PDF</div>
+           </a>`
+        : `<a href="${escapeAttr(m.url)}" target="_blank" rel="noopener"><img src="${escapeAttr(m.url)}" alt="${escapeAttr(m.alt || m.filename)}"></a>`}
       <div class="media-tile__body">
         <span class="media-tile__name" title="${escapeAttr(m.filename)}">${escapeHtml(m.filename)}</span>
         <button class="media-tile__copy" onclick="copyUrl('${escapeAttr(m.url)}')">URL</button>
+        <button class="media-tile__copy" onclick="deleteMedia(${m.id}, '${escapeAttr(m.filename)}')" style="color:var(--c-danger)">×</button>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
+
+window.deleteMedia = async (id, filename) => {
+  if (!confirm(`"${filename}" wirklich löschen?`)) return;
+  // Datei aus dem Bucket löschen (Pfad ist der filename mit timestamp)
+  const { data } = await sb.from('cms_medien').select('url').eq('id', id).single();
+  if (data) {
+    const path = data.url.split('/').slice(-1)[0];
+    await sb.storage.from(STORAGE_BUCKET).remove([path]);
+  }
+  const { error } = await sb.from('cms_medien').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success');
+  loadMedia();
+};
 
 window.copyUrl = (url) => {
   navigator.clipboard.writeText(url);

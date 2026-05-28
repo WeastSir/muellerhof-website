@@ -165,7 +165,28 @@
     }
   }
 
+  // ---- 6. PDF-Slots (Karten) ----
+  // Beispiel im HTML:  <a data-cms-pdf="speisekarte" href="pdfs/Speisekarte_alteHoefli.pdf">Karte ansehen</a>
+  // Die URL wird automatisch durch die im CMS hinterlegte PDF-URL ersetzt.
+  async function loadKartenPdfs() {
+    const els = [...document.querySelectorAll('[data-cms-pdf]')];
+    if (!els.length) return;
+    const { data, error } = await sb.from('cms_sections')
+      .select('section_key, content').eq('page_slug', 'karten');
+    if (error) { console.warn('[CMS] karten', error); return; }
+    const map = {};
+    (data || []).forEach(s => map[s.section_key] = s.content);
+    els.forEach(el => {
+      const url = map[el.dataset.cmsPdf];
+      if (url) {
+        if (el.tagName === 'A') el.href = url;
+        else if (el.tagName === 'IFRAME') el.src = url;
+        else el.dataset.url = url;
+      }
+    });
+  }
+
   // Run all
-  Promise.all([loadSections(), loadEvents(), loadOz(), loadNews(), loadMenu()])
+  Promise.all([loadSections(), loadEvents(), loadOz(), loadNews(), loadMenu(), loadKartenPdfs()])
     .catch(err => console.warn('[CMS] error', err));
 })();
