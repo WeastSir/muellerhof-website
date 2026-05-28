@@ -26,14 +26,24 @@ const fmtDate = (s) => {
 /* =============================================================
    AUTH
    ============================================================= */
+let _appInitialized = false;
 async function init() {
   const { data: { session } } = await sb.auth.getSession();
   if (session) showApp(session.user);
   else showLogin();
 
   sb.auth.onAuthStateChange((_e, sess) => {
-    if (sess) showApp(sess.user);
-    else showLogin();
+    if (sess) {
+      // Bei Token-Refresh: nur User-Info aktualisieren, KEIN switchView
+      if (_appInitialized) {
+        const u = $('#userInfo'); if (u && sess.user) u.textContent = sess.user.email;
+      } else {
+        showApp(sess.user);
+      }
+    } else {
+      _appInitialized = false;
+      showLogin();
+    }
   });
 }
 
@@ -46,8 +56,11 @@ function showApp(user) {
   $('#loginScreen').classList.add('hidden');
   $('#adminApp').classList.remove('hidden');
   $('#userInfo').textContent = user.email;
-  switchView('overview');
-  loadCounts();
+  if (!_appInitialized) {
+    switchView('overview');
+    loadCounts();
+    _appInitialized = true;
+  }
 }
 
 $('#loginForm').addEventListener('submit', async (e) => {

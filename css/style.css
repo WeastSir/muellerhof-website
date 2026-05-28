@@ -901,6 +901,46 @@ section { padding: 8rem 3rem; }
   .news-card { grid-template-columns: 1fr; }
 }
 
+/* Aktuelle Specials/Aktionen Card */
+.special-card {
+  background: var(--c-white);
+  box-shadow: 0 4px 16px rgba(45,64,54,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.special-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(45,64,54,0.18);
+}
+.special-card__img {
+  aspect-ratio: 16/9;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--c-sand);
+}
+.special-card__body { padding: 1.5rem 1.5rem 1.75rem; }
+.special-card__kicker {
+  display: inline-block;
+  background: var(--c-accent, #C46A4A);
+  color: var(--c-beige-light);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.special-card h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--c-darkgreen);
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+}
+.special-card p { color: var(--c-text-soft); line-height: 1.55; margin-bottom: 1rem; }
+
 /* Bereich-Card – Mehrbild-Collage */
 .bereich-card__gallery {
   display: grid;

@@ -390,10 +390,38 @@
     return `<div>${esc(c.titel||'')}</div>`;
   }
 
+  // ---- AKTUELLE SPECIALS / AKTIONEN ----
+  // <div data-cms-specials></div>  → listet aktive Landingpages mit Vorschau
+  async function loadSpecials() {
+    const container = document.querySelector('[data-cms-specials]');
+    if (!container) return;
+    const today = new Date().toISOString().split('T')[0];
+    const { data, error } = await sb.from('cms_landingpages')
+      .select('*').eq('aktiv', true).order('sort_order');
+    if (error) { console.warn('[CMS] specials', error); return; }
+    const visible = (data || []).filter(lp =>
+      (!lp.gueltig_ab || lp.gueltig_ab <= today) &&
+      (!lp.gueltig_bis || lp.gueltig_bis >= today));
+    if (!visible.length) { container.style.display = 'none'; return; }
+    container.style.display = '';
+    container.innerHTML = visible.map(lp => {
+      const heroBild = lp.hero_bild_url || (Array.isArray(lp.bloecke) && lp.bloecke.find(b => b.typ==='hero')?.bild_url) || '';
+      return `<article class="special-card">
+        ${heroBild ? `<div class="special-card__img" style="background-image:url('${esc(heroBild)}');"></div>` : ''}
+        <div class="special-card__body">
+          <span class="special-card__kicker">Aktion</span>
+          <h3>${esc(lp.titel)}</h3>
+          ${lp.beschreibung ? `<p>${esc(lp.beschreibung)}</p>` : ''}
+          <a href="landingpage.html?slug=${esc(lp.slug)}" class="btn btn--dark">Mehr erfahren →</a>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
   // Run all
   Promise.all([
     loadSections(), loadEvents(), loadOz(), loadNews(), loadMenu(),
     loadKartenPdfs(), loadBgImages(), loadTeam(), loadStellen(),
-    loadZimmer(), loadPartner(), loadCards()
+    loadZimmer(), loadPartner(), loadCards(), loadSpecials()
   ]).catch(err => console.warn('[CMS] error', err));
 })();
