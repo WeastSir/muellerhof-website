@@ -197,14 +197,21 @@ $$('.nav-item').forEach(b => b.addEventListener('click', () => {
   });
 }));
 
-/* Toggle für Gruppen-Überschriften */
+/* Toggle für Gruppen-Überschriften (Akkordeon-Verhalten) */
 $$('.nav-group-toggle').forEach(t => t.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
   const group = t.closest('.nav-group');
   if (!group) return;
-  // Andere zumachen (Akkordeon-Verhalten)
-  $$('.nav-group').forEach(g => { if (g !== group) g.classList.remove('open'); });
-  group.classList.toggle('open');
+  const wasOpen = group.classList.contains('open');
+  // Alle Gruppen zumachen
+  $$('.nav-group').forEach(g => g.classList.remove('open'));
+  // Diese öffnen wenn vorher zu war
+  if (!wasOpen) group.classList.add('open');
 }));
+
+/* Beim Laden: alle Gruppen zu (nur Top-Level Items wie Übersicht/Anfragen sichtbar) */
+$$('.nav-group').forEach(g => g.classList.remove('open'));
 $$('[data-view-link]').forEach(c => c.addEventListener('click', () => switchView(c.dataset.viewLink)));
 
 /* =============================================================

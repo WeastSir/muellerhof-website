@@ -124,8 +124,8 @@ body { font-family: var(--font-sans); background: var(--c-bg); color: var(--c-te
   margin-left: 0.5rem;
 }
 .nav-group.open > .nav-group-toggle::after { transform: rotate(90deg); }
-.nav-group > .nav-sub { display: none; }
-.nav-group.open > .nav-sub { display: block; }
+.nav-group .nav-item.nav-sub { display: none !important; }
+.nav-group.open .nav-item.nav-sub { display: block !important; }
 
 .nav-item.nav-sub {
   font-size: 0.82rem;
