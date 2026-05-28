@@ -95,7 +95,25 @@ body { font-family: var(--font-sans); background: var(--c-bg); color: var(--c-te
   flex-direction: column;
   gap: 2px;
   padding: 0 0.75rem;
+  overflow-y: auto;
 }
+.nav-group { margin-bottom: 0.4rem; }
+.nav-group-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.65);
+  padding: 0.6rem 0.85rem 0.3rem;
+  font-weight: 700;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 0.3rem;
+}
+.nav-item.nav-sub {
+  font-size: 0.82rem;
+  padding: 0.4rem 0.85rem 0.4rem 1.5rem;
+  color: rgba(255,255,255,0.7);
+}
+.nav-item.nav-sub:hover { color: #fff; background: rgba(255,255,255,0.05); }
+.nav-item.nav-sub.active { background: var(--c-accent); color: #fff; font-weight: 600; }
 .nav-item {
   background: transparent;
   border: 0;

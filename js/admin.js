@@ -83,11 +83,25 @@ const viewTitles = {
   medien:     'Medien-Bibliothek',
 };
 
-function switchView(view) {
-  $$('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.view === view));
+function switchView(view, opts = {}) {
+  $$('.nav-item').forEach(b => b.classList.remove('active'));
+  if (opts.clickedEl) opts.clickedEl.classList.add('active');
+
   $$('.view').forEach(v => v.classList.add('hidden'));
-  $('#view-' + view).classList.remove('hidden');
-  $('#viewTitle').textContent = viewTitles[view] || '';
+  const targetView = $('#view-' + view);
+  if (targetView) targetView.classList.remove('hidden');
+  if ($('#viewTitle')) $('#viewTitle').textContent = viewTitles[view] || '';
+
+  // Filter pre-set, bevor Load läuft
+  if (opts.filter && view === 'sections') {
+    const sel = $('#pageFilter'); if (sel) sel.value = opts.filter;
+  }
+  if (opts.list && view === 'cards') {
+    const sel = $('#cardsListFilter'); if (sel) sel.value = opts.list;
+  }
+  if (opts.typ && view === 'anfragen') {
+    const sel = $('#anfragenTypFilter'); if (sel) sel.value = opts.typ;
+  }
 
   if (view === 'events')    loadEvents();
   if (view === 'sections')  loadSections();
@@ -103,6 +117,7 @@ function switchView(view) {
   if (view === 'partner')   loadPartner();
   if (view === 'landingpages') loadLandingpages();
   if (view === 'community') loadCommunity();
+  if (view === 'cards')     loadCards();
 }
 
 /* =============================================================
@@ -170,7 +185,14 @@ function makeSortable(tbodyEl, tableName) {
   });
 }
 
-$$('.nav-item').forEach(b => b.addEventListener('click', () => switchView(b.dataset.view)));
+$$('.nav-item').forEach(b => b.addEventListener('click', () => {
+  switchView(b.dataset.view, {
+    clickedEl: b,
+    filter: b.dataset.filter,
+    list: b.dataset.list,
+    typ: b.dataset.typ,
+  });
+}));
 $$('[data-view-link]').forEach(c => c.addEventListener('click', () => switchView(c.dataset.viewLink)));
 
 /* =============================================================
