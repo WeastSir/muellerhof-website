@@ -392,18 +392,28 @@
 
   // ---- AKTUELLE SPECIALS / AKTIONEN ----
   // <div data-cms-specials></div>  → listet aktive Landingpages mit Vorschau
+  // Wenn keine aktiven Specials da sind: die ganze SECTION ausblenden
   async function loadSpecials() {
     const container = document.querySelector('[data-cms-specials]');
     if (!container) return;
+    const section = container.closest('section') || container.parentNode;
     const today = new Date().toISOString().split('T')[0];
     const { data, error } = await sb.from('cms_landingpages')
       .select('*').eq('aktiv', true).order('sort_order');
-    if (error) { console.warn('[CMS] specials', error); return; }
+    if (error) {
+      console.warn('[CMS] specials', error);
+      if (section) section.style.display = 'none';
+      return;
+    }
     const visible = (data || []).filter(lp =>
       (!lp.gueltig_ab || lp.gueltig_ab <= today) &&
       (!lp.gueltig_bis || lp.gueltig_bis >= today));
-    if (!visible.length) { container.style.display = 'none'; return; }
-    container.style.display = '';
+    if (!visible.length) {
+      // Ganze Sektion (mit Titel "Specials & Aktionen.") ausblenden
+      if (section) section.style.display = 'none';
+      return;
+    }
+    if (section) section.style.display = '';
     container.innerHTML = visible.map(lp => {
       const heroBild = lp.hero_bild_url || (Array.isArray(lp.bloecke) && lp.bloecke.find(b => b.typ==='hero')?.bild_url) || '';
       return `<article class="special-card">
