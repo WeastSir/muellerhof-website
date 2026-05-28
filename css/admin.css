@@ -229,6 +229,73 @@ body { font-family: var(--font-sans); background: var(--c-bg); color: var(--c-te
 }
 .data-table tr:last-child td { border-bottom: 0; }
 .data-table tr:hover td { background: rgba(0,0,0,0.015); }
+/* Image drop zone */
+.img-drop {
+  border: 2px dashed var(--c-line);
+  border-radius: 6px;
+  padding: 0.8rem;
+  background: var(--c-bg);
+  transition: all 0.15s;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+.img-drop--hover {
+  border-color: var(--c-accent);
+  background: rgba(196,106,74,0.06);
+}
+.img-drop__preview {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  background: #fff;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--c-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-soft);
+  font-size: 0.7rem;
+  text-align: center;
+}
+.img-drop__main { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.img-drop__main input { width: 100%; padding: 0.45rem 0.6rem; border: 1px solid var(--c-line); border-radius: 4px; font-family: inherit; font-size: 0.9rem; }
+.img-drop__row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+.img-drop__btn {
+  background: var(--c-darkgreen);
+  color: #fff;
+  border: 0;
+  padding: 0.35rem 0.75rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+.img-drop__btn:hover { background: #1d2c24; }
+.img-drop__hint { color: var(--c-text-soft); font-size: 0.75rem; font-style: italic; }
+.img-drop__hint--upload { color: var(--c-accent); font-weight: 600; }
+
+/* Drag handle */
+.drag-handle {
+  cursor: grab;
+  color: var(--c-text-soft);
+  user-select: none;
+  font-size: 1.2rem;
+  letter-spacing: -2px;
+  line-height: 1;
+  width: 28px;
+  text-align: center;
+  padding-left: 0.5rem !important;
+  padding-right: 0.2rem !important;
+}
+.drag-handle:hover { color: var(--c-accent); }
+.drag-handle:active { cursor: grabbing; }
+.drag-ghost { opacity: 0.4; }
+.drag-chosen { background: rgba(196,106,74,0.08) !important; }
+.drag-handle-th { width: 28px; }
+
 .data-table .actions, .data-table .col-actions {
   white-space: nowrap;
   text-align: right;

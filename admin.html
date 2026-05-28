@@ -8,6 +8,7 @@
 <link rel="icon" href="favicon.ico">
 <link rel="stylesheet" href="css/admin.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 </head>
 <body>
 
@@ -48,6 +49,8 @@
       <button class="nav-item" data-view="team">Team / Mitarbeitende</button>
       <button class="nav-item" data-view="stellen">Offene Stellen</button>
       <button class="nav-item" data-view="partner">Kooperationen / Partner</button>
+      <button class="nav-item" data-view="cards">📋 Karten-Listen (Räume, Cards, Footer…)</button>
+      <button class="nav-item" data-view="landingpages">✨ Specials / Aktionen</button>
       <button class="nav-item" data-view="community">💬 Community-Posts</button>
       <button class="nav-item" data-view="medien">Medien (Bilder/PDFs)</button>
     </nav>
@@ -287,6 +290,58 @@
         <table class="data-table" id="partnerTable">
           <thead><tr>
             <th>Name</th><th>Kategorie</th><th>Website</th><th>Highlight</th><th>Aktiv</th><th class="col-actions">Aktionen</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- KARTEN-LISTEN (Räume, Bereich-Cards, Footer, Quick-Bar, Timeline...) -->
+    <section class="view hidden" id="view-cards">
+      <div class="info-box" style="margin-bottom:1.5rem;">
+        <h3>Karten-Listen verwalten</h3>
+        <p>Hier bearbeitest du alle Listen-artigen Inhalte: Räume, Bereich-Cards auf Startseite/Restaurant/Events, Quick-Bar oben, Timeline auf Über uns, sowie alle Footer-Listen. Wähle oben eine Liste.</p>
+      </div>
+      <div class="view__actions">
+        <label>Liste:
+          <select id="cardsListFilter">
+            <option value="rooms_index">Startseite – Räume (6 Räume mit Kapazität)</option>
+            <option value="bereiche_index">Startseite – Drei Bereiche (Höfli, Wohnzimmer, Stübli)</option>
+            <option value="bereiche_restaurant">Restaurant – Drei Bereiche</option>
+            <option value="eventkat_events">Events – Eventkategorien (Private, Regelmässig, Saisonal)</option>
+            <option value="regular_events">Events – Wochenanlässe (Jass, Heisser Stein, Brunch)</option>
+            <option value="quickbar_index">Startseite – Quick-Bar (Adresse, Telefon…)</option>
+            <option value="timeline_ueber">Über uns – Timeline (Geschichte)</option>
+            <option value="footer_kontakt">Footer – Kontakt</option>
+            <option value="footer_entdecken">Footer – Entdecken-Links</option>
+            <option value="footer_reservation">Footer – Reservation-Links</option>
+          </select>
+        </label>
+        <button class="btn-primary" id="newCardBtn">+ Neuer Eintrag</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="cardsTable">
+          <thead><tr>
+            <th>Titel</th><th>Untertitel</th><th>Beschreibung</th><th>Aktiv</th><th class="col-actions">Aktionen</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- LANDINGPAGES / SPECIALS -->
+    <section class="view hidden" id="view-landingpages">
+      <div class="info-box" style="margin-bottom:1.5rem;">
+        <h3>Specials &amp; Aktions-Landingpages</h3>
+        <p>Eigene Aktions-Seiten zusammenklicken (z.B. Sommerfest, Weihnachtsmenu, Brunch-Aktion). URL: <code>/landingpage.html?slug=DEINSLUG</code></p>
+      </div>
+      <div class="view__actions">
+        <button class="btn-primary" id="newLandingpageBtn">+ Neue Landingpage</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="landingpagesTable">
+          <thead><tr>
+            <th>Titel</th><th>URL (slug)</th><th>Blöcke</th><th>Gültig</th><th>Aktiv</th><th class="col-actions">Aktionen</th>
           </tr></thead>
           <tbody></tbody>
         </table>

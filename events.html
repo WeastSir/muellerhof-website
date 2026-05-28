@@ -46,58 +46,14 @@
 <span class="kicker">Eventkategorien</span>
 <h2 data-cms="events:section_header_h2">Drei Arten von Anlässen.</h2>
 </div>
-<div class="bereiche__grid">
-<article class="bereich-card">
-<div class="bereich-card__img" data-cms-bg="events:bereich_card_bg" style="background-image: url('images/aula-anlass.png');"></div>
-<div class="bereich-card__body">
-<span class="pillar__kicker">Private Anlässe</span>
-<h3 data-cms="events:bereich_card_title">Hochzeiten, Geburtstage, Familienfeste.</h3>
-<p data-cms="events:bereich_card_text">Vom Gewölbekeller über das Stübli bis zur Terrasse – wir haben den passenden Raum für deinen Anlass. Auch Feiern nach kirchlichen Zeremonien sind herzlich willkommen.</p>
-<a class="pillar__link" href="#anfrage">Dein Event anfragen →</a>
-</div>
-</article>
-<article class="bereich-card">
-<div class="bereich-card__img" data-cms-bg="events:bereich_card_bg_2" style="background-image: url('images/wohnzimmer.png');"></div>
-<div class="bereich-card__body">
-<span class="pillar__kicker">Regelmässig</span>
-<h3 data-cms="events:bereich_card_title_2">Sonntagsbrunch, Jass, Workshops.</h3>
-<p data-cms="events:bereich_card_text_2">Wöchentlicher Sonntagsbrunch, monatlicher Jass-Nachmittag und saisonale Angebote – für Familien, Freunde und alle Generationen.</p>
-<a class="pillar__link" href="#programm">Aktuelles Programm →</a>
-</div>
-</article>
-<article class="bereich-card">
-<div class="bereich-card__img" data-cms-bg="events:bereich_card_bg_3" style="background-image: url('images/gewoelbekeller.png');"></div>
-<div class="bereich-card__body">
-<span class="pillar__kicker">Saisonal</span>
-<h3 data-cms="events:bereich_card_title_3">Specials &amp; Workshops.</h3>
-<p data-cms="events:bereich_card_text_3">Im Gewölbekeller gibt's spezielle Dining-Erlebnisse über das Jahr verteilt. Im alte Höfli finden Familien- und Kinderaktivitäten statt. Saisonale Kulinarik immer dabei.</p>
-<a class="pillar__link" href="#programm">Specials ansehen →</a>
-</div>
-</article>
-</div>
+<div class="bereiche__grid" data-cms-list="eventkat_events" data-cms-tpl="bereich"></div>
 </section>
 <section class="section--dark" id="programm">
 <div class="section__header">
 <span class="kicker kicker--light">Regelmässig</span>
 <h2 data-cms="events:section_header_h2_2" style="font-style: italic; font-weight: 400;">Jede Woche bei uns.</h2>
 </div>
-<div class="regular-grid">
-<div class="regular-card">
-<div class="regular-card__day">Mittwoch</div>
-<div class="regular-card__name">Jass Nachmittag</div>
-<div class="regular-card__note">1× pro Monat · Restaurant</div>
-</div>
-<div class="regular-card">
-<div class="regular-card__day">Donnerstag</div>
-<div class="regular-card__name">Heisser Stein Abend</div>
-<div class="regular-card__note">Stübli · Sommer: Pouletflügeli à Discretion</div>
-</div>
-<div class="regular-card">
-<div class="regular-card__day">Sonntag</div>
-<div class="regular-card__name">Sonntagsbrunch</div>
-<div class="regular-card__note">Jeden Sonntag · Restaurant</div>
-</div>
-</div>
+<div class="regular-grid" data-cms-list="regular_events" data-cms-tpl="regular"></div>
 </section>
 <section class="intro">
 <div class="section__inner section__inner--wide" style="max-width: 1100px;">
@@ -192,32 +148,15 @@
 </div>
 <div>
 <h4>Kontakt</h4>
-<ul>
-<li>Schulstrasse 11</li>
-<li>5070 Frick</li>
-<li><a href="tel:+41628655380">062 865 53 80</a></li>
-<li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
-</ul>
+<ul data-cms-list="footer_kontakt" data-cms-tpl="footer"></ul>
 </div>
 <div>
 <h4>Entdecken</h4>
-<ul>
-<li><a href="restaurant.html">Restaurant</a></li>
-<li><a href="speisekarte.html">Speisekarte</a></li>
-<li><a href="hotel.html">Hotel</a></li>
-<li><a href="events.html">Events</a></li>
-<li><a href="seminare.html">Seminare</a></li>
-<li><a href="karriere.html">Karriere</a></li>
-</ul>
+<ul data-cms-list="footer_entdecken" data-cms-tpl="footer"></ul>
 </div>
 <div>
 <h4>Reservation</h4>
-<ul>
-<li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
-<li><a href="hotel.html#buchen">Zimmer buchen</a></li>
-<li><a href="events.html#anfrage">Dein Event</a></li>
-<li><a href="kontakt.html">Kontakt</a></li>
-</ul>
+<ul data-cms-list="footer_reservation" data-cms-tpl="footer"></ul>
 </div>
 </div>
 <div class="footer__bottom">

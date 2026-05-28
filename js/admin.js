@@ -101,7 +101,73 @@ function switchView(view) {
   if (view === 'team')      loadTeam();
   if (view === 'stellen')   loadStellen();
   if (view === 'partner')   loadPartner();
+  if (view === 'landingpages') loadLandingpages();
   if (view === 'community') loadCommunity();
+}
+
+/* =============================================================
+   GENERISCHE SORTIERUNG: macht eine <tbody> draggable.
+   Aktualisiert sort_order in der angegebenen Tabelle nach drop.
+   ============================================================= */
+/**
+ * Nimmt eine bestehende Tabelle und macht sie sortable:
+ * - Holt die Item-IDs aus den Rows (data-id) oder aus onclick-Handlern
+ * - Fügt eine Drag-Handle-Spalte links ein
+ * - Aktiviert Sortable.js
+ */
+function enhanceTableForSorting(tableId, tableName, idExtractor) {
+  const tbody = document.querySelector(`#${tableId} tbody`);
+  if (!tbody) return;
+  const rows = [...tbody.querySelectorAll('tr')];
+  rows.forEach(tr => {
+    if (tr.dataset.id) return; // schon verarbeitet
+    // Extrahiere ID aus onclick="editXxx(123)" Pattern
+    const btn = tr.querySelector('button[onclick]');
+    if (!btn) return;
+    const m = /\((\d+)\)/.exec(btn.getAttribute('onclick') || '');
+    if (!m) return;
+    tr.dataset.id = m[1];
+    // Füge Drag-Handle als erste Zelle ein
+    const handleTd = document.createElement('td');
+    handleTd.className = 'drag-handle';
+    handleTd.innerHTML = '⋮⋮';
+    handleTd.title = 'Ziehen zum Sortieren';
+    tr.insertBefore(handleTd, tr.firstChild);
+  });
+  // Header: leere erste Spalte hinzufügen
+  const thead = document.querySelector(`#${tableId} thead tr`);
+  if (thead && !thead.querySelector('.drag-handle-th')) {
+    const th = document.createElement('th');
+    th.className = 'drag-handle-th';
+    th.style.width = '28px';
+    thead.insertBefore(th, thead.firstChild);
+  }
+  makeSortable(tbody, tableName);
+}
+
+function makeSortable(tbodyEl, tableName) {
+  if (!window.Sortable || !tbodyEl) return;
+  if (tbodyEl._sortable) tbodyEl._sortable.destroy();
+  tbodyEl._sortable = window.Sortable.create(tbodyEl, {
+    animation: 180,
+    handle: '.drag-handle',
+    ghostClass: 'drag-ghost',
+    chosenClass: 'drag-chosen',
+    onEnd: async () => {
+      // Sammle IDs in neuer Reihenfolge und schreibe sort_order
+      const rows = [...tbodyEl.querySelectorAll('tr[data-id]')];
+      const updates = rows.map((tr, i) => ({ id: Number(tr.dataset.id), sort_order: i + 1 }));
+      try {
+        // Pro Eintrag ein UPDATE (Supabase REST hat kein BULK-Update für PK-spezifische Werte)
+        await Promise.all(updates.map(u =>
+          sb.from(tableName).update({ sort_order: u.sort_order }).eq('id', u.id)
+        ));
+        toast('Reihenfolge gespeichert', 'success');
+      } catch (e) {
+        toast('Fehler beim Sortieren: ' + e.message, 'error');
+      }
+    }
+  });
 }
 
 $$('.nav-item').forEach(b => b.addEventListener('click', () => switchView(b.dataset.view)));
@@ -141,6 +207,99 @@ function openModal(title, bodyHtml, onSave) {
   $('#modalBody').innerHTML = bodyHtml;
   modalOnSave = onSave;
   $('#modal').classList.remove('hidden');
+  // ALLE Bild-URL / Logo-URL / PDF-URL Felder zu Drag&Drop-Upload-Feldern aufwerten
+  setTimeout(() => enhanceImageInputs($('#modalBody')), 10);
+}
+
+/* =============================================================
+   Drag&Drop Bild/PDF-Upload für alle "*_url" Felder im Modal
+   ============================================================= */
+function enhanceImageInputs(root) {
+  if (!root) return;
+  const inputs = [...root.querySelectorAll(
+    'input[name="bild_url"], input[name="logo_url"], input[name="hero_bild_url"], input[name="pdf_url"]'
+  )];
+  inputs.forEach(input => {
+    if (input.dataset.enhanced) return;
+    input.dataset.enhanced = '1';
+    const isPdf = input.name === 'pdf_url';
+    const acceptStr = isPdf ? 'application/pdf' : 'image/*';
+    const placeholder = isPdf ? 'https://… oder PDF hier ablegen' : 'https://… oder Bild hier ablegen';
+    input.placeholder = placeholder;
+
+    // Bestehenden input in einen img-drop wrap einpacken
+    const wrap = document.createElement('div');
+    wrap.className = 'img-drop';
+    wrap.innerHTML = `
+      <div class="img-drop__preview" data-preview>${isPdf ? 'PDF' : 'Kein Bild'}</div>
+      <div class="img-drop__main">
+        <div class="img-drop__row" data-input-row></div>
+        <div class="img-drop__row">
+          <label class="img-drop__btn">
+            ${isPdf ? '📄 PDF wählen' : '📷 Bild wählen'}
+            <input type="file" accept="${acceptStr}" hidden data-file>
+          </label>
+          <span class="img-drop__hint" data-hint>${isPdf ? 'oder PDF hier hin ziehen' : 'oder Bild hier hin ziehen'}</span>
+        </div>
+      </div>`;
+
+    // Original Input in die Row verschieben
+    input.parentNode.insertBefore(wrap, input);
+    wrap.querySelector('[data-input-row]').appendChild(input);
+    input.style.flex = '1';
+
+    const preview = wrap.querySelector('[data-preview]');
+    const fileInput = wrap.querySelector('[data-file]');
+    const hint = wrap.querySelector('[data-hint]');
+
+    function setPreview(url) {
+      if (!url) { preview.textContent = isPdf ? 'PDF' : 'Kein Bild'; preview.style.backgroundImage = ''; return; }
+      if (isPdf) { preview.textContent = 'PDF ✓'; preview.style.backgroundImage = ''; preview.style.background = 'linear-gradient(135deg,#f5e0d4,#e9c8b6)'; preview.style.color = 'var(--c-accent)'; preview.style.fontWeight = '700'; }
+      else { preview.textContent = ''; preview.style.backgroundImage = `url('${url}')`; }
+    }
+    setPreview(input.value);
+    input.addEventListener('input', () => setPreview(input.value));
+
+    async function uploadFile(file) {
+      if (!file) return;
+      hint.textContent = 'Lade hoch…';
+      hint.classList.add('img-drop__hint--upload');
+      try {
+        const ext = file.name.split('.').pop();
+        const name = `${Date.now()}-${Math.round(Math.random()*1e6)}.${ext}`;
+        const { error: upErr } = await sb.storage.from(STORAGE_BUCKET).upload(name, file);
+        if (upErr) throw upErr;
+        const { data: pub } = sb.storage.from(STORAGE_BUCKET).getPublicUrl(name);
+        const url = pub.publicUrl;
+        // Auch in cms_medien eintragen für die Medien-Bibliothek
+        await sb.from('cms_medien').insert({ filename: file.name, url, alt: file.name });
+        input.value = url;
+        setPreview(url);
+        hint.textContent = '✓ Hochgeladen';
+        hint.classList.remove('img-drop__hint--upload');
+        setTimeout(() => { hint.textContent = isPdf ? 'oder PDF hier hin ziehen' : 'oder Bild hier hin ziehen'; }, 2000);
+      } catch (err) {
+        hint.textContent = 'Fehler: ' + err.message;
+        hint.style.color = 'var(--c-danger)';
+      }
+    }
+
+    fileInput.addEventListener('change', e => uploadFile(e.target.files[0]));
+
+    // Drag & Drop
+    ['dragenter','dragover'].forEach(ev => wrap.addEventListener(ev, e => {
+      e.preventDefault(); e.stopPropagation();
+      wrap.classList.add('img-drop--hover');
+    }));
+    ['dragleave','drop'].forEach(ev => wrap.addEventListener(ev, e => {
+      e.preventDefault(); e.stopPropagation();
+      wrap.classList.remove('img-drop--hover');
+    }));
+    wrap.addEventListener('drop', e => {
+      const f = e.dataTransfer?.files?.[0];
+      if (f) uploadFile(f);
+    });
+  });
 }
 function closeModal() {
   $('#modal').classList.add('hidden');
@@ -166,7 +325,7 @@ $('#modalSave').addEventListener('click', async () => {
 async function loadEvents() {
   const tbody = $('#eventsTable tbody');
   tbody.innerHTML = '<tr><td colspan="6">Lädt…</td></tr>';
-  const { data, error } = await sb.from('cms_events').select('*').order('datum', { ascending: true });
+  const { data, error } = await sb.from('cms_events').select('*').order('sort_order').order('datum', { ascending: true });
   if (error) { tbody.innerHTML = `<tr><td colspan="6">Fehler: ${error.message}</td></tr>`; return; }
   if (!data.length) { tbody.innerHTML = '<tr><td colspan="6">Noch keine Events.</td></tr>'; return; }
   tbody.innerHTML = data.map(e => `
@@ -181,6 +340,7 @@ async function loadEvents() {
         <button class="danger" onclick="deleteEvent(${e.id})">Löschen</button>
       </td>
     </tr>`).join('');
+  enhanceTableForSorting('eventsTable', 'cms_events');
 }
 
 function eventFormHtml(e = {}) {
@@ -270,6 +430,7 @@ async function loadSections() {
         <button class="danger" onclick="deleteSection(${s.id})">Löschen</button>
       </td>
     </tr>`).join('');
+  enhanceTableForSorting('sectionsTable', 'cms_sections');
 }
 
 $('#pageFilter').addEventListener('change', loadSections);
@@ -505,6 +666,7 @@ async function loadOz() {
         <button class="danger" onclick="deleteOz(${o.id})">Löschen</button>
       </td>
     </tr>`).join('');
+  enhanceTableForSorting('ozTable', 'cms_oeffnungszeiten');
 }
 
 function ozFormHtml(o = {}) {
@@ -576,6 +738,7 @@ async function loadNews() {
         <button class="danger" onclick="deleteNews(${n.id})">Löschen</button>
       </td>
     </tr>`).join('');
+  enhanceTableForSorting('newsTable', 'cms_news');
 }
 
 function newsFormHtml(n = {}) {
@@ -640,13 +803,21 @@ window.deleteNews = async (id) => {
    Speichert PDF-URL in cms_sections mit kind='pdf'.
    ============================================================= */
 const KARTEN_SLOTS = [
-  { key: 'speisekarte',        label: 'Aktuelle Speisekarte',        beschreibung: 'Hauptkarte im Restaurant – wird auf der Seite "Speisekarte" angezeigt.' },
-  { key: 'getraenkekarte',     label: 'Getränkekarte',                beschreibung: 'Wird neben der Speisekarte angeboten.' },
-  { key: 'weinkarte',          label: 'Weinkarte',                    beschreibung: 'Eigene Weinkarte als PDF.' },
-  { key: 'mittagskarte',       label: 'Mittagskarte / Tagesangebot',  beschreibung: 'Aktuelle Mittagskarte (wöchentlich).' },
-  { key: 'bankettdokumentation', label: 'Bankettdokumentation',       beschreibung: 'Wird auf der Events-Seite verlinkt.' },
-  { key: 'seminardokumentation', label: 'Seminardokumentation',       beschreibung: 'Wird auf der Seminare-Seite verlinkt.' },
-  { key: 'hotelpauschalen',    label: 'Hotelpauschalen-PDF',          beschreibung: 'Wird auf der Hotel-Seite verlinkt.' },
+  { key: 'speisekarte',              label: 'Aktuelle Speisekarte (Hauptbereich)',  beschreibung: 'Wird überall als "Speisekarte" verlinkt.' },
+  { key: 'getraenkekarte',           label: 'Getränkekarte (Hauptbereich)',          beschreibung: 'Wird überall als "Getränkekarte" verlinkt.' },
+  { key: 'weinkarte',                label: 'Weinkarte',                              beschreibung: 'Hauptbereich Weinkarte.' },
+  { key: 'mittagskarte',             label: 'Mittagskarte / Tagesangebot',           beschreibung: 'Aktuelle Mittagskarte (wöchentlich).' },
+  // 6 Bereich-spezifische Karten für restaurant.html
+  { key: 'speisekarte_alte_hoefli',   label: 'Alte Höfli – Speisekarte',              beschreibung: 'Kachel auf der Restaurant-Seite (Karten-Übersicht).' },
+  { key: 'getraenkekarte_alte_hoefli',label: 'Alte Höfli – Getränkekarte',            beschreibung: 'Kachel auf der Restaurant-Seite.' },
+  { key: 'speisekarte_wohnzimmer',    label: 'Wohnzimmer – Speisekarte',              beschreibung: 'Kachel auf der Restaurant-Seite.' },
+  { key: 'getraenkekarte_wohnzimmer', label: 'Wohnzimmer – Getränkekarte',            beschreibung: 'Kachel auf der Restaurant-Seite.' },
+  { key: 'speisekarte_stuebli',       label: 'Stübli – Speisekarte',                  beschreibung: 'Kachel auf der Restaurant-Seite.' },
+  { key: 'weinkarte_stuebli',         label: 'Stübli – Weinkarte',                    beschreibung: 'Kachel auf der Restaurant-Seite.' },
+  // Dokumentationen
+  { key: 'bankettdokumentation',     label: 'Bankettdokumentation',                   beschreibung: 'Wird auf der Events-Seite verlinkt.' },
+  { key: 'seminardokumentation',     label: 'Seminardokumentation',                   beschreibung: 'Wird auf der Seminare-Seite verlinkt.' },
+  { key: 'hotelpauschalen',          label: 'Hotelpauschalen-PDF',                    beschreibung: 'Wird auf der Hotel-Seite verlinkt.' },
 ];
 
 async function loadKarten() {
@@ -901,6 +1072,7 @@ async function loadZimmer() {
         <button class="danger" onclick="deleteZimmer(${z.id})">Löschen</button>
       </td>
     </tr>`).join('');
+  enhanceTableForSorting('zimmerTable', 'cms_zimmer');
 }
 
 function zimmerFormHtml(z = {}) {
@@ -975,6 +1147,7 @@ async function loadTeam() {
         <button class="danger" onclick="deleteTeam(${t.id})">Löschen</button>
       </td>
     </tr>`).join('');
+  enhanceTableForSorting('teamTable', 'cms_team');
 }
 
 function teamFormHtml(t = {}) {
@@ -1042,6 +1215,7 @@ async function loadStellen() {
         <button class="danger" onclick="deleteStelle(${s.id})">Löschen</button>
       </td>
     </tr>`).join('');
+  enhanceTableForSorting('stellenTable', 'cms_stellen');
 }
 
 function stelleFormHtml(s = {}) {
@@ -1112,6 +1286,7 @@ async function loadPartner() {
         <button class="danger" onclick="deletePartner(${p.id})">Löschen</button>
       </td>
     </tr>`).join('');
+  enhanceTableForSorting('partnerTable', 'cms_partner');
 }
 
 function partnerFormHtml(p = {}) {
@@ -1186,6 +1361,85 @@ window.deletePost = async (id) => {
   const { error } = await sb.from('posts').delete().eq('id', id);
   if (error) return toast(error.message, 'error');
   toast('Gelöscht', 'success'); loadCommunity(); loadCounts();
+};
+
+/* =============================================================
+   KARTEN-LISTEN (cms_cards) – Räume, Bereiche, Footer, Quick-Bar, Timeline
+   ============================================================= */
+async function loadCardsList() {
+  const tbody = $('#cardsTable tbody');
+  const key = $('#cardsListFilter').value;
+  tbody.innerHTML = '<tr><td colspan="5">Lädt…</td></tr>';
+  const { data, error } = await sb.from('cms_cards').select('*').eq('list_key', key).order('sort_order');
+  if (error) { tbody.innerHTML = `<tr><td colspan="5">Fehler: ${error.message}</td></tr>`; return; }
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="5">Noch keine Einträge in dieser Liste.</td></tr>'; return; }
+  tbody.innerHTML = data.map(c => `
+    <tr>
+      <td><strong>${escapeHtml(c.titel || '')}</strong></td>
+      <td>${escapeHtml(c.untertitel || '')}</td>
+      <td><div class="truncate">${escapeHtml((c.beschreibung || '').substring(0, 70))}</div></td>
+      <td>${c.aktiv ? '<span class="badge badge--ok">Aktiv</span>' : '<span class="badge badge--off">Inaktiv</span>'}</td>
+      <td class="actions">
+        <button onclick="editCard(${c.id})">Bearbeiten</button>
+        <button class="danger" onclick="deleteCard(${c.id})">Löschen</button>
+      </td>
+    </tr>`).join('');
+  enhanceTableForSorting('cardsTable', 'cms_cards');
+}
+function loadCards() { loadCardsList(); }
+$('#cardsListFilter').addEventListener('change', loadCardsList);
+
+function cardFormHtml(c = {}) {
+  const listKey = c.list_key || $('#cardsListFilter').value;
+  return `<div class="form-grid">
+    <div style="background:var(--c-beige);padding:0.5rem 0.75rem;border-radius:4px;font-size:0.85rem;">
+      <strong>Liste:</strong> <code>${escapeHtml(listKey)}</code>
+      <input type="hidden" name="list_key" value="${escapeAttr(listKey)}">
+    </div>
+    <div class="form-row">
+      <div><label>Kicker (kleines Label)</label><input type="text" name="kicker" value="${escapeAttr(c.kicker||'')}" placeholder="z.B. 'Alte Höfli', 'Adresse'…"></div>
+      <div><label>Titel</label><input type="text" name="titel" value="${escapeAttr(c.titel||'')}" placeholder="Haupttitel"></div>
+    </div>
+    <div><label>Untertitel</label><input type="text" name="untertitel" value="${escapeAttr(c.untertitel||'')}" placeholder="z.B. 'bis 130 Personen', 'Mittwoch'"></div>
+    <div><label>Beschreibung</label><textarea name="beschreibung" rows="3">${escapeHtml(c.beschreibung||'')}</textarea></div>
+    <div><label>Bild-URL</label><input type="text" name="bild_url" value="${escapeAttr(c.bild_url||'')}"></div>
+    <div class="form-row">
+      <div><label>Link-URL</label><input type="text" name="link_url" value="${escapeAttr(c.link_url||'')}" placeholder="restaurant.html#hoefli"></div>
+      <div><label>Link-Text</label><input type="text" name="link_text" value="${escapeAttr(c.link_text||'')}" placeholder="Mehr →"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Sortierung</label><input type="number" name="sort_order" value="${c.sort_order ?? 0}"></div>
+      <div style="display:flex;align-items:end;"><label class="form-check"><input type="checkbox" name="aktiv" ${c.aktiv !== false ? 'checked' : ''}> Aktiv</label></div>
+    </div>
+  </div>`;
+}
+
+$('#newCardBtn').addEventListener('click', () => {
+  openModal('Neuer Eintrag', cardFormHtml(), async () => {
+    const f = readForm();
+    if (!f.titel && !f.kicker) throw new Error('Mindestens Titel oder Kicker angeben.');
+    const { error } = await sb.from('cms_cards').insert(f);
+    if (error) throw error;
+    toast('Gespeichert', 'success'); loadCardsList();
+  });
+});
+
+window.editCard = async (id) => {
+  const { data, error } = await sb.from('cms_cards').select('*').eq('id', id).single();
+  if (error) return toast(error.message, 'error');
+  openModal('Eintrag bearbeiten', cardFormHtml(data), async () => {
+    const f = readForm();
+    const { error } = await sb.from('cms_cards').update(f).eq('id', id);
+    if (error) throw error;
+    toast('Aktualisiert', 'success'); loadCardsList();
+  });
+};
+
+window.deleteCard = async (id) => {
+  if (!confirm('Eintrag wirklich löschen?')) return;
+  const { error } = await sb.from('cms_cards').delete().eq('id', id);
+  if (error) return toast(error.message, 'error');
+  toast('Gelöscht', 'success'); loadCardsList();
 };
 
 /* GO */

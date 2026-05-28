@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Müllerhof Special</title>
+<meta name="description" content="Aktion im Müllerhof.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .lp-hero { position: relative; min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--c-beige-light); padding: 4rem 2rem; overflow: hidden; }
+  .lp-hero__photo { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 1; }
+  .lp-hero__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(45,64,54,0.4) 0%, rgba(45,64,54,0.7) 100%); z-index: 2; }
+  .lp-hero__content { position: relative; z-index: 3; max-width: 900px; }
+  .lp-hero__title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; }
+  .lp-hero__sub { font-size: 1.2rem; opacity: 0.95; }
+  .lp-block { padding: 4rem 2rem; max-width: 900px; margin: 0 auto; }
+  .lp-block h2 { font-family: var(--font-display); color: var(--c-darkgreen); font-style: italic; font-weight: 400; font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 1.5rem; text-align: center; }
+  .lp-block p { color: var(--c-text); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem; }
+  .lp-bildtext { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .lp-bildtext__img { aspect-ratio: 4/3; background-size: cover; background-position: center; }
+  .lp-bildtext h2 { text-align: left; }
+  .lp-cta { background: var(--c-darkgreen); color: var(--c-beige-light); padding: 4rem 2rem; text-align: center; }
+  .lp-cta h2 { color: var(--c-beige-light); margin-bottom: 1rem; }
+  .lp-cta p { color: var(--c-beige-light); opacity: 0.9; margin-bottom: 2rem; }
+  .lp-galerie { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.5rem; padding: 2rem; max-width: 1200px; margin: 0 auto; }
+  .lp-galerie__img { aspect-ratio: 1/1; background-size: cover; background-position: center; }
+  .lp-video { padding: 3rem 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+  .lp-video iframe { width: 100%; aspect-ratio: 16/9; border: 0; }
+  .lp-spacer { padding: 2rem 0; }
+  .lp-notfound { text-align: center; padding: 8rem 2rem; }
+  @media (max-width: 700px) { .lp-bildtext { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="nav transparent" id="nav">
+<a href="index.html"><img alt="Müllerhof" class="nav__logo" src="images/logo.png"></a>
+<button aria-label="Menü" class="nav__toggle" id="navToggle"><span></span><span></span><span></span></button>
+<ul class="nav__menu" id="navMenu">
+<li><a class="nav__link" href="index.html">Home</a></li>
+<li><a class="nav__link" href="restaurant.html">Restaurant</a></li>
+<li><a class="nav__link" href="hotel.html">Hotel</a></li>
+<li><a class="nav__link" href="events.html">Events</a></li>
+<li><a class="nav__link" href="seminare.html">Seminare</a></li>
+<li><a class="nav__link" href="community.html">Community</a></li>
+<li><a class="nav__link" href="ueber-uns.html">Über uns</a></li>
+<li><a class="nav__link" href="karriere.html">Karriere</a></li>
+<li><a class="nav__link" href="kontakt.html">Kontakt</a></li>
+<li><a class="nav__link nav__cta" href="restaurant.html#reservieren">Reservieren</a></li>
+</ul>
+</nav>
+
+<main id="lpContent">
+<div class="lp-notfound">
+  <p style="font-style:italic;color:var(--c-text-soft);">Lädt…</p>
+</div>
+</main>
+
+<footer class="footer">
+<div class="footer__inner">
+<div class="footer__logo">
+<img alt="Müllerhof" src="images/logo.png">
+<p class="footer__claim">Das Wohnzimmer von Frick. Restaurant, Hotel und Begegnungsort im Herzen des Fricktals.</p>
+</div>
+<div><h4>Kontakt</h4><ul data-cms-list="footer_kontakt" data-cms-tpl="footer"></ul></div>
+<div><h4>Entdecken</h4><ul data-cms-list="footer_entdecken" data-cms-tpl="footer"></ul></div>
+<div><h4>Reservation</h4><ul data-cms-list="footer_reservation" data-cms-tpl="footer"></ul></div>
+</div>
+<div class="footer__bottom">
+<span>© 2026 Müllerhof · Frick</span>
+<span><a href="impressum.html" style="color: inherit;">Impressum</a> · <a href="datenschutz.html" style="color: inherit;">Datenschutz</a></span>
+</div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<script src="js/cms-loader.js"></script>
+<script>
+(async function() {
+  const SUPABASE_URL = 'https://rcnmnthscvfippedgmuu.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_EbLVUn9ckvKSLkpKkq5dTQ_UufHkMMG';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  const container = document.getElementById('lpContent');
+
+  function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function youtubeEmbed(url) {
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]{11})/);
+    if (m) return `https://www.youtube.com/embed/${m[1]}`;
+    if (/vimeo\.com\/(\d+)/.test(url)) return url.replace(/vimeo\.com\/(\d+)/, 'player.vimeo.com/video/$1');
+    return url;
+  }
+
+  function renderBlock(b) {
+    if (b.typ === 'hero') {
+      return `<section class="lp-hero">
+        ${b.bild_url ? `<div class="lp-hero__photo" style="background-image:url('${esc(b.bild_url)}');"></div><div class="lp-hero__overlay"></div>` : ''}
+        <div class="lp-hero__content">
+          <h1 class="lp-hero__title">${esc(b.titel||'')}</h1>
+          ${b.untertitel ? `<p class="lp-hero__sub">${esc(b.untertitel)}</p>` : ''}
+        </div>
+      </section>`;
+    }
+    if (b.typ === 'text') {
+      return `<section class="lp-block">
+        ${b.ueberschrift ? `<h2>${esc(b.ueberschrift)}</h2>` : ''}
+        ${b.text ? `<p>${esc(b.text).replace(/\n+/g,'</p><p>')}</p>` : ''}
+      </section>`;
+    }
+    if (b.typ === 'bild_text') {
+      return `<section class="lp-bildtext">
+        <div class="lp-bildtext__img" style="background-image:url('${esc(b.bild_url||'')}');"></div>
+        <div>
+          ${b.ueberschrift ? `<h2>${esc(b.ueberschrift)}</h2>` : ''}
+          ${b.text ? `<p>${esc(b.text).replace(/\n+/g,'</p><p>')}</p>` : ''}
+        </div>
+      </section>`;
+    }
+    if (b.typ === 'cta') {
+      return `<section class="lp-cta">
+        ${b.ueberschrift ? `<h2>${esc(b.ueberschrift)}</h2>` : ''}
+        ${b.text ? `<p>${esc(b.text)}</p>` : ''}
+        ${b.button_url ? `<a class="btn btn--primary" href="${esc(b.button_url)}">${esc(b.button_text||'Mehr erfahren')}</a>` : ''}
+      </section>`;
+    }
+    if (b.typ === 'galerie') {
+      const urls = (b.bilder||'').split(/\n+/).map(s => s.trim()).filter(Boolean);
+      return `<section>
+        ${b.ueberschrift ? `<h2 style="text-align:center;font-family:var(--font-display);color:var(--c-darkgreen);font-style:italic;font-weight:400;padding:3rem 2rem 1rem;">${esc(b.ueberschrift)}</h2>` : ''}
+        <div class="lp-galerie">
+          ${urls.map(u => `<div class="lp-galerie__img" style="background-image:url('${esc(u)}');"></div>`).join('')}
+        </div>
+      </section>`;
+    }
+    if (b.typ === 'video') {
+      return `<section class="lp-video">
+        ${b.ueberschrift ? `<h2 style="font-family:var(--font-display);color:var(--c-darkgreen);font-style:italic;font-weight:400;margin-bottom:1.5rem;">${esc(b.ueberschrift)}</h2>` : ''}
+        ${b.video_url ? `<iframe src="${esc(youtubeEmbed(b.video_url))}" allowfullscreen></iframe>` : ''}
+      </section>`;
+    }
+    if (b.typ === 'spacer') return `<div class="lp-spacer"></div>`;
+    return '';
+  }
+
+  if (!slug) {
+    container.innerHTML = `<div class="lp-notfound"><h1>Keine Landingpage gewählt</h1><p>Bitte einen <code>?slug=…</code> Parameter angeben.</p><a href="index.html" class="btn btn--dark">Zur Startseite</a></div>`;
+    return;
+  }
+
+  const today = new Date().toISOString().split('T')[0];
+  const { data, error } = await sb.from('cms_landingpages').select('*').eq('slug', slug).eq('aktiv', true).maybeSingle();
+  if (error || !data) {
+    container.innerHTML = `<div class="lp-notfound"><h1>Aktion nicht gefunden</h1><p>Diese Landingpage existiert nicht oder ist nicht mehr aktiv.</p><a href="index.html" class="btn btn--dark">Zur Startseite</a></div>`;
+    return;
+  }
+  // Prüfe Gültigkeit
+  if ((data.gueltig_ab && data.gueltig_ab > today) || (data.gueltig_bis && data.gueltig_bis < today)) {
+    container.innerHTML = `<div class="lp-notfound"><h1>Aktion nicht mehr aktuell</h1><p>Diese Aktion ist ausserhalb des Gültigkeitszeitraums.</p><a href="index.html" class="btn btn--dark">Zur Startseite</a></div>`;
+    return;
+  }
+
+  document.title = data.titel + ' · Müllerhof';
+  if (data.beschreibung) {
+    document.querySelector('meta[name="description"]').setAttribute('content', data.beschreibung);
+  }
+  const blocks = Array.isArray(data.bloecke) ? data.bloecke : [];
+  container.innerHTML = blocks.map(renderBlock).join('') || '<div class="lp-notfound"><p>Diese Landingpage hat noch keine Blöcke.</p></div>';
+})();
+</script>
+
+</body>
+</html>

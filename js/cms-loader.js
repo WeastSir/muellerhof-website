@@ -289,10 +289,66 @@
     });
   }
 
+  // ---- KARTEN-LISTEN (generisch) ----
+  // <div data-cms-list="rooms_index" data-cms-tpl="room"></div>
+  // Templates: 'room', 'bereich', 'eventkat', 'regular', 'quickbar', 'timeline', 'footer'
+  async function loadCards() {
+    const containers = [...document.querySelectorAll('[data-cms-list]')];
+    if (!containers.length) return;
+    const keys = [...new Set(containers.map(c => c.dataset.cmsList))];
+    const { data, error } = await sb.from('cms_cards').select('*').in('list_key', keys).eq('aktiv', true).order('sort_order');
+    if (error) { console.warn('[CMS] cards', error); return; }
+    for (const container of containers) {
+      const tpl = container.dataset.cmsTpl || 'bereich';
+      const key = container.dataset.cmsList;
+      const items = (data || []).filter(c => c.list_key === key);
+      container.innerHTML = items.map(c => renderCard(c, tpl)).join('') || '';
+    }
+  }
+
+  function renderCard(c, tpl) {
+    const link = (txt) => c.link_url ? `<a class="pillar__link" href="${esc(c.link_url)}">${esc(txt || c.link_text || 'Mehr →')}</a>` : '';
+    if (tpl === 'room') {
+      return `<div class="room-card"><div class="room-card__name">${esc(c.titel)}</div><div class="room-card__cap">${esc(c.untertitel||'')}</div></div>`;
+    }
+    if (tpl === 'bereich') {
+      return `<article class="bereich-card">
+        ${c.bild_url ? `<div class="bereich-card__img" style="background-image:url('${esc(c.bild_url)}');"></div>` : ''}
+        <div class="bereich-card__body">
+          ${c.kicker ? `<span class="pillar__kicker">${esc(c.kicker)}</span>` : ''}
+          <h3>${esc(c.titel)}</h3>
+          ${c.beschreibung ? `<p>${esc(c.beschreibung)}</p>` : ''}
+          ${link()}
+        </div>
+      </article>`;
+    }
+    if (tpl === 'regular') {
+      return `<div class="regular-card">
+        <div class="regular-card__day">${esc(c.untertitel||'')}</div>
+        <div class="regular-card__name">${esc(c.titel)}</div>
+        <div class="regular-card__note">${esc(c.beschreibung||'')}</div>
+      </div>`;
+    }
+    if (tpl === 'quickbar') {
+      const val = c.link_url
+        ? `<a href="${esc(c.link_url)}">${esc(c.titel)}</a>`
+        : esc(c.titel);
+      return `<div class="quick-bar__item"><span class="quick-bar__label">${esc(c.kicker)}</span><span class="quick-bar__value">${val}</span></div>`;
+    }
+    if (tpl === 'timeline') {
+      return `<div class="timeline__year">${esc(c.untertitel)}</div><p class="timeline__text">${esc(c.beschreibung||'')}</p>`;
+    }
+    if (tpl === 'footer') {
+      return `<li>${c.link_url ? `<a href="${esc(c.link_url)}">${esc(c.titel)}</a>` : esc(c.titel)}</li>`;
+    }
+    // default
+    return `<div>${esc(c.titel||'')}</div>`;
+  }
+
   // Run all
   Promise.all([
     loadSections(), loadEvents(), loadOz(), loadNews(), loadMenu(),
     loadKartenPdfs(), loadBgImages(), loadTeam(), loadStellen(),
-    loadZimmer(), loadPartner()
+    loadZimmer(), loadPartner(), loadCards()
   ]).catch(err => console.warn('[CMS] error', err));
 })();

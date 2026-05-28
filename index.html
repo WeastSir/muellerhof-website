@@ -40,12 +40,7 @@
 <div class="hero__scroll">scroll ↓</div>
 </section>
 <div class="quick-bar">
-<div class="quick-bar__inner">
-<div class="quick-bar__item"><span class="quick-bar__label">Adresse</span><span class="quick-bar__value">Schulstrasse 11 · 5070 Frick</span></div>
-<div class="quick-bar__item"><span class="quick-bar__label">Telefon</span><span class="quick-bar__value"><a href="tel:+41628655380">062 865 53 80</a></span></div>
-<div class="quick-bar__item"><span class="quick-bar__label">E-Mail</span><span class="quick-bar__value"><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></span></div>
-<div class="quick-bar__item"><span class="quick-bar__label">Öffnungszeiten</span><span class="quick-bar__value">[ folgen ]</span></div>
-</div>
+<div class="quick-bar__inner" data-cms-list="quickbar_index" data-cms-tpl="quickbar"></div>
 </div>
 <section class="intro section__center">
 <div class="section__inner">
@@ -61,35 +56,7 @@
 <h2 data-cms="index:section_header_h2">Wo du dich heute zuhause fühlst.</h2>
 <p data-cms="index:section_header_lead">Drei Stimmungen, ein gemeinsames Dach – jede Ecke des Müllerhofs erzählt eine eigene Geschichte.</p>
 </div>
-<div class="bereiche__grid">
-<article class="bereich-card">
-<div class="bereich-card__img" data-cms-bg="index:bereich_card_bg" style="background-image: url('images/alte-hoefli.png');"></div>
-<div class="bereich-card__body">
-<span class="pillar__kicker">Alte Höfli</span>
-<h3 data-cms="index:bereich_card_title">Frühstück, Znüni, Mittag.</h3>
-<p data-cms="index:bereich_card_text">Der traditionelle Hauptbereich – unkomplizierte, alltagsnahe Gastronomie mit Frühstücksbuffet, Znüni und Mittagstisch. Sonntags Brunch.</p>
-<a class="pillar__link" href="restaurant.html#hoefli">Zum Höfli →</a>
-</div>
-</article>
-<article class="bereich-card">
-<div class="bereich-card__img" data-cms-bg="index:bereich_card_bg_2" style="background-image: url('images/wohnzimmer.png');"></div>
-<div class="bereich-card__body">
-<span class="pillar__kicker">Das Wohnzimmer</span>
-<h3 data-cms="index:bereich_card_title_2">Apéro, Austausch, Ankommen.</h3>
-<p data-cms="index:bereich_card_text_2">Der gemütliche Begegnungsbereich – für entspannte Aufenthalte, gesellige Apéros und gemeinsame Momente mit hausgemachten Spezialitäten.</p>
-<a class="pillar__link" href="restaurant.html#wohnzimmer">Zum Wohnzimmer →</a>
-</div>
-</article>
-<article class="bereich-card">
-<div class="bereich-card__img" data-cms-bg="index:bereich_card_bg_3" style="background-image: url('images/stuebli.png');"></div>
-<div class="bereich-card__body">
-<span class="pillar__kicker">Das Stübli</span>
-<h3 data-cms="index:bereich_card_title_3">À la carte, klassisch, gepflegt.</h3>
-<p data-cms="index:bereich_card_text_3">Der bediente Restaurantbereich mit gutbürgerlicher, regional verankerter Küche und sorgfältig zubereiteten Vor-, Haupt- und Dessertgängen.</p>
-<a class="pillar__link" href="restaurant.html#stuebli">Zum Stübli →</a>
-</div>
-</article>
-</div>
+<div class="bereiche__grid" data-cms-list="bereiche_index" data-cms-tpl="bereich"></div>
 </section>
 <section class="story split">
 <div class="split__inner">
@@ -108,14 +75,7 @@
 <h2 data-cms="index:section_header_h2_2" style="font-style: italic; font-weight: 400;">Sechs Räume.<br/>Unzählige Anlässe.</h2>
 <p data-cms="index:section_header_lead_2">Vom intimen Familienfest im Gewölbekeller bis zur Hochzeit auf der Terrasse – wir haben den passenden Raum für jeden Anlass.</p>
 </div>
-<div class="rooms-grid">
-<div class="room-card"><div class="room-card__name">Alte Höfli</div><div class="room-card__cap">bis 130 Personen</div></div>
-<div class="room-card"><div class="room-card__name">Stübli</div><div class="room-card__cap">bis 56 Personen</div></div>
-<div class="room-card"><div class="room-card__name">Wohnzimmer</div><div class="room-card__cap">bis 40 Personen</div></div>
-<div class="room-card"><div class="room-card__name">Gewölbekeller</div><div class="room-card__cap">bis 30 Personen</div></div>
-<div class="room-card"><div class="room-card__name">Aula</div><div class="room-card__cap">bis 40 Personen</div></div>
-<div class="room-card"><div class="room-card__name">Terrasse · Garten</div><div class="room-card__cap">bis 80 Personen</div></div>
-</div>
+<div class="rooms-grid" data-cms-list="rooms_index" data-cms-tpl="room"><div class="room-card">Lädt…</div></div>
 <div class="section__center" style="margin-top: 3rem;">
 <a class="btn btn--primary" href="events.html#anfrage">Dein Event anfragen</a>
 </div>
@@ -161,32 +121,15 @@
 </div>
 <div>
 <h4>Kontakt</h4>
-<ul>
-<li>Schulstrasse 11</li>
-<li>5070 Frick</li>
-<li><a href="tel:+41628655380">062 865 53 80</a></li>
-<li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
-</ul>
+<ul data-cms-list="footer_kontakt" data-cms-tpl="footer"></ul>
 </div>
 <div>
 <h4>Entdecken</h4>
-<ul>
-<li><a href="restaurant.html">Restaurant</a></li>
-<li><a href="speisekarte.html">Speisekarte</a></li>
-<li><a href="hotel.html">Hotel</a></li>
-<li><a href="events.html">Events</a></li>
-<li><a href="seminare.html">Seminare</a></li>
-<li><a href="karriere.html">Karriere</a></li>
-</ul>
+<ul data-cms-list="footer_entdecken" data-cms-tpl="footer"></ul>
 </div>
 <div>
 <h4>Reservation</h4>
-<ul>
-<li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
-<li><a href="hotel.html#buchen">Zimmer buchen</a></li>
-<li><a href="events.html#anfrage">Dein Event</a></li>
-<li><a href="kontakt.html">Kontakt</a></li>
-</ul>
+<ul data-cms-list="footer_reservation" data-cms-tpl="footer"></ul>
 </div>
 </div>
 <div class="footer__bottom">

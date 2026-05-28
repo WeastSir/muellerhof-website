@@ -41,29 +41,11 @@
 <p class="intro__lead" data-cms="kooperationen:intro_lead">Der Müllerhof lebt von Zusammenarbeit. Mit lokalen Vereinen, sozialen Einrichtungen und regionalen Lieferanten gestalten wir Frick gemeinsam – generationenübergreifend und mit dem Herz am rechten Fleck.</p>
 </div>
 </section>
-<section class="split">
-<div class="split__inner">
-<div class="split__img split__img--photo" data-cms-bg="kooperationen:split_bg" style="background-image: url('images/alte-hoefli.png');"></div>
-<div class="split__text">
-<span class="kicker">Generationen verbinden</span>
-<h2 data-cms="kooperationen:split_h2" style="font-style: italic; font-weight: 400;">Älterwerden im Fricktal &amp;<br/>Alterszentrum Bruggbach.</h2>
-<p data-cms="kooperationen:split_p">„Älterwerden im Fricktal" ist eine regionale Plattform, die ältere Menschen informiert, vernetzt und ihnen Angebote zugänglich macht. Das Alterszentrum Bruggbach ist eine wichtige Institution im Fricktal – Bewohnerinnen und Bewohner sind regelmässig im Müllerhof zu Gast und Teil unserer Gemeinschaft.</p>
-<p data-cms="kooperationen:split_p_2">Gemeinsam mit beiden Partnern entwickeln wir den digitalen Fahr- und Gemeinschaftsservice, der es älteren Menschen ermöglicht, einfach am gesellschaftlichen Leben teilzunehmen.</p>
-<div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem;">
-<a class="btn btn--dark" href="https://www.aelterwerden-fricktal.ch" rel="noopener" target="_blank">aelterwerden-fricktal.ch ↗</a>
-<a class="btn btn--outline" href="https://www.bruggbach.ch" rel="noopener" target="_blank">bruggbach.ch ↗</a>
-</div>
-</div>
-</div>
-</section>
-<section class="split">
-<div class="split__inner">
-<div class="split__img split__img--photo" data-cms-bg="kooperationen:split_bg_2" style="background-image: url('images/wohnzimmer.png');"></div>
-<div class="split__text">
-<span class="kicker">VAOF</span>
-<h2 data-cms="kooperationen:split_h2_2" style="font-style: italic; font-weight: 400;">Verein Älterwerden im Fricktal.</h2>
-<p data-cms="kooperationen:split_p_3">Der Verein VAOF engagiert sich für die Lebensqualität älterer Menschen in der Region. Als Freiwilligenverein bringt er Menschen zusammen – ehrenamtlich, niederschwellig, mit viel Herzblut. Der Müllerhof unterstützt die Arbeit des Vereins als Veranstaltungspartner und Treffpunkt.</p>
-<a class="btn btn--dark" href="https://www.vaof.ch" rel="noopener" target="_blank">vaof.ch ↗</a>
+<!-- Partner werden DYNAMISCH aus dem CMS geladen (bearbeitbar via /admin.html → Kooperationen / Partner) -->
+<section class="intro">
+<div class="section__inner">
+<div data-cms-partner style="max-width: 950px; margin: 0 auto;">
+  <p style="text-align:center;color:var(--c-text-soft);font-style:italic;">Partner werden geladen…</p>
 </div>
 </div>
 </section>
@@ -74,19 +56,6 @@
 <p style="max-width: 760px; margin: 0 auto 2rem;">Ziel: Soziale Begegnungen, Veranstaltungen und gemeinschaftliche Angebote für alle Generationen einfacher zugänglich machen – und gleichzeitig die Selbstständigkeit sowie soziale Teilhabe fördern.</p>
 <p style="max-width: 760px; margin: 0 auto 2.5rem;">Fahrten können zukünftig unkompliziert über die Webseite des Müllerhofs oder telefonisch angefragt werden. Die Anfragen werden digital erfasst und automatisch an ein Netzwerk aus freiwilligen Helfer*innen weitergeleitet.</p>
 <a class="btn btn--primary" href="kontakt.html">Mehr erfahren</a>
-</section>
-
-<!-- Weitere Partner aus dem CMS (bearbeitbar via /admin.html → Partner) -->
-<section class="intro">
-<div class="section__inner">
-<div class="section__header" style="text-align: center;">
-<span class="kicker">Weitere Partner</span>
-<h2 style="font-style: italic; font-weight: 400;">Mit denen wir Müllerhof leben.</h2>
-</div>
-<div data-cms-partner style="max-width: 950px; margin: 0 auto;">
-  <p style="text-align:center;color:var(--c-text-soft);font-style:italic;">Partner werden geladen…</p>
-</div>
-</div>
 </section>
 
 <section class="intro section__center">
@@ -110,32 +79,15 @@
 </div>
 <div>
 <h4>Kontakt</h4>
-<ul>
-<li>Schulstrasse 11</li>
-<li>5070 Frick</li>
-<li><a href="tel:+41628655380">062 865 53 80</a></li>
-<li><a href="mailto:info@muellerhof.ch">info@muellerhof.ch</a></li>
-</ul>
+<ul data-cms-list="footer_kontakt" data-cms-tpl="footer"></ul>
 </div>
 <div>
 <h4>Entdecken</h4>
-<ul>
-<li><a href="restaurant.html">Restaurant</a></li>
-<li><a href="speisekarte.html">Speisekarte</a></li>
-<li><a href="hotel.html">Hotel</a></li>
-<li><a href="events.html">Events</a></li>
-<li><a href="seminare.html">Seminare</a></li>
-<li><a href="karriere.html">Karriere</a></li>
-</ul>
+<ul data-cms-list="footer_entdecken" data-cms-tpl="footer"></ul>
 </div>
 <div>
 <h4>Reservation</h4>
-<ul>
-<li><a href="restaurant.html#reservieren">Tisch reservieren</a></li>
-<li><a href="hotel.html#buchen">Zimmer buchen</a></li>
-<li><a href="events.html#anfrage">Dein Event</a></li>
-<li><a href="kontakt.html">Kontakt</a></li>
-</ul>
+<ul data-cms-list="footer_reservation" data-cms-tpl="footer"></ul>
 </div>
 </div>
 <div class="footer__bottom">
